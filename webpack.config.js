@@ -15,10 +15,14 @@ var config = {
 				test: /\.js$/,
 				exclude: /node_modules/,
 				loader: 'babel'
+			},
+			{
+				test: /\.css$/,
+				exclude: /node_modules/,
+				loader: 'style!css'
 			}
 		]
-	}
-	,
+	},
 	watch: true
 }
 
