@@ -8,7 +8,18 @@ var config = {
 	output: {
 		path: BUILD_DIR,
 		filename: 'bundle.js'
+	},
+	module: {
+		loaders: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: 'babel'
+			}
+		]
 	}
+	,
+	watch: true
 }
 
 module.exports = config;
