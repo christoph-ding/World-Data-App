@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ironpup/World-Data-App/issues"
   },
-  "homepage": "https://github.com/ironpup/World-Data-App#readme"
+  "homepage": "https://github.com/ironpup/World-Data-App#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
