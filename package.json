@@ -1,0 +1,19 @@
+{
+  "name": "world-data-app",
+  "version": "1.0.0",
+  "description": "An app for viewing statistics about the different countries in the world.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ironpup/World-Data-App.git"
+  },
+  "author": "Chris Ding",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ironpup/World-Data-App/issues"
+  },
+  "homepage": "https://github.com/ironpup/World-Data-App#readme"
+}
