@@ -2,9 +2,8 @@
 import React from 'react';
 
 const dropDownOption = () => {
-	return ();
+	return;
 }
-
 
 class GroupByForm extends React.Component{
 	render() {

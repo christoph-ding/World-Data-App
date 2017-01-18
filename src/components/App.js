@@ -14,7 +14,7 @@ class WorldDataApp extends React.Component{
 				<ViewForm />
 				<CountryList />
 			</div>
-		)
+		);
 	}
 }
 
