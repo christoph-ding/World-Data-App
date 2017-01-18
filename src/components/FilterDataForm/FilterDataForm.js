@@ -3,6 +3,7 @@ import React from 'react';
 import GroupByForm from './GroupBy';
 import SortByForm from './SortBy';
 import FilterByForm from './FilterBy';
+import RefreshDataButton from './Refresh';
 
 class FilterDataForm extends React.Component{
 	render() {
@@ -11,7 +12,7 @@ class FilterDataForm extends React.Component{
 				<GroupByForm />
 				<SortByForm />
 				<FilterByForm />
-				<h3> Refresh Data </h3>
+				<RefreshDataButton/>
 			</div>
 		);
 	}
