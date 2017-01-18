@@ -2,6 +2,7 @@
 import React from 'react';
 import GroupByForm from './GroupBy';
 import SortByForm from './SortBy';
+import FilterByForm from './FilterBy';
 
 class FilterDataForm extends React.Component{
 	render() {
@@ -9,7 +10,7 @@ class FilterDataForm extends React.Component{
 			<div>
 				<GroupByForm />
 				<SortByForm />
-				<h3> FilterBy </h3>
+				<FilterByForm />
 				<h3> Refresh Data </h3>
 			</div>
 		);
