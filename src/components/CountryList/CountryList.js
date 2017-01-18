@@ -1,10 +1,11 @@
 "use strict";
 import React from 'react';
+import Grouping from './Grouping.js';
 
 class CountryList extends React.Component{
 	render() {
 		return (
-			<h2> Group of countries </h2>
+			<Grouping />
 		)
 	}
 }
