@@ -1,8 +1,7 @@
-console.log('fetching the data');
-
 const worldDataURL = 'https://restcountries.eu/rest/v1/all';
 
 const getDataFromAPI = (url) => {
+  console.log('fetching data...')
   fetch(url)
   .then((res) => {
     console.log('got the res');
@@ -69,6 +68,4 @@ const sortBy = (dataset, category) => {
   }
 }
 
-module.exports = {
-  getDataFromAPI: getDataFromAPI  
-}
+export default getDataFromAPI
