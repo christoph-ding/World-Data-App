@@ -67,4 +67,7 @@ const sortBy = (dataset, category) => {
   }
 }
 
-export default getDataFromAPI
+module.exports = {
+  getDataFromAPI: getDataFromAPI,
+  groupBy: groupBy
+}
