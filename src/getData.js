@@ -1,0 +1,58 @@
+console.log('fetching the data');
+
+const worldDataURL = 'https://restcountries.eu/rest/v1/all';
+
+const getDataFromAPI = (url) => {
+	fetch(url)
+	.then((res) => {
+		console.log('got the res');
+		res.json()
+			 .then((data) => {
+			 		console.log(data);
+			 		groupBy(data, 'region');			 		
+				})
+	})
+}
+
+const groupBy = (dataset, category, specialKeyMapping) => {
+	// for accessing the data in a category level quickly
+	const groupedData = {};
+
+	for (var row of dataset) {		
+		// 'level' is a possible value within a category		
+		var level = determineLevelLabel(row);
+
+		// add it to an existing key groupedData, or make new key		
+		addToGroupedData(row, level);
+	} 
+
+	console.log(groupedData);
+	return groupedData;
+
+	// helper functions
+	function determineLevelLabel(row) {
+		var level = row[category];
+
+		// accomodate translations between levels in the category and how user would like it to output
+		// i.e. user may want 'M' in the raw data to be translated to "Male" in the grouped data
+		if (specialKeyMapping && specialKeyMapping.hasOwnProperty(level)) {
+			var level = specialKeyMapping[level];
+		}
+
+		return level;
+	}
+
+	function addToGroupedData(row, level) {
+		var newCategoryLevel = !groupedData.hasOwnProperty(level);
+
+		// add row to appropriate category level, capture all possible category levels
+		if (newCategoryLevel) {
+			groupedData[level] = [];
+		}
+
+		var rowsWithSameCategoryLevel = groupedData[level];
+		rowsWithSameCategoryLevel.push(row);
+	}
+}
+
+getDataFromAPI(worldDataURL);
