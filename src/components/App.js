@@ -6,16 +6,16 @@ import ViewForm from './ViewForm/ViewForm';
 import CountryList from './CountryList/CountryList';
 
 class WorldDataApp extends React.Component{
-  render() {
-    return (
-      <div>
-        <Title />
-        <FilterDataForm />
-        <ViewForm />
-        <CountryList />
-      </div>
-    );
-  }
+  render(){
+    return (
+      <div>
+        <Title />
+        <FilterDataForm />
+        <ViewForm />
+        <CountryList />
+      </div>
+    );
+  }
 }
 
 export default WorldDataApp;

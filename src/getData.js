@@ -53,8 +53,6 @@ const groupBy = (dataset, category, specialKeyMapping) => {
   }
 }
 
-getDataFromAPI(worldDataURL);
-
 const sortBy = (dataset, category) => {
   dataset.sort(compare);
   return dataset;
@@ -69,4 +67,8 @@ const sortBy = (dataset, category) => {
     }
     return 0;
   }
+}
+
+module.exports = {
+  getDataFromAPI: getDataFromAPI  
 }
