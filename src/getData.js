@@ -8,8 +8,7 @@ const getDataFromAPI = (url) => {
 		console.log('got the res');
 		res.json()
 			 .then((data) => {
-			 		console.log(data);
-			 		groupBy(data, 'region');			 		
+			 		console.log(data);			 
 				})
 	})
 }
@@ -26,7 +25,6 @@ const groupBy = (dataset, category, specialKeyMapping) => {
 		addToGroupedData(row, level);
 	} 
 
-	console.log(groupedData);
 	return groupedData;
 
 	// helper functions
@@ -56,3 +54,19 @@ const groupBy = (dataset, category, specialKeyMapping) => {
 }
 
 getDataFromAPI(worldDataURL);
+
+const sortBy = (dataset, category) => {
+	dataset.sort(compare);
+	return dataset;
+
+	function compare(a, b) {
+		var valueA = a[category];
+		var valueB = b[category];
+		if (valueA < valueB) {
+			return -1;
+		} else if (valueA > valueB) {
+			return 1;
+		}
+		return 0;
+	}
+}
