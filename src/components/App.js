@@ -10,10 +10,16 @@ import getDataFromAPI from './../getData';
 class WorldDataApp extends React.Component{
   constructor(props){
     super(props);
+
+    this.state = {
+      trueData : []
+    }
   }
 
   getData() {
-    getDataFromAPI('https://restcountries.eu/rest/v1/all');
+    getDataFromAPI('https://restcountries.eu/rest/v1/all', (worldData) => {
+      this.setState({trueData: worldData});
+    });
   }
 
   componentDidMount() {
