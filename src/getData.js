@@ -32,7 +32,7 @@ const groupBy = (dataset, category, specialKeyMapping) => {
     // accomodate translations between levels in the category and how user would like it to output
     // i.e. user may want 'M' in the raw data to be translated to "Male" in the grouped data
     if (specialKeyMapping && specialKeyMapping.hasOwnProperty(level)) {
-      var level = specialKeyMapping[level];
+      level = specialKeyMapping[level];
     }
 
     return level;
@@ -69,5 +69,6 @@ const sortBy = (dataset, category) => {
 
 module.exports = {
   getDataFromAPI: getDataFromAPI,
-  groupBy: groupBy
+  groupBy: groupBy,
+  sortBy: sortBy
 }

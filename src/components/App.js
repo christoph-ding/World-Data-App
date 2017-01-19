@@ -13,7 +13,7 @@ class WorldDataApp extends React.Component{
 
     this.state = {
       trueData : [],
-      groupedData: []
+      groupedData: {}
     }
   }
 
@@ -29,8 +29,16 @@ class WorldDataApp extends React.Component{
   groupData(category) {
     const rearrangedData = data.groupBy(this.state.trueData, category);
     this.setState({groupedData: rearrangedData}, () => {
-      console.log(rearrangedData);
+      console.log('sorting...');
+      this.sortData('population');
     });
+  }
+
+  sortData(category) {
+    for (var level in this.state.groupedData) {
+      let levelData = this.state.groupedData[level];
+      let sortedLevelData = data.sortBy(levelData, category);      
+    }
   }
 
   // life-cycles and mounts
