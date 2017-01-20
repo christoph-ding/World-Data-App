@@ -1,7 +1,6 @@
 const worldDataURL = 'https://restcountries.eu/rest/v1/all';
 
 const getDataFromAPI = (url, cb) => {
-  console.log('fetching data...')
   fetch(url)
   .then((res) => {
     res.json()

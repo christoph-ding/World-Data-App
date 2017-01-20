@@ -12,7 +12,8 @@ class WorldDataApp extends React.Component{
     super(props);
 
     this.state = {
-      trueData : [],
+      // trueData : [{'region': 'asgard'}],
+      trueData : [],      
       groupedData: {}
     }
   }
@@ -29,8 +30,8 @@ class WorldDataApp extends React.Component{
   groupData(category) {
     const rearrangedData = data.groupBy(this.state.trueData, category);
     this.setState({groupedData: rearrangedData}, () => {
-      console.log('sorting...');
       this.sortData('population');
+      console.log(this.state.groupedData['Asia']);
     });
   }
 
@@ -46,16 +47,40 @@ class WorldDataApp extends React.Component{
     this.getData();
   }
 
+  // componentDidMount() {
+  //   fetch('https://restcountries.eu/rest/v1/all')
+  //   .then((res) => {
+  //     res.json()
+  //         .then((worldData) => {
+  //           this.setState({trueData: worldData}, () => {
+  //             console.log(this.state.trueData);
+  //           })            
+  //         })
+  //   })
+  // }
+
+  
+
   render(){
     return (
       <div>
         <Title />
         <FilterDataForm />
         <ViewForm />
-        <CountryList />
+        <CountryList input={this.state.trueData}/>
       </div>
     );
   }
+
+  // render(){
+  //   return (
+  //     <div>
+  //       <Title />
+  //       <FilterDataForm />
+  //       <ViewForm />
+  //     </div>
+  //   );
+  // }
 }
 
 export default WorldDataApp;
