@@ -6,8 +6,14 @@ class Grouping extends React.Component{
   render() {
     return (
       <div>
-        <h2> {this.props.level} </h2>
-        <h3> {this.props.countryList[0].name} </h3>
+        <h2> {this.props.level} </h2>        
+        {
+          this.props.countryList.map((country) => {
+            return (
+              <Country countryData={country}/>
+            )
+          })
+        }
       </div>
     )
   };
