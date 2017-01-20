@@ -14,31 +14,33 @@ class WorldDataApp extends React.Component{
     this.state = {
       // trueData : [{'region': 'asgard'}],
       trueData : [],      
-      groupedData: {}
+      groupedData: {'hey':'yo'}
     }
   }
 
   // data related functions
   getData() {
     data.getDataFromAPI('https://restcountries.eu/rest/v1/all', (worldData) => {
+      // set the true raw data
+      let trueData = worldData;
+      
+      // by default, we group by region and sort by name
       this.setState({trueData: worldData}, () => {
-        this.groupData('region');
+          // by default we will group by region
+          this.groupData('region');
       });
-    });
+    })
   }
 
   groupData(category) {
     const rearrangedData = data.groupBy(this.state.trueData, category);
-    this.setState({groupedData: rearrangedData}, () => {
-      this.sortData('population');
-      console.log(this.state.groupedData['Asia']);
-    });
+    this.setState({groupedData: rearrangedData});
   }
 
   sortData(category) {
     for (var level in this.state.groupedData) {
       let levelData = this.state.groupedData[level];
-      let sortedLevelData = data.sortBy(levelData, category);      
+      let sortedLevelData = data.sortBy(levelData, category);  
     }
   }
 
@@ -47,40 +49,16 @@ class WorldDataApp extends React.Component{
     this.getData();
   }
 
-  // componentDidMount() {
-  //   fetch('https://restcountries.eu/rest/v1/all')
-  //   .then((res) => {
-  //     res.json()
-  //         .then((worldData) => {
-  //           this.setState({trueData: worldData}, () => {
-  //             console.log(this.state.trueData);
-  //           })            
-  //         })
-  //   })
-  // }
-
-  
-
   render(){
     return (
       <div>
         <Title />
         <FilterDataForm />
         <ViewForm />
-        <CountryList input={this.state.trueData}/>
+        <CountryList input={this.state.groupedData}/>
       </div>
     );
   }
-
-  // render(){
-  //   return (
-  //     <div>
-  //       <Title />
-  //       <FilterDataForm />
-  //       <ViewForm />
-  //     </div>
-  //   );
-  // }
 }
 
 export default WorldDataApp;
