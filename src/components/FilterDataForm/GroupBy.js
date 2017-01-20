@@ -15,7 +15,7 @@ class GroupByForm extends React.Component{
             {
               this.props.fields.map((field) => {
                 return (
-                  <option> {field} </option>
+                  <option key={field}> {field} </option>
                 )
               })
             }

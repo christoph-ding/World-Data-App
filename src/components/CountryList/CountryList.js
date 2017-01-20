@@ -13,7 +13,7 @@ class CountryList extends React.Component{
         levels.map((level) => {          
           let levelCountries = this.props.countryData[level];        
           return (
-            <Grouping level={level} countryList={levelCountries}/>
+            <Grouping key={level} level={level} countryList={levelCountries}/>
           );
         })
       }
