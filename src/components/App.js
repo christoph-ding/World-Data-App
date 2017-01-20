@@ -30,7 +30,7 @@ class WorldDataApp extends React.Component{
       this.setState({trueData: originalData}, () => {
           this.groupData('region');
           // I am assuming that the 'rows' in the dataset all have the same fields          
-          this.getFields()
+          this.getFields();
       })      
     })
   }
@@ -51,9 +51,7 @@ class WorldDataApp extends React.Component{
     // I am assuming that the 'rows' in the dataset all have the same fields
     let sampleRow = this.state.trueData[0];
     let fields = data.determineGroupingFields(sampleRow);
-    this.setState({dataFields: fields}, () => {
-      console.log(this.state.dataFields);
-    })
+    this.setState({dataFields: fields});      
   }
 
   // life-cycles and mounts
@@ -65,7 +63,7 @@ class WorldDataApp extends React.Component{
     return (
       <div>
         <Title />
-        <FilterDataForm actions={{regroup: this.regroup.bind(this)}}/>
+        <FilterDataForm actions={{regroup: this.regroup.bind(this)}} fields={this.state.dataFields} />
         <ViewForm />
         <CountryList countryData={this.state.groupedData}/>
       </div>

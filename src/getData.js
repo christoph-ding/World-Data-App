@@ -12,7 +12,6 @@ const getDataFromAPI = (url, cb) => {
 
 const determineGroupingFields = (row) => {
   let possibleCategories = Object.keys(row);
-  console.log(possibleCategories);
   return possibleCategories;
 }
 

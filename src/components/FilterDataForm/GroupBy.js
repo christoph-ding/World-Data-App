@@ -1,21 +1,25 @@
 "use strict";
 import React from 'react';
 
-const dropDownOption = () => {
-  return;
-}
-
 class GroupByForm extends React.Component{
   render() {
     return(
       <div>
         <form>
           <input type="button" value="group by" onClick={ () => {
-                this.props.action('test');
+                this.props.action('region');
               } 
             }
           />
-          <select> </select>
+          <select>
+            {
+              this.props.fields.map((field) => {
+                return (
+                  <option> {field} </option>
+                )
+              })
+            }
+          </select>
         </form>
       </div>
     )

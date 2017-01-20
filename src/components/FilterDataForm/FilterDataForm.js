@@ -9,7 +9,7 @@ class FilterDataForm extends React.Component{
   render () {
     return (
       <div>
-        <GroupByForm action={this.props.actions.regroup}/>
+        <GroupByForm action={this.props.actions.regroup} fields={this.props.fields}/>
         <SortByForm />
         <FilterByForm />
         <RefreshDataButton />
