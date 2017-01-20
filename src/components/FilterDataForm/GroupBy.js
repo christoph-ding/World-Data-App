@@ -10,7 +10,11 @@ class GroupByForm extends React.Component{
     return(
       <div>
         <form>
-          <input type="button" value="group by" />
+          <input type="button" value="group by" onClick={ () => {
+                this.props.action('test');
+              } 
+            }
+          />
           <select> </select>
         </form>
       </div>

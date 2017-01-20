@@ -17,12 +17,16 @@ class WorldDataApp extends React.Component{
     }
   }
 
+  // onclick actions passed to buttons
+  regroup(category) {
+    console.log('regrouping');
+  }
+
   // data related functions
   getData() {
     data.getDataFromAPI('https://restcountries.eu/rest/v1/all', (originalData) => {
       // by default, we group by region and sort by name
       this.setState({trueData: originalData}, () => {
-          // by default we will group by region
           this.groupData('region');
       });
     })
@@ -49,7 +53,7 @@ class WorldDataApp extends React.Component{
     return (
       <div>
         <Title />
-        <FilterDataForm />
+        <FilterDataForm actions={{regroup: this.regroup}}/>
         <ViewForm />
         <CountryList countryData={this.state.groupedData}/>
       </div>
