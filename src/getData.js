@@ -56,12 +56,13 @@ const groupBy = (dataset, field, specialKeyMapping) => {
 }
 
 const sortBy = (dataset, field) => {
+  console.log(field, '        ', dataset);
   dataset.sort(compare);
   return dataset;
 
   function compare(a, b) {
-    var valueA = a[category];
-    var valueB = b[category];
+    var valueA = a[field];
+    var valueB = b[field];
     if (valueA < valueB) {
       return -1;
     } else if (valueA > valueB) {

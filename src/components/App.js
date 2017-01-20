@@ -16,11 +16,12 @@ class WorldDataApp extends React.Component{
       groupedData: {},
       dataFields: []
     }
+
+    this.keyMapping = {'': 'not available'}
   }
 
   // onclick actions passed to buttons
   regroup(category) {
-    console.log('regrouping on: ', category);
     this.groupData(category);
   }
 
@@ -31,21 +32,32 @@ class WorldDataApp extends React.Component{
       this.setState({trueData: originalData}, () => {
           this.groupData('region');
           // I am assuming that the 'rows' in the dataset all have the same fields          
-          this.getFields();
+          this.getFields();          
       })      
     })
   }
 
   groupData(category) {
-    const rearrangedData = data.groupBy(this.state.trueData, category);
-    this.setState({groupedData: rearrangedData});
+    const rearrangedData = data.groupBy(this.state.trueData, category, this.keyMapping);
+    this.setState({groupedData: rearrangedData}, () => {
+      // resort after changing the groups
+      console.log('done grouping...');
+      this.sortData('population');  
+    });
   }
 
   sortData(category) {
+    console.log('sorting on: ', category);
+
+    let newGroupedData = {};
+
     for (var level in this.state.groupedData) {
       let levelData = this.state.groupedData[level];
-      let sortedLevelData = data.sortBy(levelData, category);  
+      let sortedLevelData = data.sortBy(levelData, category);
+      newGroupedData[level] = sortedLevelData;
     }
+
+    this.setState({groupedData: newGroupedData});
   }
 
   getFields() {
