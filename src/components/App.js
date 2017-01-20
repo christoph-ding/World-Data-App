@@ -20,6 +20,7 @@ class WorldDataApp extends React.Component{
 
   // onclick actions passed to buttons
   regroup(category) {
+    console.log('regrouping on: ', category);
     this.groupData(category);
   }
 

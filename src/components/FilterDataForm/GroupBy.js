@@ -2,16 +2,28 @@
 import React from 'react';
 
 class GroupByForm extends React.Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedOption: 'test'
+    }
+  }
+
+  handleChange(e) {
+    let newOption = e.target.value;
+    this.setState({selectedOption: newOption})
+  }
+
   render() {
     return(
       <div>
         <form>
           <input type="button" value="group by" onClick={ () => {
-                this.props.action('region');
+                this.props.action(this.state.selectedOption);
               } 
             }
           />
-          <select>
+          <select onChange={this.handleChange.bind(this)}>
             {
               this.props.fields.map((field) => {
                 return (
