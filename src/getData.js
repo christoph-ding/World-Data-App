@@ -56,7 +56,6 @@ const groupBy = (dataset, field, specialKeyMapping) => {
 }
 
 const sortBy = (dataset, field) => {
-  console.log(field, '        ', dataset);
   dataset.sort(compare);
   return dataset;
 

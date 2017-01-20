@@ -25,6 +25,11 @@ class WorldDataApp extends React.Component{
     this.groupData(category);
   }
 
+  resort(category) {
+    this.sortData(category);
+  }
+
+
   // data related functions
   getData() {
     data.getDataFromAPI('https://restcountries.eu/rest/v1/all', (originalData) => {
@@ -41,16 +46,14 @@ class WorldDataApp extends React.Component{
     const rearrangedData = data.groupBy(this.state.trueData, category, this.keyMapping);
     this.setState({groupedData: rearrangedData}, () => {
       // resort after changing the groups
-      console.log('done grouping...');
-      this.sortData('population');  
+      this.sortData('population');
     });
   }
 
   sortData(category) {
-    console.log('sorting on: ', category);
-
     let newGroupedData = {};
 
+    // sort the data within each level of the groupedData
     for (var level in this.state.groupedData) {
       let levelData = this.state.groupedData[level];
       let sortedLevelData = data.sortBy(levelData, category);
@@ -76,7 +79,7 @@ class WorldDataApp extends React.Component{
     return (
       <div>
         <Title />
-        <FilterDataForm actions={{regroup: this.regroup.bind(this)}} fields={this.state.dataFields} />
+        <FilterDataForm actions={{regroup: this.regroup.bind(this), resort: this.resort.bind(this)}} fields={this.state.dataFields} />
         <ViewForm />
         <CountryList countryData={this.state.groupedData}/>
       </div>
