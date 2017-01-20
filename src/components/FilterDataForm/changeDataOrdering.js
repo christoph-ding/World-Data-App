@@ -11,7 +11,8 @@ class ChangeOrderForm extends React.Component{
   render() {
     return(
       <div>
-        <form>          
+        <form>
+          {this.props.title}:<br />
           <select onChange={this.handleChange.bind(this)}> 
             {
               this.props.fields.map((field) => {
