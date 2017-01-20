@@ -16,16 +16,14 @@ class FilterDataForm extends React.Component{
   }
 
   updateGrouping(newGrouping) {
-    this.setState({selectedGrouping: newGrouping}, () => {
-      console.log('current grouping: ', this.state.selectedGrouping, '    current sorting: ', this.state.selectedSorting);
-      console.log('updating grouping');
+    this.setState({selectedGrouping: newGrouping}, () => {      
+      this.props.actions.regroup(this.state.selectedGrouping, this.state.selectedSorting);
     })
   }
 
   updatingSorting(newSort) {
-    this.setState({selectedSorting: newSort}, () => {
-      console.log('current grouping: ', this.state.selectedGrouping, '    current sorting: ', this.state.selectedSorting);
-      console.log('updating sort');
+    this.setState({selectedSorting: newSort}, () => {      
+      this.props.actions.resort(this.state.selectedSorting);
     })
   }
 

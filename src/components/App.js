@@ -21,42 +21,50 @@ class WorldDataApp extends React.Component{
   }
 
   // onclick actions passed to buttons
-  regroup(category) {
-    this.groupData(category);
+  regroup(groupField, sortField) {
+    this.groupData(groupField, sortField);
   }
 
-  resort(category) {
-    this.sortData(category);
+  resort(sortField) {
+    this.sortData(sortField);
   }
 
 
   // data related functions
   getData() {
     data.getDataFromAPI('https://restcountries.eu/rest/v1/all', (originalData) => {
-      // by default, we group by region and sort by name
       this.setState({trueData: originalData}, () => {
-          this.groupData('region');
+          this.groupData();
           // I am assuming that the 'rows' in the dataset all have the same fields          
           this.getFields();          
       })      
     })
   }
 
-  groupData(category) {
-    const rearrangedData = data.groupBy(this.state.trueData, category, this.keyMapping);
+  groupData(groupField, sortField) {
+    // by default, we group by region and sort by name
+    if (typeof(groupField) === 'undefined') {
+      groupField = 'region';
+    }    
+
+    if (typeof(sortField) === 'undefined') {
+      sortField = 'name';
+    }
+
+    const rearrangedData = data.groupBy(this.state.trueData, groupField, this.keyMapping);
     this.setState({groupedData: rearrangedData}, () => {
       // resort after changing the groups
-      this.sortData('population');
+      this.sortData(sortField);
     });
   }
 
-  sortData(category) {
+  sortData(sortField) {
     let newGroupedData = {};
 
     // sort the data within each level of the groupedData
     for (var level in this.state.groupedData) {
       let levelData = this.state.groupedData[level];
-      let sortedLevelData = data.sortBy(levelData, category);
+      let sortedLevelData = data.sortBy(levelData, sortField);
       newGroupedData[level] = sortedLevelData;
     }
 
