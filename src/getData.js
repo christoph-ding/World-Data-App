@@ -10,12 +10,19 @@ const getDataFromAPI = (url, cb) => {
   })
 }
 
-const groupBy = (dataset, category, specialKeyMapping) => {
-  // for accessing the data in a category level quickly
+const determineGroupingFields = (row) => {
+  // I am assuming that the 'rows' in the dataset all have the same fields
+  let possibleCategories = Object.key(row);
+  console.log(possibleCategories);
+  return possibleCategories;
+}
+
+const groupBy = (dataset, field, specialKeyMapping) => {
+  // for accessing the data in a field level quickly
   const groupedData = {};
 
   for (var row of dataset) {    
-    // 'level' is a possible value within a category    
+    // 'level' is a possible value within a field    
     var level = determineLevelLabel(row);
 
     // add it to an existing key groupedData, or make new key    
@@ -26,9 +33,9 @@ const groupBy = (dataset, category, specialKeyMapping) => {
 
   // helper functions
   function determineLevelLabel(row) {
-    var level = row[category];
+    var level = row[field];
 
-    // accomodate translations between levels in the category and how user would like it to output
+    // accomodate translations between levels in the field and how user would like it to output
     // i.e. user may want 'M' in the raw data to be translated to "Male" in the grouped data
     if (specialKeyMapping && specialKeyMapping.hasOwnProperty(level)) {
       level = specialKeyMapping[level];
@@ -38,19 +45,19 @@ const groupBy = (dataset, category, specialKeyMapping) => {
   }
 
   function addToGroupedData(row, level) {
-    var newCategoryLevel = !groupedData.hasOwnProperty(level);
+    var newFieldLevel = !groupedData.hasOwnProperty(level);
 
-    // add row to appropriate category level, capture all possible category levels
-    if (newCategoryLevel) {
+    // add row to appropriate field level, capture all possible field levels
+    if (newFieldLevel) {
       groupedData[level] = [];
     }
 
-    var rowsWithSameCategoryLevel = groupedData[level];
-    rowsWithSameCategoryLevel.push(row);
+    var rowsWithSameFieldLevel = groupedData[level];
+    rowsWithSameFieldLevel.push(row);
   }
 }
 
-const sortBy = (dataset, category) => {
+const sortBy = (dataset, field) => {
   dataset.sort(compare);
   return dataset;
 
@@ -69,5 +76,6 @@ const sortBy = (dataset, category) => {
 module.exports = {
   getDataFromAPI: getDataFromAPI,
   groupBy: groupBy,
-  sortBy: sortBy
+  sortBy: sortBy,
+  determineGroupingFields: determineGroupingFields
 }
