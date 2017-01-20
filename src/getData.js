@@ -11,8 +11,7 @@ const getDataFromAPI = (url, cb) => {
 }
 
 const determineGroupingFields = (row) => {
-  // I am assuming that the 'rows' in the dataset all have the same fields
-  let possibleCategories = Object.key(row);
+  let possibleCategories = Object.keys(row);
   console.log(possibleCategories);
   return possibleCategories;
 }

@@ -13,13 +13,14 @@ class WorldDataApp extends React.Component{
 
     this.state = {
       trueData : [],      
-      groupedData: {}
+      groupedData: {},
+      dataFields: []
     }
   }
 
   // onclick actions passed to buttons
   regroup(category) {
-    console.log('regrouping');
+    this.groupData(category);
   }
 
   // data related functions
@@ -28,7 +29,9 @@ class WorldDataApp extends React.Component{
       // by default, we group by region and sort by name
       this.setState({trueData: originalData}, () => {
           this.groupData('region');
-      });
+          // I am assuming that the 'rows' in the dataset all have the same fields          
+          this.getFields()
+      })      
     })
   }
 
@@ -44,6 +47,15 @@ class WorldDataApp extends React.Component{
     }
   }
 
+  getFields() {
+    // I am assuming that the 'rows' in the dataset all have the same fields
+    let sampleRow = this.state.trueData[0];
+    let fields = data.determineGroupingFields(sampleRow);
+    this.setState({dataFields: fields}, () => {
+      console.log(this.state.dataFields);
+    })
+  }
+
   // life-cycles and mounts
   componentDidMount() {
     this.getData();
@@ -53,7 +65,7 @@ class WorldDataApp extends React.Component{
     return (
       <div>
         <Title />
-        <FilterDataForm actions={{regroup: this.regroup}}/>
+        <FilterDataForm actions={{regroup: this.regroup.bind(this)}}/>
         <ViewForm />
         <CountryList countryData={this.state.groupedData}/>
       </div>
