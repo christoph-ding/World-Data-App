@@ -6,8 +6,8 @@ class Grouping extends React.Component{
   render() {
     return (
       <div>
-        <h2> I'm a group </h2>
-        <Country />
+        <h2> {this.props.level} </h2>
+        <h3> {this.props.countryList[0].name} </h3>
       </div>
     )
   };

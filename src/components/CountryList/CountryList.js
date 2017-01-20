@@ -5,17 +5,18 @@ import Grouping from './Grouping.js';
 class CountryList extends React.Component{
 
   render() {
+    // a level is a possible answer for the group chosen
+    const levels = Object.keys(this.props.countryData); 
     return (
       <div>
-      <Grouping />
-      <ul> 
-        {
-          this.props.input.map((elem) => {
-            console.log(elem)
-            return (<li> {elem.name} </li>)
-          })
-        }
-      </ul>
+      {
+        levels.map((level) => {          
+          let levelCountries = this.props.countryData[level];        
+          return (
+            <Grouping level={level} countryList={levelCountries}/>
+          );
+        })
+      }
       </div>
     )
   }

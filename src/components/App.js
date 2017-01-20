@@ -12,20 +12,16 @@ class WorldDataApp extends React.Component{
     super(props);
 
     this.state = {
-      // trueData : [{'region': 'asgard'}],
       trueData : [],      
-      groupedData: {'hey':'yo'}
+      groupedData: {}
     }
   }
 
   // data related functions
   getData() {
-    data.getDataFromAPI('https://restcountries.eu/rest/v1/all', (worldData) => {
-      // set the true raw data
-      let trueData = worldData;
-      
+    data.getDataFromAPI('https://restcountries.eu/rest/v1/all', (originalData) => {
       // by default, we group by region and sort by name
-      this.setState({trueData: worldData}, () => {
+      this.setState({trueData: originalData}, () => {
           // by default we will group by region
           this.groupData('region');
       });
@@ -55,7 +51,7 @@ class WorldDataApp extends React.Component{
         <Title />
         <FilterDataForm />
         <ViewForm />
-        <CountryList input={this.state.groupedData}/>
+        <CountryList countryData={this.state.groupedData}/>
       </div>
     );
   }
