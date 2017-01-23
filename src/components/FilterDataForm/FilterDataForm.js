@@ -13,7 +13,8 @@ class FilterDataForm extends React.Component{
       selectedGrouping: undefined,
       selectedSorting: undefined,
       selectedFilterField: undefined,
-      selectedOperator: undefined
+      selectedOperator: undefined,
+      filterThreshold: undefined
     }
   }
 

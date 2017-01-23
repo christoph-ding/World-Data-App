@@ -3,6 +3,10 @@ import React from 'react';
 
 class FilterByForm extends React.Component{
 
+  updateThreshold() {
+    console.log(this.filterThreshold.value);
+  }
+
   updateField(e) {
     let newField = e.target.value;
     this.props.action.updateFilterField(newField);
@@ -18,12 +22,6 @@ class FilterByForm extends React.Component{
       <div>
         <form>
           {this.props.title}:<br />
-          <select onChange={ this.updateOperator.bind(this) }>
-              <option> </option>              
-              <option> = </option>
-              <option> &gt; </option>
-              <option> &lt; </option>              
-          </select>
           <select onChange={ this.updateField.bind(this) }>
             {
               this.props.fields.map((field) => {
@@ -33,6 +31,14 @@ class FilterByForm extends React.Component{
               })
             }
           </select>
+          <select onChange={ this.updateOperator.bind(this) }>
+              <option> </option>              
+              <option> = </option>
+              <option> &gt; </option>
+              <option> &lt; </option>              
+          </select>
+          <input ref={(input) => {this.filterThreshold = input}}/>
+          <input type="button" onClick={this.updateThreshold.bind(this)}/>
         </form>
       </div>
     );
