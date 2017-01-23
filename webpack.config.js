@@ -1,10 +1,11 @@
 var path = require('path');
+var webpack = require('webpack');
 
 var BUILD_DIR = path.resolve(__dirname, 'dist');
 var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {
-  entry: APP_DIR + '/index.js',
+  entry: ['webpack-dev-server/client?http://0.0.0.0:3000', 'webpack/hot/only-dev-server' , APP_DIR + '/index.js'],
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
@@ -14,7 +15,7 @@ var config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loaders: ['react-hot', 'babel', include: APP_DIR]
       },
       {
         test: /\.css$/,
@@ -23,6 +24,8 @@ var config = {
       }
     ]
   },
+  plugins: [
+  new webpack.HotModuleReplacementPlugin(),
   watch: true
 }
 
