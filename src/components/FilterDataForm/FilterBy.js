@@ -10,9 +10,22 @@ class FilterByForm extends React.Component{
     return(
       <div>
         <form>
-          <input type="button" value="filter by" />
-          <select> </select>
-          <input type="text"/> 
+          {this.props.title}:<br />
+          <select>
+              <option> </option>              
+              <option> = </option>
+              <option> &gt; </option>
+              <option> &lt; </option>              
+          </select>
+          <select>
+            {
+              this.props.fields.map((field) => {
+                return (
+                  <option key={field}> {field} </option>
+                )
+              })
+            }
+          </select>
         </form>
       </div>
     );

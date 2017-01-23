@@ -32,7 +32,7 @@ class FilterDataForm extends React.Component{
       <div>
         <ChangeOrderForm title="Group By" action={this.updateGrouping.bind(this)} fields={this.props.fields}/>
         <ChangeOrderForm title="Sort By" action={this.updatingSorting.bind(this)} fields={this.props.fields}/>        
-        <FilterByForm />
+        <FilterByForm title="Filter By" fields={this.props.fields}/>
         <RefreshDataButton />
       </div>
     );
