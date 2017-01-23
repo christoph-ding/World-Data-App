@@ -21,25 +21,31 @@ class FilterDataForm extends React.Component{
   updateGrouping(newGrouping) {
     this.setState({selectedGrouping: newGrouping}, () => {      
       this.props.actions.regroup(this.state.selectedGrouping, this.state.selectedSorting);
-    })
+    });
   }
 
   updatingSorting(newSort) {
     this.setState({selectedSorting: newSort}, () => {      
       this.props.actions.resort(this.state.selectedSorting);
-    })
+    });
   }
 
   updateFilterField(newField) {
     this.setState({selectedFilterField: newField}, () => {
-      this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator);
-    })
+      this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator, this.state.filterThreshold);
+    });
   }
 
   updateOperator(newOperator) {
     this.setState({selectedOperator: newOperator}, () => {
-      this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator);
-    })
+      this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator, this.state.filterThreshold);
+    });
+  }
+
+  updateThreshold(newThreshold) {
+    this.setState({filterThreshold: newThreshold}, () => {
+      this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator, this.state.filterThreshold);
+    });   
   }
 
   render () {
@@ -47,7 +53,7 @@ class FilterDataForm extends React.Component{
       <div>
         <ChangeOrderForm title="Group By" action={this.updateGrouping.bind(this)} fields={this.props.fields}/>
         <ChangeOrderForm title="Sort By" action={this.updatingSorting.bind(this)} fields={this.props.fields}/>        
-        <FilterByForm title="Filter By" action={{updateFilterField: this.updateFilterField.bind(this), updateOperator: this.updateOperator.bind(this)}} fields={this.props.fields}/>
+        <FilterByForm title="Filter By" action={{updateFilterField: this.updateFilterField.bind(this), updateOperator: this.updateOperator.bind(this), updateThreshold: this.updateThreshold.bind(this)}} fields={this.props.fields}/>
         <RefreshDataButton />
       </div>
     );

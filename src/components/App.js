@@ -29,8 +29,8 @@ class WorldDataApp extends React.Component{
     this.sortData(sortField);
   }
 
-  filter(filterField, comparator) {
-    console.log('filtering on: ', filterField,  ' comparator: ', comparator);
+  filter(filterField, comparator, threshold) {
+    this.filterData(filterField, comparator, threshold);
   }
 
   // data related functions
@@ -42,6 +42,13 @@ class WorldDataApp extends React.Component{
           this.getFields();          
       })      
     })
+  }
+
+  getFields() {
+    // I am assuming that the 'rows' in the dataset all have the same fields
+    let sampleRow = this.state.trueData[0];
+    let fields = data.determineGroupingFields(sampleRow);
+    this.setState({dataFields: fields});      
   }
 
   groupData(groupField, sortField) {
@@ -60,7 +67,7 @@ class WorldDataApp extends React.Component{
       this.sortData(sortField);
     });
   }
-
+ 
   sortData(sortField) {
     let newGroupedData = {};
 
@@ -74,11 +81,19 @@ class WorldDataApp extends React.Component{
     this.setState({groupedData: newGroupedData});
   }
 
-  getFields() {
-    // I am assuming that the 'rows' in the dataset all have the same fields
-    let sampleRow = this.state.trueData[0];
-    let fields = data.determineGroupingFields(sampleRow);
-    this.setState({dataFields: fields});      
+  filterData(filterField, comparator, threshold) {
+    const operatorTable = {
+      '=': function(element) {return element == threshold},
+      '>': function(element) {return element > threshold},
+      '<': function(element) {return element < threshold}
+    }
+
+    const relevantFilter = () => {
+      return operatorTable[comparator];
+    }
+
+    console.log(relevantFilter());
+
   }
 
   // life-cycles and mounts
