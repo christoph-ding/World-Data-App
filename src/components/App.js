@@ -83,17 +83,27 @@ class WorldDataApp extends React.Component{
 
   filterData(filterField, comparator, threshold) {
     const operatorTable = {
-      '=': function(element) {return element == threshold},
-      '>': function(element) {return element > threshold},
+      '=': function(element) {
+        console.log(element['population']);
+        return element['population'] == threshold
+      },
+      '>': function(element) {
+        console.log(element['population']);
+        return element['population'] > threshold
+      },
       '<': function(element) {return element < threshold}
     }
 
-    const relevantFilter = () => {
-      return operatorTable[comparator];
-    }
+    const originalData = this.state.groupedData['Africa'];
 
-    console.log(relevantFilter());
+    console.log('filterField: ', filterField, ' comparator: ', comparator, ' threshold: ', threshold);
+    console.log('original data is: ', originalData, ' of len: ', originalData.length);
 
+    const relevantFilter = operatorTable[comparator];
+
+    const filteredData = originalData.filter(relevantFilter);
+
+    console.log('filtered data is:', filteredData, ' of len: ', filteredData.length);
   }
 
   // life-cycles and mounts

@@ -31,15 +31,17 @@ class FilterDataForm extends React.Component{
   }
 
   updateFilterField(newField) {
-    this.setState({selectedFilterField: newField}, () => {
-      this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator, this.state.filterThreshold);
-    });
+    // this.setState({selectedFilterField: newField}, () => {
+    //   this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator, this.state.filterThreshold);
+    // });
+    this.setState({selectedFilterField: newField});      
   }
 
   updateOperator(newOperator) {
-    this.setState({selectedOperator: newOperator}, () => {
-      this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator, this.state.filterThreshold);
-    });
+    // this.setState({selectedOperator: newOperator}, () => {
+    //   this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator, this.state.filterThreshold);
+    // });
+    this.setState({selectedOperator: newOperator});      
   }
 
   updateThreshold(newThreshold) {

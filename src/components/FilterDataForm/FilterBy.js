@@ -4,7 +4,8 @@ import React from 'react';
 class FilterByForm extends React.Component{
 
   updateThreshold() {
-    console.log(this.filterThreshold.value);
+    let newThreshold = this.filterThreshold.value;
+    this.props.action.updateThreshold(newThreshold);
   }
 
   updateField(e) {
