@@ -2,9 +2,15 @@
 import React from 'react';
 
 class FilterByForm extends React.Component{
-  handleChange(e) {
-    let newOption = e.target.value;    
-    this.props.action(newOption);
+
+  updateField(e) {
+    let newField = e.target.value;
+    this.props.action.updateFilterField(newField);
+  }
+
+  updateOperator(e) {
+    let newOperator = e.target.value;
+    this.props.action.updateOperator(newOperator);
   }
 
   render() {
@@ -12,13 +18,13 @@ class FilterByForm extends React.Component{
       <div>
         <form>
           {this.props.title}:<br />
-          <select>
+          <select onChange={ this.updateOperator.bind(this) }>
               <option> </option>              
               <option> = </option>
               <option> &gt; </option>
               <option> &lt; </option>              
           </select>
-          <select onChange={this.handleChange.bind(this)}>
+          <select onChange={ this.updateField.bind(this) }>
             {
               this.props.fields.map((field) => {
                 return (

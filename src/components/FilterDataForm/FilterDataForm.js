@@ -12,7 +12,8 @@ class FilterDataForm extends React.Component{
     this.state = {
       selectedGrouping: undefined,
       selectedSorting: undefined,
-      selectedFilterField: undefined
+      selectedFilterField: undefined,
+      selectedOperator: undefined
     }
   }
 
@@ -29,9 +30,14 @@ class FilterDataForm extends React.Component{
   }
 
   updateFilterField(newField) {
-    console.log(newField);
     this.setState({selectedFilterField: newField}, () => {
-      this.props.actions.filter(this.state.selectedFilterField, "greater than");
+      this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator);
+    })
+  }
+
+  updateOperator(newOperator) {
+    this.setState({selectedOperator: newOperator}, () => {
+      this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator);
     })
   }
 
@@ -40,7 +46,7 @@ class FilterDataForm extends React.Component{
       <div>
         <ChangeOrderForm title="Group By" action={this.updateGrouping.bind(this)} fields={this.props.fields}/>
         <ChangeOrderForm title="Sort By" action={this.updatingSorting.bind(this)} fields={this.props.fields}/>        
-        <FilterByForm title="Filter By" action={this.updateFilterField.bind(this)} fields={this.props.fields}/>
+        <FilterByForm title="Filter By" action={{updateFilterField: this.updateFilterField.bind(this), updateOperator: this.updateOperator.bind(this)}} fields={this.props.fields}/>
         <RefreshDataButton />
       </div>
     );
