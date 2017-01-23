@@ -2,9 +2,26 @@
 import React from 'react';
 
 class Country extends React.Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      expanded: false
+    }
+  }
+
+
+  test() {
+    this.setState({expanded: !this.state.expanded}, () => {
+      console.log(this.state.expanded);      
+    })
+  }
+
   render() {
     return (
-      <h4>  {this.props.countryData.population} ========================= {this.props.countryData.name}</h4>
+      <tr onClick={this.test.bind(this)}>
+        <td>{this.props.countryData.name}</td>
+      </tr>
     );
   }
 }

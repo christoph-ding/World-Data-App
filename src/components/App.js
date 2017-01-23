@@ -14,8 +14,7 @@ class WorldDataApp extends React.Component{
     this.state = {
       trueData : [],      
       groupedData: {},
-      dataFields: [],
-      testData: ['a', 'b', 'c']
+      dataFields: []
     }
 
     this.keyMapping = {'': 'not available'}
