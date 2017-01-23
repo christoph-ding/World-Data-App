@@ -24,6 +24,7 @@ class FilterByForm extends React.Component{
         <form>
           {this.props.title}:<br />
           <select onChange={ this.updateField.bind(this) }>
+            <option> </option>
             {
               this.props.fields.map((field) => {
                 return (

@@ -14,7 +14,8 @@ class WorldDataApp extends React.Component{
     this.state = {
       trueData : [],      
       groupedData: {},
-      dataFields: []
+      dataFields: [],
+      testData: ['a', 'b', 'c']
     }
 
     this.keyMapping = {'': 'not available'}
@@ -82,28 +83,24 @@ class WorldDataApp extends React.Component{
   }
 
   filterData(filterField, comparator, threshold) {
+    // create the compare function using the user inputs to this filter
     const operatorTable = {
-      '=': function(element) {
-        console.log(element['population']);
-        return element['population'] == threshold
-      },
-      '>': function(element) {
-        console.log(element['population']);
-        return element['population'] > threshold
-      },
-      '<': function(element) {return element < threshold}
+      '=': function(element) {return element[filterField] == threshold},
+      '>': function(element) {return element[filterField] > threshold},
+      '<': function(element) {return element[filterField] < threshold}
     }
-
-    const originalData = this.state.groupedData['Africa'];
-
-    console.log('filterField: ', filterField, ' comparator: ', comparator, ' threshold: ', threshold);
-    console.log('original data is: ', originalData, ' of len: ', originalData.length);
-
     const relevantFilter = operatorTable[comparator];
 
-    const filteredData = originalData.filter(relevantFilter);
+    const newGroupedData = {};
 
-    console.log('filtered data is:', filteredData, ' of len: ', filteredData.length);
+    // apply the filter to the sorted data of the grouped data
+    for (var level in this.state.groupedData) {
+      let originalData = this.state.groupedData[level];
+      let filteredData = originalData.filter(relevantFilter);
+      newGroupedData[level] = filteredData;
+    }
+
+    this.setState({groupedData: newGroupedData});
   }
 
   // life-cycles and mounts

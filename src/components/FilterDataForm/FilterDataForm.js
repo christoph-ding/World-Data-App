@@ -31,22 +31,24 @@ class FilterDataForm extends React.Component{
   }
 
   updateFilterField(newField) {
-    // this.setState({selectedFilterField: newField}, () => {
-    //   this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator, this.state.filterThreshold);
-    // });
     this.setState({selectedFilterField: newField});      
   }
 
-  updateOperator(newOperator) {
-    // this.setState({selectedOperator: newOperator}, () => {
-    //   this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator, this.state.filterThreshold);
-    // });
+  updateOperator(newOperator) {    
     this.setState({selectedOperator: newOperator});      
+  }
+
+  // only filter if all the necceary parameters are supplied
+  completeFilterExists() {
+    console.log('field: ', this.state.selectedFilterField, ' operator: ', this.state.selectedOperator, ' filterThreshold: ', this.state.filterThreshold);
+    return (this.state.selectedFilterField !== undefined && this.state.selectedOperator !== undefined && this.state.filterThreshold !== '');
   }
 
   updateThreshold(newThreshold) {
     this.setState({filterThreshold: newThreshold}, () => {
-      this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator, this.state.filterThreshold);
+      if (this.completeFilterExists()) {
+        this.props.actions.filter(this.state.selectedFilterField, this.state.selectedOperator, this.state.filterThreshold);
+      }
     });   
   }
 
