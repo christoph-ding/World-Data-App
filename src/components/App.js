@@ -29,6 +29,9 @@ class WorldDataApp extends React.Component{
     this.sortData(sortField);
   }
 
+  filter(filterField, comparator) {
+    console.log('filtering on: ', filterField,  ' comparator: ', comparator);
+  }
 
   // data related functions
   getData() {
@@ -87,7 +90,7 @@ class WorldDataApp extends React.Component{
     return (
       <div>
         <Title />
-        <FilterDataForm actions={{regroup: this.regroup.bind(this), resort: this.resort.bind(this)}} fields={this.state.dataFields} />
+        <FilterDataForm actions={{regroup: this.regroup.bind(this), resort: this.resort.bind(this), filter: this.filter.bind(this)}} fields={this.state.dataFields} />
         <ViewForm />
         <CountryList countryData={this.state.groupedData}/>
       </div>

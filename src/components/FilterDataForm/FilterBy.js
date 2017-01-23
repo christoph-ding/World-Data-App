@@ -1,11 +1,12 @@
 "use strict";
 import React from 'react';
 
-const dropDownOption = () => {
-  return;
-}
-
 class FilterByForm extends React.Component{
+  handleChange(e) {
+    let newOption = e.target.value;    
+    this.props.action(newOption);
+  }
+
   render() {
     return(
       <div>
@@ -17,7 +18,7 @@ class FilterByForm extends React.Component{
               <option> &gt; </option>
               <option> &lt; </option>              
           </select>
-          <select>
+          <select onChange={this.handleChange.bind(this)}>
             {
               this.props.fields.map((field) => {
                 return (
