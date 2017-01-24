@@ -7,12 +7,20 @@ class Country extends React.Component{
     super(props);
     this.state = {
       expanded: false,
-      value: 100,
-      display: 'inline',
+      display: 'none',
       hiddenFields: this.determineHiddenFields(this.props.id, this.props.countryData)
     }
   }
 
+  toggleFullRow() {
+    if (!this.state.expanded) {
+      this.setState({display: 'table-cell', expanded: !this.state.expanded});
+    } else if (this.state.expanded) {
+      this.setState({display: 'none', expanded: !this.state.expanded});
+    }
+  }  
+
+  // helper functions for parsing the CountryData
   determineHiddenFields(idKey, dataObject){
     // we want all the fields that are not the main identifier to be hidden
     const hiddenFields = [];
@@ -30,30 +38,13 @@ class Country extends React.Component{
     return output;
   }
 
-  toggleFullCountry() {
-    console.log(this.props.countryData);
-  }
-
-  test() {
-    this.setState({expanded: !this.state.expanded}, () => {
-      if (this.state.display == 'inline') {
-        this.setState({display: 'none'});        
-      } else if (this.state.display == 'none') {
-        this.setState({display: 'inline'});
-      }   
-    })
-  }
-
   isCollection(variable) {
     return (Array.isArray(variable) || Object.prototype.toString.call(variable) == '[object Object]');
   }
 
-
-// <td style={{display: this.state.display, width: this.state.value + "px"}}> Hello </td>
-
   render() {
     return (
-      <tr onClick={this.toggleFullCountry.bind(this)}>
+      <tr onClick={this.toggleFullRow.bind(this)}>
         <td>{this.props.countryData[this.props.id]}</td>
         {
           this.state.hiddenFields.map((field)=>{
@@ -62,7 +53,7 @@ class Country extends React.Component{
             if (this.isCollection(fieldValue)) {
               fieldValue = this.flattenCollection(fieldValue);
             }
-            return (<td key={field}>{fieldValue}</td>)
+            return (<td key={field} style={{display: this.state.display}}>{fieldValue}</td>)
           })
         }
       </tr>
