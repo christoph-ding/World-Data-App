@@ -3,6 +3,7 @@ import React from 'react';
 import Country from './Country.js';
 
 class Grouping extends React.Component{
+
   render() {
     return (
       <div>
@@ -12,7 +13,7 @@ class Grouping extends React.Component{
             {
               this.props.countryList.map((country) => {
                 return (
-                  <Country key={country.name} countryData={country}/>
+                  <Country key={country.name} action={this.expandList} countryData={country}/>
                 )
               })
             }            
