@@ -8,10 +8,26 @@ class Country extends React.Component{
     this.state = {
       expanded: false,
       value: 100,
-      display: 'inline'
+      display: 'inline',
+      hiddenFields: this.determineHiddenFields(this.props.id, this.props.countryData)
     }
   }
 
+  determineHiddenFields(idKey, dataObject){
+    // we want all the fields that are not the main identifier to be hidden
+    const hiddenFields = [];
+    
+    for (var field in dataObject) {
+      if (field !== idKey) {
+        hiddenFields.push(field);
+      }
+    }
+    return hiddenFields;
+  }
+
+  toggleFullCountry() {
+    console.log(this.props.countryData);
+  }
 
   test() {
     this.setState({expanded: !this.state.expanded}, () => {
@@ -23,12 +39,19 @@ class Country extends React.Component{
     })
   }
 
+// <td style={{display: this.state.display, width: this.state.value + "px"}}> Hello </td>
+
   render() {
     return (
-      <tr>
-        <td onClick={this.test.bind(this)}>{this.props.countryData.name}</td>
-        <td style={{display: this.state.display, width: this.state.value + "px"}}> Hello </td>
-        <td> {this.props.countryData.name} </td>
+      <tr onClick={this.toggleFullCountry.bind(this)}>
+        <td>{this.props.countryData[this.props.id]}</td>
+        {
+          this.state.hiddenFields.map((field)=>{
+            let fieldValue = this.props.countryData[field];
+            // console.log(fieldValue);
+            return (<td>fieldValue</td>)
+          })
+        }
       </tr>
     );
   }
