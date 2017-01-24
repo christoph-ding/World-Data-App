@@ -25,6 +25,11 @@ class Country extends React.Component{
     return hiddenFields;
   }
 
+  flattenCollection(collection) {
+    const output = Object.values(collection).join(', ');
+    return output;
+  }
+
   toggleFullCountry() {
     console.log(this.props.countryData);
   }
@@ -39,6 +44,11 @@ class Country extends React.Component{
     })
   }
 
+  isCollection(variable) {
+    return (Array.isArray(variable) || Object.prototype.toString.call(variable) == '[object Object]');
+  }
+
+
 // <td style={{display: this.state.display, width: this.state.value + "px"}}> Hello </td>
 
   render() {
@@ -48,8 +58,11 @@ class Country extends React.Component{
         {
           this.state.hiddenFields.map((field)=>{
             let fieldValue = this.props.countryData[field];
-            // console.log(fieldValue);
-            return (<td>fieldValue</td>)
+            // we need to flatten values which are objects or arrays
+            if (this.isCollection(fieldValue)) {
+              fieldValue = this.flattenCollection(fieldValue);
+            }
+            return (<td key={field}>{fieldValue}</td>)
           })
         }
       </tr>
