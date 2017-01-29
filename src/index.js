@@ -4,4 +4,7 @@ import { render } from 'react-dom';
 import './styles/main.css';
 import WorldDataApp from './components/App.js';
 
-render(<WorldDataApp />, document.getElementById('root'));
+const keyMapping = {'': 'not available'}
+// const relevantFields = [{original: , translation:}];
+
+render(<WorldDataApp keyMapping={keyMapping}/>, document.getElementById('root'));

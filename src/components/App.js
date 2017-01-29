@@ -16,8 +16,6 @@ class WorldDataApp extends React.Component{
       groupedData: {},
       dataFields: []
     }
-
-    this.keyMapping = {'': 'not available'}
   }
 
   // onclick actions passed to buttons
@@ -61,7 +59,7 @@ class WorldDataApp extends React.Component{
       sortField = 'name';
     }
 
-    const rearrangedData = data.groupBy(this.state.trueData, groupField, this.keyMapping);
+    const rearrangedData = data.groupBy(this.state.trueData, groupField, this.props.keyMapping);
     this.setState({groupedData: rearrangedData}, () => {
       // resort after changing the groups
       this.sortData(sortField);
