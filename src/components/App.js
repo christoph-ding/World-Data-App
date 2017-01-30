@@ -15,13 +15,16 @@ class WorldDataApp extends React.Component{
       // formattedRawData is the 'true' data, but with only the fields specified by the user
       formattedRawData : [],
       groupedData: {},
-      dataFields: []
+      dataFields: [],
+      // states related to the filters and grouping options chosen by the user
+      selectedGrouping: undefined
     }
   }
 
   // onclick actions passed to buttons
-  regroup(groupField, sortField) {
-    this.groupData(groupField, sortField);
+  regroup(groupField) {
+    console.log('group on: ', groupField);
+    this.groupData(groupField);
   }
 
   resort(sortField) {
