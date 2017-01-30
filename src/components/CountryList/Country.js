@@ -5,7 +5,9 @@ class Country extends React.Component{
 
   constructor(props) {
     super(props);
-    this.state = {       
+    this.state = {
+      expanded: false,
+      display: 'none',      
       hiddenFields: this.determineHiddenFields(this.props.id, this.props.countryData)
     }
   }
@@ -23,20 +25,45 @@ class Country extends React.Component{
     return hiddenFields;
   }
 
+  isCollection(variable) {
+    return (Array.isArray(variable) || Object.prototype.toString.call(variable) == '[object Object]');
+  }
+
+  flattenCollection(collection) {
+    const output = Object.values(collection).join(', ');
+    return output;
+  }
+
+  toggleFullRow() {
+    if (!this.state.expanded) {
+      this.setState({display: 'table-cell', expanded: !this.state.expanded});
+    } else if (this.state.expanded) {
+      this.setState({display: 'none', expanded: !this.state.expanded});
+    }
+  }  
+
   render() {
     return (
       <tr> 
-        <td>{this.props.countryData[this.props.id]}</td>      
-        <td> hello</td>
-        <td> hello</td>
-        <td> hello</td>
-        <td> hello</td>
-        <td> hello</td>
-        <td> hello</td>
+        <td onClick={this.toggleFullRow.bind(this)}>{this.props.countryData[this.props.id]}</td>
+        {
+          this.state.hiddenFields.map((field) => {
+            let fieldValue = this.props.countryData[field];
+            
+            // we need to flatten values which are objects or arrays
+            if (this.isCollection(fieldValue)) {
+              fieldValue = this.flattenCollection(fieldValue);
+            }
+
+            return (<td key={field} style={{display: this.state.display}}> {fieldValue} </td>);
+          })
+        }
      </tr>
     );
   }
 }
+
+
 
 class Country2 extends React.Component{
 
