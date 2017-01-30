@@ -10,17 +10,10 @@ class FilterDataForm extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      selectedSorting: undefined,
       selectedFilterField: undefined,
       selectedOperator: undefined,
       filterThreshold: undefined
     }
-  }
-
-  updatingSorting(newSort) {
-    this.setState({selectedSorting: newSort}, () => {      
-      this.props.actions.resort(this.state.selectedSorting);
-    });
   }
 
   updateFilterField(newField) {
@@ -49,7 +42,7 @@ class FilterDataForm extends React.Component{
     return (
       <div>
         <ChangeOrderForm title="Group By" action={this.props.actions.regroup} fields={this.props.fields}/>
-        <ChangeOrderForm title="Sort By" action={this.updatingSorting.bind(this)} fields={this.props.fields}/>        
+        <ChangeOrderForm title="Sort By" action={this.props.actions.resort} fields={this.props.fields}/>        
         <FilterByForm title="Filter By" action={{updateFilterField: this.updateFilterField.bind(this), updateOperator: this.updateOperator.bind(this), updateThreshold: this.updateThreshold.bind(this)}} fields={this.props.fields}/>
       </div>
     );
