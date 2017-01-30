@@ -6,7 +6,6 @@ class FieldNames extends React.Component{
   render() {
     return (
       <tr>
-      <th> </th>
       {
         this.props.fields.map((field) => {
           return (

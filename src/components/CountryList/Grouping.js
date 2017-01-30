@@ -7,8 +7,7 @@ class Grouping extends React.Component{
   render() {
     return (
       <tbody> 
-          <tr>
-            <td> {this.props.level} </td>
+          <td> {this.props.level} </td>
           {
             this.props.countryList.map((country) => {
               return (
@@ -16,10 +15,9 @@ class Grouping extends React.Component{
               )
             })
           }
-          </tr>
       </tbody>
     )
-  };
+  };x
 }
 
 export default Grouping;
