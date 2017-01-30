@@ -1,13 +1,40 @@
-const worldDataURL = 'https://restcountries.eu/rest/v1/all';
+"use strict";
 
-const getDataFromAPI = (url, cb) => {
+// fetch the data from the api
+const getDataFromAPI = (url, fieldMap, cb) => {
   fetch(url)
   .then((res) => {
     res.json()
        .then((data) => {
+          getRelevantFields(data, fieldMap);
           cb(data);
         })
   })
+}
+
+// make a dataset with only the fields that the user cares about
+// as far as I can tell, the user will never need the fields that she did not
+// expicitely ask for, so there is no reason to return the 'full' data to the app
+const getRelevantFields = (fullData, relevantFields) => {
+  const filteredData = [];
+
+  fullData.forEach((elem) =>{
+    let filteredRow = formRowWithRelevantFields(elem);
+    console.log(filteredRow);
+  });
+
+  return filteredData;
+
+  // helper functions
+  function formRowWithRelevantFields(originalRow) {
+    const filteredRow = {};
+    for (var desiredField in relevantFields) {
+      // the filtered data will have new labels, formatted according to the user
+      let newColumnName = relevantFields[desiredField];
+      filteredRow[newColumnName] = originalRow[desiredField];
+    }
+    return filteredRow;
+  }
 }
 
 const determineGroupingFields = (row) => {

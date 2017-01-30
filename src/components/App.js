@@ -33,7 +33,7 @@ class WorldDataApp extends React.Component{
 
   // data related functions
   getData() {
-    data.getDataFromAPI(this.props.apiEndPoint, (originalData) => {
+    data.getDataFromAPI(this.props.apiEndPoint, this.props.relevantFields, (originalData) => {
       this.setState({trueData: originalData}, () => {
           this.groupData();
           // I am assuming that the 'rows' in the dataset all have the same fields          
