@@ -17,14 +17,17 @@ class WorldDataApp extends React.Component{
       groupedData: {},
       dataFields: [],
       // states related to the filters and grouping options chosen by the user
-      selectedGrouping: undefined
+      selectedGrouping: undefined,
+      selectedSorting: undefined
     }
   }
 
   // onclick actions passed to buttons
   regroup(groupField) {
-    console.log('group on: ', groupField);
-    this.groupData(groupField);
+    this.setState({selectedGrouping: groupField}, ()=>{
+      console.log('grouping: ', this.state.selectedGrouping, ' sorting: ', this.state.selectedSorting);
+      this.groupData();
+    })
   }
 
   resort(sortField) {
@@ -54,15 +57,20 @@ class WorldDataApp extends React.Component{
   }
 
   // functions for manipulating the state data
-  groupData(groupField, sortField) {
+  groupData() {
+    let groupField = this.state.selectedGrouping;
+    let sortField = this.state.selectedSorting;
+    
     // by default, we group by region and sort by name
     if (typeof(groupField) === 'undefined') {
       groupField = this.props.defaults.grouping;
     }    
 
-    if (typeof(sortField) === 'undefined') {
+    if (typeof(this.state.selectedSorting) === 'undefined') {
       sortField = this.props.defaults.sorting;
     }
+
+    console.log('group: ', groupField, ' sort: ', sortField);
 
     const rearrangedData = data.groupBy(this.state.formattedRawData, groupField, this.props.keyMapping);
     this.setState({groupedData: rearrangedData}, () => {
