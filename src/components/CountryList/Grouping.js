@@ -18,7 +18,7 @@ class Grouping extends React.Component{
         <tr><td colSpan={this.props.spanAll} className="grouping-row"> Next </td></tr>
       </tbody>
     )
-  };x
+  };
 }
 
 export default Grouping;

@@ -12,7 +12,7 @@ class Country extends React.Component{
     }
   }
 
-  // helper functions for parsing the CountryData
+  // functions for hiding or displaying the entire row of data
   determineHiddenFields(idKey, dataObject){
     // we want all the fields that are not the main identifier to be hidden
     const hiddenFields = [];
@@ -25,15 +25,6 @@ class Country extends React.Component{
     return hiddenFields;
   }
 
-  isCollection(variable) {
-    return (Array.isArray(variable) || Object.prototype.toString.call(variable) == '[object Object]');
-  }
-
-  flattenCollection(collection) {
-    const output = Object.values(collection).join(', ');
-    return output;
-  }
-
   toggleFullRow() {
     if (!this.state.expanded) {
       this.setState({display: 'table-cell', expanded: !this.state.expanded});
@@ -42,10 +33,25 @@ class Country extends React.Component{
     }
   }  
 
+  // flattening the fields which contain data that are collections
+  isCollection(variable) {
+    return (Array.isArray(variable) || Object.prototype.toString.call(variable) == '[object Object]');
+  }
+
+  flattenCollection(collection) {
+    let output = '';
+    if (collection.length > 5) {
+      output = Object.values(collection).slice(0, 5).join(', ') + ' ...';
+    } else {
+      output = Object.values(collection).join(', ');      
+    }
+    return output;
+  }
+
   render() {
     return (
-      <tr> 
-        <td onClick={this.toggleFullRow.bind(this)}>{this.props.countryData[this.props.id]}</td>
+      <tr onClick={this.toggleFullRow.bind(this)}> 
+        <td>{this.props.countryData[this.props.id]}</td>
         {
           this.state.hiddenFields.map((field) => {
             let fieldValue = this.props.countryData[field];
@@ -59,68 +65,6 @@ class Country extends React.Component{
           })
         }
      </tr>
-    );
-  }
-}
-
-
-
-class Country2 extends React.Component{
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      expanded: false,
-      display: 'none',
-      hiddenFields: this.determineHiddenFields(this.props.id, this.props.countryData)
-    }
-  }
-
-  toggleFullRow() {
-    if (!this.state.expanded) {
-      this.setState({display: 'table-cell', expanded: !this.state.expanded});
-    } else if (this.state.expanded) {
-      this.setState({display: 'none', expanded: !this.state.expanded});
-    }
-  }  
-
-  // helper functions for parsing the CountryData
-  determineHiddenFields(idKey, dataObject){
-    // we want all the fields that are not the main identifier to be hidden
-    const hiddenFields = [];
-    
-    for (var field in dataObject) {
-      if (field !== idKey) {
-        hiddenFields.push(field);
-      }
-    }
-    return hiddenFields;
-  }
-
-  flattenCollection(collection) {
-    const output = Object.values(collection).join(', ');
-    return output;
-  }
-
-  isCollection(variable) {
-    return (Array.isArray(variable) || Object.prototype.toString.call(variable) == '[object Object]');
-  }
-
-  render() {
-    return (
-      <tr onClick={this.toggleFullRow.bind(this)}>
-        <td>{this.props.countryData[this.props.id]}</td>
-        {
-          this.state.hiddenFields.map((field)=>{
-            let fieldValue = this.props.countryData[field];
-            // we need to flatten values which are objects or arrays
-            if (this.isCollection(fieldValue)) {
-              fieldValue = this.flattenCollection(fieldValue);
-            }
-            return (<td key={field} style={{display: this.state.display}}>{fieldValue}</td>)
-          })
-        }
-      </tr>
     );
   }
 }

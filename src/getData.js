@@ -6,6 +6,7 @@ const getDataFromAPI = (url, fieldMap, cb) => {
   .then((res) => {
     res.json()
        .then((rawData) => {
+          console.log(rawData[0]); 
           const dataWithRelevantFields = getRelevantFields(rawData, fieldMap);
           cb(dataWithRelevantFields);
         })

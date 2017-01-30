@@ -1,3 +1,18 @@
 h1 {
   background: blue;
 }
+
+
+.tableHeader {
+  width: 235px;
+}
+
+td {
+  width: 235px;
+  text-align: center;
+}
+
+.grouping-row {
+  background-color: green;
+  text-align: left
+}

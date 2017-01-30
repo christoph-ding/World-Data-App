@@ -21,40 +21,17 @@ class WorldDataApp extends React.Component{
       selectedSorting: undefined,
       selectedFilterField: undefined,
       selectedOperator: undefined,
-      filterThreshold: undefined
+      filterThreshold: ''
     }
 
     this.actions = {
       regroup: this.regroup.bind(this),
       resort: this.resort.bind(this), 
-      updateFilterField: this.updateFilterField.bind(this)
+      updateFilterField: this.updateFilterField.bind(this),
+      updateOperator: this.updateOperator.bind(this),
+      updateThreshold: this.updateThreshold.bind(this)
     }
   }
-
-  // filter, sort, grouping actions passed to buttons in a lower form
-  regroup(groupField) {
-    this.setState({selectedGrouping: groupField}, ()=>{
-      this.groupData();
-    })
-  }
-
-  resort(sortField) {
-    this.setState({selectedSorting: sortField}, ()=>{
-      this.sortData();
-    })
-  }
-
-  updateFilterField(newField) {
-    this.setState({selectedFilterField: newField}, ()=>{
-      console.log('filter by: ', this.state.selectedFilterField);      
-    });
-  }
-
-  // filter(filterField, comparator, threshold) {
-  //   console.log('field: ', this.state.selectedFilterField, ' operator: ', this.state.selectedOperator, ' filterThreshold: ', this.state.filterThreshold);
-
-  //   this.filterData(filterField, comparator, threshold);
-  // }
 
   // get data upon initializing the app 
   getData() {
@@ -70,7 +47,6 @@ class WorldDataApp extends React.Component{
     this.getData();
   }
 
-  // functions for manipulating the data in state
   getFields() {
     // I am assuming that the 'rows' in the dataset all have the same fields
     let sampleRow = this.state.formattedRawData[0];
@@ -78,6 +54,7 @@ class WorldDataApp extends React.Component{
     this.setState({dataFields: fields});      
   }
 
+  // functions for manipulating the data in state
   groupData() {
     let groupField = this.state.selectedGrouping;
     let sortField = this.state.selectedSorting;
@@ -116,15 +93,18 @@ class WorldDataApp extends React.Component{
     this.setState({groupedData: newGroupedData});
   }
 
-  filterData(filterField, comparator, threshold) {
+  filterData() {
     // create the compare function using the user inputs to this filter
-    const operatorTable = {
-      '=': function(element) {return element[filterField] == threshold},
-      '>': function(element) {return element[filterField] > threshold},
-      '<': function(element) {return element[filterField] < threshold}
-    }
-    const relevantFilter = operatorTable[comparator];
+    const selectedFilterField = this.state.selectedFilterField;
+    const threshold = this.state.filterThreshold;
 
+    const operatorTable = {
+      '=': function(element) {return element[selectedFilterField] == threshold},
+      '>': function(element) {return element[selectedFilterField] > threshold},
+      '<': function(element) {return element[selectedFilterField] < threshold}
+    }
+
+    const relevantFilter = operatorTable[this.state.selectedOperator];
     const newGroupedData = {};
 
     // apply the filter to the sorted data of the grouped data
@@ -137,6 +117,50 @@ class WorldDataApp extends React.Component{
     this.setState({groupedData: newGroupedData});
   }
 
+  // filter, sort, grouping actions passed to filter form
+  regroup(groupField) {
+    this.setState({selectedGrouping: groupField}, ()=>{
+      this.groupData();
+    });
+  }
+
+  resort(sortField) {
+    this.setState({selectedSorting: sortField}, ()=>{
+      this.sortData();
+    });
+  }
+
+  updateFilterField(newField) {
+    this.setState({selectedFilterField: newField}, ()=>{
+      if (this.completeFilterExists()) {
+        this.filterData();    
+      }
+    });
+  }
+
+  updateOperator(newOperator) {    
+    this.setState({selectedOperator: newOperator}, ()=>{
+      if (this.completeFilterExists()) {
+        this.filterData();    
+      }
+    });
+  }
+
+  updateThreshold(newThreshold) {
+    this.setState({filterThreshold: newThreshold}, ()=>{
+      if (this.completeFilterExists()) {
+        this.filterData();    
+      }
+    });
+  }
+
+  // only filter if all the necceary parameters are supplied
+  completeFilterExists() {
+    console.log('field: ', this.state.selectedFilterField, ' operator: ', this.state.selectedOperator, ' filterThreshold: ', this.state.filterThreshold);
+    return (this.state.selectedFilterField !== undefined && this.state.selectedOperator !== undefined && this.state.filterThreshold !== '');
+  }
+
+  // presentation  
   render(){
     return (
       <div>
