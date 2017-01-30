@@ -37,8 +37,7 @@ class WorldDataApp extends React.Component{
     data.getDataFromAPI(this.props.apiEndPoint, this.props.relevantFields, (originalData) => {
       this.setState({formattedRawData: originalData}, () => {
         this.groupData();
-          // I am assuming that the 'rows' in the dataset all have the same fields
-          this.getFields();
+        this.getFields();
       })      
     });
   }
@@ -46,7 +45,11 @@ class WorldDataApp extends React.Component{
   componentDidMount() {
     this.getData();
   }
-  
+
+  componentWillMount() {
+    this.getData();
+  }
+
   // functions for manipulating the state data
   groupData(groupField, sortField) {
     // by default, we group by region and sort by name
@@ -112,8 +115,7 @@ class WorldDataApp extends React.Component{
       <div>
         <Title />
         <FilterDataForm actions={{regroup: this.regroup.bind(this), resort: this.resort.bind(this), filter: this.filter.bind(this)}} fields={this.state.dataFields} />
-        <ViewForm />
-        <CountryList countryData={this.state.groupedData}/>
+        <CountryList countryData={this.state.groupedData} fields={this.state.dataFields}/>
       </div>
     );
   }

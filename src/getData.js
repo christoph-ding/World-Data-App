@@ -58,7 +58,7 @@ const groupBy = (dataset, field, specialKeyMapping) => {
   function determineLevelLabel(row) {
     var level = row[field];
 
-    // accomodate translations between levels in the field and how user would like it to output
+    // accomodate translatåons between levels in the field and how user would like it to output
     // i.e. user may want 'M' in the raw data to be translated to "Male" in the grouped data
     if (specialKeyMapping && specialKeyMapping.hasOwnProperty(level)) {
       level = specialKeyMapping[level];
