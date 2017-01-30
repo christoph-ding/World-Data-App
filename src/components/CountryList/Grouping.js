@@ -6,15 +6,14 @@ class Grouping extends React.Component{
 
   render() {
     return (
-      <tbody> 
-          <td> {this.props.level} </td>
-          {
-            this.props.countryList.map((country) => {
-              return (
-                <Country key={country.Name} id={'name'} action={this.expandList} countryData={country}/>
-              )
-            })
-          }
+      <tbody>
+        {
+          this.props.countryList.map((country) => {
+            return (
+              <Country key={country.Name} id={this.props.id} action={this.expandList} countryData={country}/>
+            )
+          })
+        }
       </tbody>
     )
   };x

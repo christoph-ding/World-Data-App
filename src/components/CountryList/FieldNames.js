@@ -8,8 +8,8 @@ class FieldNames extends React.Component{
       <tr>
       {
         this.props.fields.map((field) => {
-          return (
-            <th key={field}> {field} </th>
+            return (
+            <th className="tableHeader" key={field}> {field} </th>
           )
         })
       }

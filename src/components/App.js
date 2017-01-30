@@ -115,7 +115,7 @@ class WorldDataApp extends React.Component{
       <div>
         <Title />
         <FilterDataForm actions={{regroup: this.regroup.bind(this), resort: this.resort.bind(this), filter: this.filter.bind(this)}} fields={this.state.dataFields} />
-        <CountryList countryData={this.state.groupedData} fields={this.state.dataFields}/>
+        <CountryList countryData={this.state.groupedData} fields={this.state.dataFields} id={'Country Name'}/>
       </div>
     );
   }

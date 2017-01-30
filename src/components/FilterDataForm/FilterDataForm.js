@@ -58,7 +58,6 @@ class FilterDataForm extends React.Component{
         <ChangeOrderForm title="Group By" action={this.updateGrouping.bind(this)} fields={this.props.fields}/>
         <ChangeOrderForm title="Sort By" action={this.updatingSorting.bind(this)} fields={this.props.fields}/>        
         <FilterByForm title="Filter By" action={{updateFilterField: this.updateFilterField.bind(this), updateOperator: this.updateOperator.bind(this), updateThreshold: this.updateThreshold.bind(this)}} fields={this.props.fields}/>
-        <RefreshDataButton />
       </div>
     );
   }
