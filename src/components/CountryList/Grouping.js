@@ -11,7 +11,7 @@ class Grouping extends React.Component{
         {
           this.props.countryList.map((country) => {
             return (
-              <Country key={country.Name} id={this.props.id} action={this.expandList} countryData={country}/>
+              <Country key={country[this.props.id]} id={this.props.id} action={this.expandList} countryData={country}/>
             )
           })
         }
