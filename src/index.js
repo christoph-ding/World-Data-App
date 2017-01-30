@@ -5,6 +5,8 @@ import './styles/main.css';
 import WorldDataApp from './components/App.js';
 
 const keyMapping = {'': 'not available'}
-const relevantFields = {'name': 'Name', 'alpha2code': 'Code', 'capital:' 'Capital', 'region': 'Region', 'subregion': 'Subregion', 'population': 'Population', 'area': 'Area'}
+const relevantFields = {'name': 'Country Name', 'alpha2Code': 'Code', 'capital': 'Capital', 'region': 'Region', 'subregion': 'Subregion', 'population': 'Population', 'area': 'Area'};
+const europeDataAPI = 'https://restcountries.eu/rest/v1/all';
+const defaults = {'grouping': 'Region', 'sorting': 'Population'};
 
-render(<WorldDataApp keyMapping={keyMapping}/>, document.getElementById('root'));
+render(<WorldDataApp apiEndPoint={europeDataAPI} relevantFields={relevantFields} keyMapping={keyMapping} defaults={defaults}/>, document.getElementById('root'));

@@ -5,7 +5,7 @@ class GroupByForm extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      selectedOption: 'test'
+      selectedOption: undefined
     }
   }
 

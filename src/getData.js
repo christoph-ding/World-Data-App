@@ -1,18 +1,44 @@
-const worldDataURL = 'https://restcountries.eu/rest/v1/all';
+"use strict";
 
-const getDataFromAPI = (url, cb) => {
+// fetch the data from the api
+const getDataFromAPI = (url, fieldMap, cb) => {
   fetch(url)
   .then((res) => {
     res.json()
-       .then((data) => {
-          cb(data);
+       .then((rawData) => {
+          console.log(rawData[0]); 
+          const dataWithRelevantFields = getRelevantFields(rawData, fieldMap);
+          cb(dataWithRelevantFields);
         })
   })
 }
 
-const determineGroupingFields = (row) => {
-  let possibleCategories = Object.keys(row);
-  return possibleCategories;
+// make a dataset with only the fields that the user cares about
+// as far as I can tell, the user will never need the fields that she did not
+// expicitely ask for, so there is no reason to return the 'full' data to the app
+const getRelevantFields = (fullData, relevantFields) => {
+  const formattedData = [];
+  const originalFieldNames = Object.keys(relevantFields);
+
+  // we only want certain fields from the data, with a 
+  fullData.forEach((elem) =>{
+    let formattedRow = formRowWithRelevantFields(elem);
+    formattedData.push(formattedRow);
+  });
+
+  return formattedData;
+
+  // helper functions
+  function formRowWithRelevantFields(originalRow) {
+    const filteredRow = {};
+
+    originalFieldNames.forEach((originalField)=> {
+      let newColumnName = relevantFields[originalField];
+      filteredRow[newColumnName] = originalRow[originalField];
+    });
+
+    return filteredRow;
+  }
 }
 
 const groupBy = (dataset, field, specialKeyMapping) => {
@@ -33,7 +59,7 @@ const groupBy = (dataset, field, specialKeyMapping) => {
   function determineLevelLabel(row) {
     var level = row[field];
 
-    // accomodate translations between levels in the field and how user would like it to output
+    // accomodate translatåons between levels in the field and how user would like it to output
     // i.e. user may want 'M' in the raw data to be translated to "Male" in the grouped data
     if (specialKeyMapping && specialKeyMapping.hasOwnProperty(level)) {
       level = specialKeyMapping[level];
@@ -74,6 +100,5 @@ const sortBy = (dataset, field) => {
 module.exports = {
   getDataFromAPI: getDataFromAPI,
   groupBy: groupBy,
-  sortBy: sortBy,
-  determineGroupingFields: determineGroupingFields
+  sortBy: sortBy
 }
