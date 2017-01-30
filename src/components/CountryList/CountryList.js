@@ -10,17 +10,15 @@ class CountryList extends React.Component{
     const levels = Object.keys(this.props.countryData); 
       return (
         <table>
-          <tbody>
-            <FieldNames fields={this.props.fields}/>
-            {
-              levels.map((level) => {          
-                let levelCountries = this.props.countryData[level];        
-                return (
-                  <Grouping key={level} level={level} countryList={levelCountries}/>
-                );
-              })
-            }
-          </tbody>
+          <FieldNames fields={this.props.fields}/>
+          {
+            levels.map((level) => {          
+              let levelCountries = this.props.countryData[level];        
+              return (
+                <Grouping spanAll={this.props.fields.length} key={level} level={level} countryList={levelCountries} id={this.props.id}/>
+              );
+            })
+          }
         </table>
       )
   }
