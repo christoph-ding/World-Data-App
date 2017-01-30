@@ -37,10 +37,10 @@ class WorldDataApp extends React.Component{
     data.getDataFromAPI(this.props.apiEndPoint, this.props.relevantFields, (originalData) => {
       this.setState({formattedRawData: originalData}, () => {
         this.groupData();
-          // I am assuming that the 'rows' in the dataset all have the same fields          
-          // this.getFields();
+          // I am assuming that the 'rows' in the dataset all have the same fields
+          this.getFields();
       })      
-    })
+    });
   }
 
   componentDidMount() {
@@ -60,7 +60,6 @@ class WorldDataApp extends React.Component{
 
     const rearrangedData = data.groupBy(this.state.formattedRawData, groupField, this.props.keyMapping);
     this.setState({groupedData: rearrangedData}, () => {
-      console.log(this.state.groupedData);
       // resort after changing the groups
       // this.sortData(sortField);
     });
@@ -69,7 +68,7 @@ class WorldDataApp extends React.Component{
   getFields() {
     // I am assuming that the 'rows' in the dataset all have the same fields
     let sampleRow = this.state.formattedRawData[0];
-    let fields = data.determineGroupingFields(sampleRow);
+    let fields = Object.keys(sampleRow);
     this.setState({dataFields: fields});      
   }
 

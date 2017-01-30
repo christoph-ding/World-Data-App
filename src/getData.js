@@ -40,11 +40,6 @@ const getRelevantFields = (fullData, relevantFields) => {
   }
 }
 
-const determineGroupingFields = (row) => {
-  let possibleCategories = Object.keys(row);
-  return possibleCategories;
-}
-
 const groupBy = (dataset, field, specialKeyMapping) => {
   // for accessing the data in a field level quickly
   const groupedData = {};
@@ -104,6 +99,5 @@ const sortBy = (dataset, field) => {
 module.exports = {
   getDataFromAPI: getDataFromAPI,
   groupBy: groupBy,
-  sortBy: sortBy,
-  determineGroupingFields: determineGroupingFields
+  sortBy: sortBy
 }
