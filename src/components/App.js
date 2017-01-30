@@ -32,17 +32,40 @@ class WorldDataApp extends React.Component{
     this.filterData(filterField, comparator, threshold);
   }
 
-  // data related functions
+  // get data upon initializing the app 
   getData() {
     data.getDataFromAPI(this.props.apiEndPoint, this.props.relevantFields, (originalData) => {
       this.setState({formattedRawData: originalData}, () => {
-          this.groupData();
+        this.groupData();
           // I am assuming that the 'rows' in the dataset all have the same fields          
-          this.getFields();          
+          // this.getFields();
       })      
     })
   }
 
+  componentDidMount() {
+    this.getData();
+  }
+  
+  // functions for manipulating the state data
+  groupData(groupField, sortField) {
+    // by default, we group by region and sort by name
+    if (typeof(groupField) === 'undefined') {
+      groupField = this.props.defaults.grouping;
+    }    
+
+    if (typeof(sortField) === 'undefined') {
+      sortField = this.props.defaults.sorting;
+    }
+
+    const rearrangedData = data.groupBy(this.state.formattedRawData, groupField, this.props.keyMapping);
+    this.setState({groupedData: rearrangedData}, () => {
+      console.log(this.state.groupedData);
+      // resort after changing the groups
+      // this.sortData(sortField);
+    });
+  }
+ 
   getFields() {
     // I am assuming that the 'rows' in the dataset all have the same fields
     let sampleRow = this.state.formattedRawData[0];
@@ -50,23 +73,6 @@ class WorldDataApp extends React.Component{
     this.setState({dataFields: fields});      
   }
 
-  groupData(groupField, sortField) {
-    // by default, we group by region and sort by name
-    if (typeof(groupField) === 'undefined') {
-      groupField = 'region';
-    }    
-
-    if (typeof(sortField) === 'undefined') {
-      sortField = 'name';
-    }
-
-    const rearrangedData = data.groupBy(this.state.formattedRawData, groupField, this.props.keyMapping);
-    this.setState({groupedData: rearrangedData}, () => {
-      // resort after changing the groups
-      this.sortData(sortField);
-    });
-  }
- 
   sortData(sortField) {
     let newGroupedData = {};
 
@@ -101,10 +107,6 @@ class WorldDataApp extends React.Component{
     this.setState({groupedData: newGroupedData});
   }
 
-  // life-cycles and mounts
-  componentDidMount() {
-    this.getData();
-  }
 
   render(){
     return (
