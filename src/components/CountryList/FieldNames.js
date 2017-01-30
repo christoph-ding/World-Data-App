@@ -18,15 +18,4 @@ class FieldNames extends React.Component{
   }
 }
 
-// class FieldNames extends React.Component{
-//   render() {
-//     return (
-//       <tr>
-//         <th> A </th>
-//         <th> N </th>
-//       </tr>
-//     )
-//   }
-// }
-
 export default FieldNames;
