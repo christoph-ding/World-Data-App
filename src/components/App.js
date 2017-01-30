@@ -18,11 +18,20 @@ class WorldDataApp extends React.Component{
       dataFields: [],
       // states related to the filters and grouping options chosen by the user
       selectedGrouping: undefined,
-      selectedSorting: undefined
+      selectedSorting: undefined,
+      selectedFilterField: undefined,
+      selectedOperator: undefined,
+      filterThreshold: undefined
+    }
+
+    this.actions = {
+      regroup: this.regroup.bind(this),
+      resort: this.resort.bind(this), 
+      updateFilterField: this.updateFilterField.bind(this)
     }
   }
 
-  // onclick actions passed to buttons
+  // filter, sort, grouping actions passed to buttons in a lower form
   regroup(groupField) {
     this.setState({selectedGrouping: groupField}, ()=>{
       this.groupData();
@@ -35,9 +44,17 @@ class WorldDataApp extends React.Component{
     })
   }
 
-  filter(filterField, comparator, threshold) {
-    this.filterData(filterField, comparator, threshold);
+  updateFilterField(newField) {
+    this.setState({selectedFilterField: newField}, ()=>{
+      console.log('filter by: ', this.state.selectedFilterField);      
+    });
   }
+
+  // filter(filterField, comparator, threshold) {
+  //   console.log('field: ', this.state.selectedFilterField, ' operator: ', this.state.selectedOperator, ' filterThreshold: ', this.state.filterThreshold);
+
+  //   this.filterData(filterField, comparator, threshold);
+  // }
 
   // get data upon initializing the app 
   getData() {
@@ -120,12 +137,11 @@ class WorldDataApp extends React.Component{
     this.setState({groupedData: newGroupedData});
   }
 
-
   render(){
     return (
       <div>
         <Title />
-        <FilterDataForm actions={{regroup: this.regroup.bind(this), resort: this.resort.bind(this), filter: this.filter.bind(this)}} fields={this.state.dataFields} />
+        <FilterDataForm actions={this.actions} fields={this.state.dataFields} />
         <CountryList countryData={this.state.groupedData} fields={this.state.dataFields} id={'Country Name'}/>
       </div>
     );
