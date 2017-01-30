@@ -12,7 +12,8 @@ class WorldDataApp extends React.Component{
     super(props);
 
     this.state = {
-      trueData : [],      
+      // formattedRawData is the 'true' data, but with only the fields specified by the user
+      formattedRawData : [],
       groupedData: {},
       dataFields: []
     }
@@ -34,7 +35,7 @@ class WorldDataApp extends React.Component{
   // data related functions
   getData() {
     data.getDataFromAPI(this.props.apiEndPoint, this.props.relevantFields, (originalData) => {
-      this.setState({trueData: originalData}, () => {
+      this.setState({formattedRawData: originalData}, () => {
           this.groupData();
           // I am assuming that the 'rows' in the dataset all have the same fields          
           this.getFields();          
@@ -44,7 +45,7 @@ class WorldDataApp extends React.Component{
 
   getFields() {
     // I am assuming that the 'rows' in the dataset all have the same fields
-    let sampleRow = this.state.trueData[0];
+    let sampleRow = this.state.formattedRawData[0];
     let fields = data.determineGroupingFields(sampleRow);
     this.setState({dataFields: fields});      
   }
@@ -59,7 +60,7 @@ class WorldDataApp extends React.Component{
       sortField = 'name';
     }
 
-    const rearrangedData = data.groupBy(this.state.trueData, groupField, this.props.keyMapping);
+    const rearrangedData = data.groupBy(this.state.formattedRawData, groupField, this.props.keyMapping);
     this.setState({groupedData: rearrangedData}, () => {
       // resort after changing the groups
       this.sortData(sortField);

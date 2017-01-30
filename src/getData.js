@@ -5,9 +5,9 @@ const getDataFromAPI = (url, fieldMap, cb) => {
   fetch(url)
   .then((res) => {
     res.json()
-       .then((data) => {
-          getRelevantFields(data, fieldMap);
-          cb(data);
+       .then((rawData) => {
+          const dataWithRelevantFields = getRelevantFields(rawData, fieldMap);
+          cb(dataWithRelevantFields);
         })
   })
 }
@@ -16,23 +16,26 @@ const getDataFromAPI = (url, fieldMap, cb) => {
 // as far as I can tell, the user will never need the fields that she did not
 // expicitely ask for, so there is no reason to return the 'full' data to the app
 const getRelevantFields = (fullData, relevantFields) => {
-  const filteredData = [];
+  const formattedData = [];
+  const originalFieldNames = Object.keys(relevantFields);
 
+  // we only want certain fields from the data, with a 
   fullData.forEach((elem) =>{
-    let filteredRow = formRowWithRelevantFields(elem);
-    console.log(filteredRow);
+    let formattedRow = formRowWithRelevantFields(elem);
+    formattedData.push(formattedRow);
   });
 
-  return filteredData;
+  return formattedData;
 
   // helper functions
   function formRowWithRelevantFields(originalRow) {
     const filteredRow = {};
-    for (var desiredField in relevantFields) {
-      // the filtered data will have new labels, formatted according to the user
-      let newColumnName = relevantFields[desiredField];
-      filteredRow[newColumnName] = originalRow[desiredField];
-    }
+
+    originalFieldNames.forEach((originalField)=> {
+      let newColumnName = relevantFields[originalField];
+      filteredRow[newColumnName] = originalRow[originalField];
+    });
+
     return filteredRow;
   }
 }
