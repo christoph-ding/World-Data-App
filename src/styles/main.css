@@ -54,12 +54,15 @@ table {
 body {
   font-family: 'Nixie One', cursive;
   background-color: #e3f2fd;
-
 }
 
 .card {
   /*display: inline-block;*/
   box-shadow: 0 6px 6px rgba(0,0,0,0.16);
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 4%;
+  margin-right: 4%;
 }
 
 /* title box */

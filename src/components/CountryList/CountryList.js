@@ -9,7 +9,7 @@ class CountryList extends React.Component{
     // a level is a possible answer for the group chosen
     const levels = Object.keys(this.props.countryData); 
       return (
-        <table>
+        <table className="card">
           <FieldNames fields={this.props.fields}/>
           {
             levels.map((level) => {          
