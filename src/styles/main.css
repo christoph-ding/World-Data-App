@@ -63,6 +63,10 @@ body {
   margin-bottom: 2%;
   margin-left: 4%;
   margin-right: 4%;
+  padding-top: 36px; 
+  padding-bottom: 36px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 /* title box */
