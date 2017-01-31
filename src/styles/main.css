@@ -71,14 +71,24 @@ body {
 
 /* title box */
 .title-box {
-  background-color: #ff8a65;  
+  background-color: #ff8a65;
 }
 
 .title {
+  margin-top: 12px;
+  margin-bottom: 20px;
+
+  text-align: center;
+  font-family: 'Monoton', cursive;
+  font-size: 60px; 
 }
 
 .description {
+  margin-left: 16px;
+  margin-right: 16px;
 
+  text-align: center;
+  font-size: 16px; 
 }
 
 /* filter form */
@@ -97,10 +107,4 @@ body {
 
 .cell {
   background-color: #90caf9;
-}
-
-/* Other */
-h1 {
-  font-family: 'Monoton', cursive;
-  font-size: 48px;
 }
