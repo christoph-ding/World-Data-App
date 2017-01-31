@@ -50,8 +50,8 @@ class Country extends React.Component{
 
   render() {
     return (
-      <tr onClick={this.toggleFullRow.bind(this)}> 
-        <td>{this.props.countryData[this.props.id]}</td>
+      <tr className="country-row" onClick={this.toggleFullRow.bind(this)}> 
+        <td className="cell">{this.props.countryData[this.props.id]}</td>
         {
           this.state.hiddenFields.map((field) => {
             let fieldValue = this.props.countryData[field];
@@ -61,7 +61,7 @@ class Country extends React.Component{
               fieldValue = this.flattenCollection(fieldValue);
             }
 
-            return (<td key={field} style={{display: this.state.display}}> {fieldValue} </td>);
+            return (<td className="cell" key={field} style={{display: this.state.display}}> {fieldValue} </td>);
           })
         }
      </tr>

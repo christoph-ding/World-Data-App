@@ -9,7 +9,7 @@ class FieldNames extends React.Component{
       {
         this.props.fields.map((field) => {
             return (
-            <th className="tableHeader" key={field}> {field} </th>
+            <th className="column-headers" key={field}> {field} </th>
           )
         })
       }
