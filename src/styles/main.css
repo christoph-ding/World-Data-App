@@ -53,23 +53,47 @@ table {
 
 body {
   font-family: 'Nixie One', cursive;
+  background-color: #e3f2fd;
+
 }
 
+.card {
+  /*display: inline-block;*/
+  box-shadow: 0 6px 6px rgba(0,0,0,0.16);
+}
+
+/* title box */
+.title-box {
+  background-color: #ff8a65;  
+}
+
+.title {
+}
+
+.description {
+
+}
+
+/* filter form */
+.filter-box {
+  background-color: #81c784;
+}
+
+/* Country Data Table */
+.column-headers {
+  background-color: #2196f3;  
+}
+
+.group {
+  background-color: #90caf9;
+}
+
+.cell {
+  background-color: #90caf9;
+}
+
+/* Other */
 h1 {
+  font-family: 'Monoton', cursive;
   font-size: 48px;
-}
-
-
-.tableHeader {
-  width: 235px;
-}
-
-td {
-  width: 235px;
-  text-align: center;
-}
-
-.grouping-row {
-  background-color: green;
-  text-align: left
 }

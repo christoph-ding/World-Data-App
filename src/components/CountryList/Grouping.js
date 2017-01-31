@@ -6,7 +6,7 @@ class Grouping extends React.Component{
 
   render() {
     return (
-      <tbody>
+      <tbody className="group card">
         <tr><td colSpan={this.props.spanAll} className="grouping-row"> {this.props.level} </td></tr>
         {
           this.props.countryList.map((country) => {
