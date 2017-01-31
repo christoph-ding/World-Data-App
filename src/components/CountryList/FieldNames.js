@@ -5,7 +5,7 @@ import Country from './Country.js';
 class FieldNames extends React.Component{
   render() {
     return (
-      <tr className="card">
+      <tr>
       {
         this.props.fields.map((field) => {
             return (

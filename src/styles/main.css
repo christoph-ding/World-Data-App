@@ -53,12 +53,12 @@ table {
 
 body {
   font-family: 'Nixie One', cursive;
-  background-color: #e3f2fd;
+  background-color: #fff6e8;
 }
 
 .card {
   /*display: inline-block;*/
-  box-shadow: 0 6px 6px rgba(0,0,0,0.16);
+  box-shadow: 3px 6px 5px rgba(0,0,0,0.16);
   margin-top: 2%;
   margin-bottom: 2%;
   margin-left: 4%;
@@ -99,8 +99,8 @@ body {
 
 .single-filter-form {
   display: inline-block;
-  margin-left: 11%;
-  margin-right: 5%;
+  margin-left: 9%;
+  margin-right: 3%;
   margin-bottom: 2%;
   margin-top: 2%;
   font-size: 20px;
@@ -119,14 +119,37 @@ body {
 }
 
 /* Country Data Table */
-.column-headers {
-  background-color: #2196f3;  
+table {
+  width: 92%; 
+  background-color: #e1f5fe;
 }
 
-.group {
+.column-headers {
+  background-color: #2196f3;
+  height: 55px;
+  width: 10%;
+  margin: 1%;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 1px outset #ffebee;
+}
+
+.group-level {
   background-color: #90caf9;
+  height: 40px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 1px outset #ffebee;
+}
+
+.country-row {
+  height: 35px;
 }
 
 .cell {
-  background-color: #90caf9;
+  vertical-align: middle;
+  text-align: center;
 }
+
