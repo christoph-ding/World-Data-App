@@ -63,10 +63,10 @@ body {
   margin-bottom: 2%;
   margin-left: 4%;
   margin-right: 4%;
-  padding-top: 36px; 
-  padding-bottom: 36px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-top: 28px; 
+  padding-bottom: 28px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 /* title box */
@@ -75,7 +75,7 @@ body {
 }
 
 .title {
-  margin-top: 12px;
+  margin-top: 28px;
   margin-bottom: 20px;
 
   text-align: center;
@@ -88,12 +88,34 @@ body {
   margin-right: 16px;
 
   text-align: center;
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 /* filter form */
 .filter-box {
   background-color: #81c784;
+  padding: 1%;
+}
+
+.single-filter-form {
+  display: inline-block;
+  margin-left: 11%;
+  margin-right: 5%;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  font-size: 20px;
+}
+
+.filter-label {
+  margin-bottom: 15px;
+}
+
+.drop-down {
+  background-color: #e8f5e9;
+}
+
+.single-filter-form .drop-down{
+  margin-right: 10px;
 }
 
 /* Country Data Table */
