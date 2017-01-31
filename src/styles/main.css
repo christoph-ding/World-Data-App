@@ -70,30 +70,48 @@ body {
 }
 
 /* title box */
+.cover-image {
+  background-image: url("http://www.codex99.com/cartography/images/denmark/regni_lg.jpg");
+  /*background-position: 20px 300px;*/
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.title-image {
+  background-position: 20px 300px;  
+}
+
 .title-box {
-  background-color: #ff8a65;
+  background-color: rgba(255,138,101, 0.9);
+  margin-left: 0%;
+  margin-right: 0%;
 }
 
 .title {
   margin-top: 28px;
   margin-bottom: 20px;
-
   text-align: center;
   font-family: 'Monoton', cursive;
-  font-size: 60px; 
+  font-size: 60px;
 }
 
 .description {
   margin-left: 16px;
   margin-right: 16px;
-
   text-align: center;
   font-size: 16px;
 }
 
 /* filter form */
+.filter-image{
+  background-position: 20px -200px;
+}
+
+
 .filter-box {
-  background-color: #81c784;
+  background-color: rgba(129, 199, 132, 0.9);
+  margin-left: 0%;
+  margin-right: 0%;
   padding: 1%;
 }
 
@@ -152,4 +170,3 @@ table {
   vertical-align: middle;
   text-align: center;
 }
-

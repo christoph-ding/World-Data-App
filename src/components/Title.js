@@ -7,9 +7,11 @@ const description = 'Glossier cred keffiyeh kinfolk. Etsy 8-bit seitan 3 wolf mo
 class Title extends React.Component{
   render() {
     return (
+      <div className="cover-image title-image">
       <div className="card title-box">
         <h1 className='title'> {title} </h1>
         <p className='description'>  {description} </p>
+      </div>
       </div>
     )
   }
