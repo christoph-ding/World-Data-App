@@ -2,7 +2,6 @@ h1 {
   background: blue;
 }
 
-
 .tableHeader {
   width: 235px;
 }
@@ -13,6 +12,4 @@ td {
 }
 
 .grouping-row {
-  background-color: green;
-  text-align: left
 }

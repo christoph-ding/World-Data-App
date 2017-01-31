@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9b29943b6f3e8b55e38a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "94c31c9cb50f51dd674c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -30180,7 +30180,7 @@
 
 
 	// module
-	exports.push([module.id, "h1 {\n  background: blue;\n}\n\n\n.tableHeader {\n  width: 235px;\n}\n\ntd {\n  width: 235px;\n  text-align: center;\n}\n\n.grouping-row {\n  background-color: green;\n  text-align: left\n}\n", ""]);
+	exports.push([module.id, "h1 {\n  background: blue;\n}\n\n.tableHeader {\n  width: 235px;\n}\n\ntd {\n  width: 235px;\n  text-align: center;\n}\n\n.grouping-row {\n}\n", ""]);
 
 	// exports
 
