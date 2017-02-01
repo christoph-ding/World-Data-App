@@ -2,25 +2,24 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 
-import WorldDataApp from '../src/components/App.js';
 import FilterDataForm from '../src/components/FilterDataForm/FilterDataForm';
 import FilterByForm from '../src/components/FilterDataForm/FilterBy';
 import ChangeOrderForm from '../src/components/FilterDataForm/changeDataOrdering';
 
 describe('FilterDataForm elements', () => {
-
-  const stubActions={regroup: undefined}
+  // set up the component
+  const propStubActions={regroup: undefined}
   let wrapper;
-
   beforeEach( () => {
-    wrapper = shallow(<FilterDataForm actions={stubActions}/>);
+    wrapper = shallow(<FilterDataForm actions={propStubActions}/>);
   });
 
-  it('should contain two ChangeOrderForms', () => {
+  // tests
+  it('should contain two ChangeOrderForm components', () => {
     expect(wrapper.find(ChangeOrderForm)).to.have.length(2);
   });
 
-  it('should contain a FilterByForm', () => {
+  it('should contain a FilterByForm component', () => {
     expect(wrapper.contains(<FilterByForm/>));
   });
 })

@@ -8,12 +8,13 @@ import FilterDataForm from '../src/components/FilterDataForm/FilterDataForm.js';
 import CountryList from '../src/components/CountryList/CountryList.js';
 
 describe('App elements', () => {
+  // set up the component
   let wrapper;
-
   beforeEach( () => {
     wrapper = shallow(<WorldDataApp/>);
   });
 
+  // tests
   it('should contain a Title component', () => {
     expect(wrapper.contains(<Title/>));
   })
