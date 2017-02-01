@@ -27,5 +27,5 @@ describe('CountryList elements', () => {
 
   it('should contain 2 groupings', () => {
     expect(wrapper.find(Grouping)).to.have.length(2);
-  })
-})
+  });
+});
