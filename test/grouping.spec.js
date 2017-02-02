@@ -17,7 +17,7 @@ describe('Grouping elements', () => {
     wrapper = shallow(<Grouping spanAll={propData.spanAll} key={'name'} level={propData.level} countryList={propData.countryList} id={'name'}/>);
   });
   // tests
-  it('should contain three country components', () => {
+  it('should contain render the correct number of countries based on its input props', () => {
     expect(wrapper.find(Country)).to.have.length(3);
   });  
 })

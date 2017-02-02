@@ -14,7 +14,6 @@ describe('Country states', () => {
       'region': 'America',
       'language': 'Spanish'
     }
-
   }
   let wrapper;
   beforeEach( () => {
@@ -45,6 +44,5 @@ describe('Country states', () => {
     expect(wrapper.state('expanded')).to.eql(false); 
     expect(wrapper.state('display')).to.eql('none');
   });
-
 
 })
