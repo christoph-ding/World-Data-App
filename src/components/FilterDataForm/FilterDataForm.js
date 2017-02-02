@@ -1,15 +1,9 @@
 "use strict";
 import React from 'react';
-import GroupByForm from './GroupBy';
-import SortByForm from './SortBy';
 import FilterByForm from './FilterBy';
-import RefreshDataButton from './Refresh';
 import ChangeOrderForm from './changeDataOrdering'
 
 class FilterDataForm extends React.Component{
-  constructor(props) {
-    super(props)
-  }
 
   render () {
     return (

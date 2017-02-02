@@ -2,7 +2,6 @@
 import React from 'react';
 import Title from './Title';
 import FilterDataForm from './FilterDataForm/FilterDataForm';
-import ViewForm from './ViewForm/ViewForm';
 import CountryList from './CountryList/CountryList';
 
 import * as data from './../getData';
