@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme';
 
 import Country from '../src/components/CountryList/Country';
 
-describe('Country states', () => {
+describe('Country states and clicking to hide/unhide data', () => {
   // set up the component
   const propData = {
     id: 'name',

@@ -4,9 +4,6 @@ import FilterByForm from './FilterBy';
 import ChangeOrderForm from './changeDataOrdering'
 
 class FilterDataForm extends React.Component{
-  constructor(props) {
-    super(props)
-  }
 
   render () {
     return (
