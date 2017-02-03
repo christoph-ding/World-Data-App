@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import FilterDataForm from '../src/components/FilterDataForm/FilterDataForm';
 import FilterByForm from '../src/components/FilterDataForm/FilterBy';
@@ -8,7 +8,7 @@ import ChangeOrderForm from '../src/components/FilterDataForm/changeDataOrdering
 
 describe('FilterDataForm elements', () => {
   // set up the component
-  const propStubActions={regroup: undefined}
+  const propStubActions={regroup: undefined};
   let wrapper;
   beforeEach( () => {
     wrapper = shallow(<FilterDataForm actions={propStubActions}/>);
@@ -22,4 +22,4 @@ describe('FilterDataForm elements', () => {
   it('should contain a FilterByForm component', () => {
     expect(wrapper.contains(<FilterByForm/>));
   });
-})
+});

@@ -1,13 +1,11 @@
 import React from 'react';
 import { expect } from 'chai';
-import { shallow, mount } from 'enzyme';
-import { spy, stub } from 'sinon';
+import { shallow } from 'enzyme';
 
 import WorldDataApp from '../src/components/App';
 import Title from '../src/components/Title';
 import FilterDataForm from '../src/components/FilterDataForm/FilterDataForm';
 import CountryList from '../src/components/CountryList/CountryList';
-import * as data from '../src/getData'
 
 describe('App elements', () => {
   // set up the component
@@ -19,17 +17,17 @@ describe('App elements', () => {
   // tests
   it('should contain a Title component', () => {
     expect(wrapper.contains(<Title/>));
-  })
+  });
 
   it('should contain a FilterDataForm component', () => {
     expect(wrapper.contains(<FilterDataForm/>));
-  })
+  });
 
   it('should contain a CountryList component', () => {
     expect(wrapper.contains(<CountryList/>));
-  })
+  });
   
-}); 
+});
 
 describe('App initial state and data', () => {
   // set up the component
@@ -42,7 +40,7 @@ describe('App initial state and data', () => {
   it('should start with states that hold world data', () => {
     expect(wrapper.state('formattedRawData')).to.eql([]);
     expect(wrapper.state('groupedData')).to.eql({});
-    expect(wrapper.state('dataFields')).to.eql([]);    
+    expect(wrapper.state('dataFields')).to.eql([]);
   });
 
   it('should start with states that hold the user chosen filter parameters', () => {
@@ -52,4 +50,4 @@ describe('App initial state and data', () => {
     expect(wrapper.state('selectedOperator')).to.eql(undefined);
     expect(wrapper.state('filterThreshold')).to.eql('');
   });
-})
+});

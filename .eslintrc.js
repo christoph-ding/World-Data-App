@@ -25,6 +25,8 @@ module.exports = {
         "quotes": [1,"single"],
         "semi": ["error", "always"],
         "mocha/no-exclusive-tests": "error",
-        "no-trailing-spaces": ["error", { "skipBlankLines": true }]
+        "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+        "no-unused-vars": 1,
+        "no-undef" : 1
     }
 };
