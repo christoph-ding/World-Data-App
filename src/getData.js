@@ -1,72 +1,106 @@
-console.log('fetching the data');
+'use strict';
 
-const worldDataURL = 'https://restcountries.eu/rest/v1/all';
+// fetch the data from the api
+const getDataFromAPI = (url, desiredFields, cb) => {
+  fetch(url)
+  .then((res) => {
+    res.json()
+   .then((rawData) => {
+     const dataWithRelevantFields = getRelevantFields(rawData, desiredFields);
+     cb(dataWithRelevantFields);
+   });
+  });
+};
 
-const getDataFromAPI = (url) => {
-	fetch(url)
-	.then((res) => {
-		console.log('got the res');
-		res.json()
-			 .then((data) => {
-			 		console.log(data);			 
-				})
-	})
-}
+// make a dataset with only the fields that the user cares about
+// the user will never need the fields that she did not expicitely
+// ask for, so there is no reason to return the 'full' data to the app
+// the 'fieldMapping' is a list of the fields desired by the user,
+// and how they would like that field to be displayed.
+const getRelevantFields = (fullData, fieldMapping) => {
+  const formattedData = [];
+  const originalFieldNames = Object.keys(fieldMapping);
 
-const groupBy = (dataset, category, specialKeyMapping) => {
-	// for accessing the data in a category level quickly
-	const groupedData = {};
+  // we only want certain fields from the data
+  fullData.forEach((row) =>{
+    let formattedRow = formRowWithRelevantFields(row);
+    formattedData.push(formattedRow);
+  });
 
-	for (var row of dataset) {		
-		// 'level' is a possible value within a category		
-		var level = determineLevelLabel(row);
+  return formattedData;
 
-		// add it to an existing key groupedData, or make new key		
-		addToGroupedData(row, level);
-	} 
+  // helper functions
+  function formRowWithRelevantFields(originalRow) {
+    const filteredRow = {};
 
-	return groupedData;
+    originalFieldNames.forEach((originalField)=> {
+      let newColumnName = fieldMapping[originalField];
+      filteredRow[newColumnName] = originalRow[originalField];
+    });
 
-	// helper functions
-	function determineLevelLabel(row) {
-		var level = row[category];
+    return filteredRow;
+  }
+};
 
-		// accomodate translations between levels in the category and how user would like it to output
-		// i.e. user may want 'M' in the raw data to be translated to "Male" in the grouped data
-		if (specialKeyMapping && specialKeyMapping.hasOwnProperty(level)) {
-			var level = specialKeyMapping[level];
-		}
+const groupBy = (dataset, field, levelMapping) => {
+  // for accessing the data in a field level quickly
+  const groupedData = {};
 
-		return level;
-	}
+  for (var row of dataset) {
+    // 'level' is a possible value within a field
+    var level = determineLevelLabel(row);
 
-	function addToGroupedData(row, level) {
-		var newCategoryLevel = !groupedData.hasOwnProperty(level);
+    // add it to an existing key groupedData, or make new key
+    addToGroupedData(row, level);
+  }
 
-		// add row to appropriate category level, capture all possible category levels
-		if (newCategoryLevel) {
-			groupedData[level] = [];
-		}
+  return groupedData;
 
-		var rowsWithSameCategoryLevel = groupedData[level];
-		rowsWithSameCategoryLevel.push(row);
-	}
-}
+  // helper functions
+  function determineLevelLabel(row) {
+    var level = row[field];
 
-getDataFromAPI(worldDataURL);
+    // accomodate translations between levels in the field and how user would
+    // like it to output.  i.e. user may want 'M' in the raw data to be
+    // translated to "Male" in the grouped data
+    if (levelMapping && levelMapping.hasOwnProperty(level)) {
+      level = levelMapping[level];
+    }
 
-const sortBy = (dataset, category) => {
-	dataset.sort(compare);
-	return dataset;
+    return level;
+  }
 
-	function compare(a, b) {
-		var valueA = a[category];
-		var valueB = b[category];
-		if (valueA < valueB) {
-			return -1;
-		} else if (valueA > valueB) {
-			return 1;
-		}
-		return 0;
-	}
-}
+  function addToGroupedData(row, level) {
+    var newFieldLevel = !groupedData.hasOwnProperty(level);
+
+    // add row to appropriate field level, capture all possible field levels
+    if (newFieldLevel) {
+      groupedData[level] = [];
+    }
+
+    var rowsWithSameFieldLevel = groupedData[level];
+    rowsWithSameFieldLevel.push(row);
+  }
+};
+
+const sortBy = (dataset, field) => {
+  dataset.sort(compare);
+  return dataset;
+
+  function compare(a, b) {
+    var valueA = a[field];
+    var valueB = b[field];
+    if (valueA < valueB) {
+      return -1;
+    } else if (valueA > valueB) {
+      return 1;
+    }
+    return 0;
+  }
+};
+
+module.exports = {
+  getDataFromAPI: getDataFromAPI,
+  groupBy: groupBy,
+  sortBy: sortBy
+};

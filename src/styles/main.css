@@ -1,3 +1,173 @@
-h1 {
-	background: blue;
+/* Reset */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* My Style */
+
+body {
+  font-family: 'Nixie One', cursive;
+  background-color: #fff6e8;
+}
+
+.card {
+  /*display: inline-block;*/
+  box-shadow: 3px 6px 5px rgba(0,0,0,0.16);
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 4%;
+  margin-right: 4%;
+  padding-top: 28px; 
+  padding-bottom: 28px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+/* title box */
+.cover-image {
+  background-image: url("http://www.codex99.com/cartography/images/denmark/regni_lg.jpg");
+  /*background-position: 20px 300px;*/
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.title-image {
+  background-position: 20px 300px;  
+}
+
+.title-box {
+  background-color: rgba(255,138,101, 0.9);
+  margin-left: 0%;
+  margin-right: 0%;
+}
+
+.title {
+  margin-top: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Monoton', cursive;
+  font-size: 60px;
+}
+
+.description {
+  margin-left: 16px;
+  margin-right: 16px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* filter form */
+.filter-image{
+  background-position: 20px -200px;
+}
+
+
+.filter-box {
+  background-color: rgba(129, 199, 132, 0.9);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding: 1%;
+}
+
+.single-filter-form {
+  display: inline-block;
+  margin-left: 9%;
+  margin-right: 3%;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  font-size: 20px;
+}
+
+.filter-label {
+  margin-bottom: 15px;
+}
+
+.drop-down {
+  background-color: #e8f5e9;
+}
+
+.single-filter-form .drop-down{
+  margin-right: 10px;
+}
+
+/* Country Data Table */
+table {
+  width: 92%; 
+  background-color: #e1f5fe;
+}
+
+.column-headers {
+  background-color: #2196f3;
+  height: 55px;
+  width: 10%;
+  margin: 1%;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 1px outset #ffebee;
+}
+
+.group-level {
+  background-color: #90caf9;
+  height: 40px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 1px outset #ffebee;
+}
+
+.country-row {
+  height: 35px;
+  cursor: pointer;
+}
+
+.cell {
+  vertical-align: middle;
+  text-align: center;
 }
