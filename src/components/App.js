@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 import React from 'react';
 import Title from './Title';
 import FilterDataForm from './FilterDataForm/FilterDataForm';
@@ -21,7 +21,7 @@ class WorldDataApp extends React.Component{
       selectedFilterField: undefined,
       selectedOperator: undefined,
       filterThreshold: ''
-    }
+    };
 
     this.actions = {
       regroup: this.regroup.bind(this),
@@ -29,7 +29,7 @@ class WorldDataApp extends React.Component{
       updateFilterField: this.updateFilterField.bind(this),
       updateOperator: this.updateOperator.bind(this),
       updateThreshold: this.updateThreshold.bind(this)
-    }
+    };
   }
 
   // get data upon initializing the app 
@@ -38,7 +38,7 @@ class WorldDataApp extends React.Component{
       this.setState({formattedRawData: originalData}, () => {
         this.groupData();
         this.getFields();
-      })      
+      });      
     });
   }
 
@@ -56,14 +56,11 @@ class WorldDataApp extends React.Component{
   // functions for manipulating the data in state
   groupData() {
     let groupField = this.state.selectedGrouping;
-    let sortField = this.state.selectedSorting;
     
     // by default, we group by region and sort by name
     if (typeof(groupField) === 'undefined') {
       groupField = this.props.defaults.grouping;
     }    
-
-    console.log('group: ', groupField);
 
     const rearrangedData = data.groupBy(this.state.formattedRawData, groupField, this.props.keyMapping);
     this.setState({groupedData: rearrangedData}, () => {
@@ -79,8 +76,6 @@ class WorldDataApp extends React.Component{
     if (typeof(sortField) === 'undefined') {
       sortField = this.props.defaults.sorting;
     }
-
-    console.log('sort: ', sortField);    
 
     // sort the data within each level of the groupedData
     for (var level in this.state.groupedData) {
@@ -98,10 +93,10 @@ class WorldDataApp extends React.Component{
     const threshold = this.state.filterThreshold;
 
     const operatorTable = {
-      '=': function(element) {return element[selectedFilterField] == threshold},
-      '>': function(element) {return element[selectedFilterField] > threshold},
-      '<': function(element) {return element[selectedFilterField] < threshold}
-    }
+      '=': function(element) {return element[selectedFilterField] == threshold;},
+      '>': function(element) {return element[selectedFilterField] > threshold;},
+      '<': function(element) {return element[selectedFilterField] < threshold;}
+    };
 
     const relevantFilter = operatorTable[this.state.selectedOperator];
     const newGroupedData = {};
@@ -155,7 +150,6 @@ class WorldDataApp extends React.Component{
 
   // only filter if all the necceary parameters are supplied
   completeFilterExists() {
-    console.log('field: ', this.state.selectedFilterField, ' operator: ', this.state.selectedOperator, ' filterThreshold: ', this.state.filterThreshold);
     return (this.state.selectedFilterField !== undefined && this.state.selectedOperator !== undefined && this.state.filterThreshold !== '');
   }
 

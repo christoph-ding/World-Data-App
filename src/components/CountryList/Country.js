@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 import React from 'react';
 
 class Country extends React.Component{
@@ -9,7 +9,7 @@ class Country extends React.Component{
       expanded: false,
       display: 'none',      
       hiddenFields: this.determineHiddenFields(this.props.id, this.props.countryData)
-    }
+    };
   }
 
   // functions for hiding or displaying the entire row of data

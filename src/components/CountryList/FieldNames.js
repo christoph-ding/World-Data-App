@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 import React from 'react';
 import Country from './Country.js';
 
@@ -8,13 +8,13 @@ class FieldNames extends React.Component{
       <tr>
       {
         this.props.fields.map((field) => {
-            return (
-            <th className="column-headers" key={field}> {field} </th>
-          )
+          return (
+          <th className="column-headers" key={field}> {field} </th>
+          );
         })
       }
       </tr>
-    )
+    );
   }
 }
 
