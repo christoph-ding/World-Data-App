@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d5ad15b6e63e3d3b0c68"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0efc90c82e47f890e5b9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -30568,7 +30568,7 @@
 	    return _this;
 	  }
 
-	  // get data upon initializing the app 
+	  // get data upon initializing the app
 
 
 	  _createClass(WorldDataApp, [{
@@ -30728,7 +30728,7 @@
 	      return this.state.selectedFilterField !== undefined && this.state.selectedOperator !== undefined && this.state.filterThreshold !== '';
 	    }
 
-	    // presentation  
+	    // presentation
 
 	  }, {
 	    key: 'render',
@@ -31539,7 +31539,7 @@
 	  var formattedData = [];
 	  var originalFieldNames = Object.keys(relevantFields);
 
-	  // we only want certain fields from the data, with a 
+	  // we only want certain fields from the data, with a
 	  fullData.forEach(function (elem) {
 	    var formattedRow = formRowWithRelevantFields(elem);
 	    formattedData.push(formattedRow);

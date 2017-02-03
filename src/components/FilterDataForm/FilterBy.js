@@ -34,10 +34,10 @@ class FilterByForm extends React.Component{
             }
           </select>
           <select className="drop-down" onChange={ this.updateOperator.bind(this) }>
-              <option> </option>              
+              <option> </option>
               <option> = </option>
               <option> &gt; </option>
-              <option> &lt; </option>              
+              <option> &lt; </option>
           </select>
           <input className="drop-down" ref={(input) => {this.filterThreshold = input;}}/>
           <input className="drop-down" type="button" onClick={this.updateThreshold.bind(this)} value="Add" />

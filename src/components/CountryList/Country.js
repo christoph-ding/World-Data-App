@@ -7,7 +7,7 @@ class Country extends React.Component{
     super(props);
     this.state = {
       expanded: false,
-      display: 'none',      
+      display: 'none',
       hiddenFields: this.determineHiddenFields(this.props.id, this.props.countryData)
     };
   }
@@ -31,7 +31,7 @@ class Country extends React.Component{
     } else if (this.state.expanded) {
       this.setState({display: 'none', expanded: !this.state.expanded});
     }
-  }  
+  }
 
   // flattening the fields which contain data that are collections
   isCollection(variable) {
@@ -43,14 +43,14 @@ class Country extends React.Component{
     if (collection.length > 5) {
       output = Object.values(collection).slice(0, 5).join(', ') + ' ...';
     } else {
-      output = Object.values(collection).join(', ');      
+      output = Object.values(collection).join(', ');
     }
     return output;
   }
 
   render() {
     return (
-      <tr className="country-row" onClick={this.toggleFullRow.bind(this)}> 
+      <tr className="country-row" onClick={this.toggleFullRow.bind(this)}>
         <td className="cell">{this.props.countryData[this.props.id]}</td>
         {
           this.state.hiddenFields.map((field) => {

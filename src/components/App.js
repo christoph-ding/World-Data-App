@@ -25,20 +25,20 @@ class WorldDataApp extends React.Component{
 
     this.actions = {
       regroup: this.regroup.bind(this),
-      resort: this.resort.bind(this), 
+      resort: this.resort.bind(this),
       updateFilterField: this.updateFilterField.bind(this),
       updateOperator: this.updateOperator.bind(this),
       updateThreshold: this.updateThreshold.bind(this)
     };
   }
 
-  // get data upon initializing the app 
+  // get data upon initializing the app
   getData() {
     data.getDataFromAPI(this.props.apiEndPoint, this.props.relevantFields, (originalData) => {
       this.setState({formattedRawData: originalData}, () => {
         this.groupData();
         this.getFields();
-      });      
+      });
     });
   }
 
@@ -50,7 +50,7 @@ class WorldDataApp extends React.Component{
     // I am assuming that the 'rows' in the dataset all have the same fields
     let sampleRow = this.state.formattedRawData[0];
     let fields = Object.keys(sampleRow);
-    this.setState({dataFields: fields});      
+    this.setState({dataFields: fields});
   }
 
   // functions for manipulating the data in state
@@ -60,7 +60,7 @@ class WorldDataApp extends React.Component{
     // by default, we group by region and sort by name
     if (typeof(groupField) === 'undefined') {
       groupField = this.props.defaults.grouping;
-    }    
+    }
 
     const rearrangedData = data.groupBy(this.state.formattedRawData, groupField, this.props.keyMapping);
     this.setState({groupedData: rearrangedData}, () => {
@@ -69,8 +69,8 @@ class WorldDataApp extends React.Component{
     });
   }
 
-  sortData() {    
-    let newGroupedData = {};    
+  sortData() {
+    let newGroupedData = {};
     let sortField = this.state.selectedSorting;
 
     if (typeof(sortField) === 'undefined') {
@@ -127,15 +127,15 @@ class WorldDataApp extends React.Component{
   updateFilterField(newField) {
     this.setState({selectedFilterField: newField}, ()=>{
       if (this.completeFilterExists()) {
-        this.filterData();    
+        this.filterData();
       }
     });
   }
 
-  updateOperator(newOperator) {    
+  updateOperator(newOperator) {
     this.setState({selectedOperator: newOperator}, ()=>{
       if (this.completeFilterExists()) {
-        this.filterData();    
+        this.filterData();
       }
     });
   }
@@ -143,7 +143,7 @@ class WorldDataApp extends React.Component{
   updateThreshold(newThreshold) {
     this.setState({filterThreshold: newThreshold}, ()=>{
       if (this.completeFilterExists()) {
-        this.filterData();    
+        this.filterData();
       }
     });
   }
@@ -153,7 +153,7 @@ class WorldDataApp extends React.Component{
     return (this.state.selectedFilterField !== undefined && this.state.selectedOperator !== undefined && this.state.filterThreshold !== '');
   }
 
-  // presentation  
+  // presentation
   render(){
     return (
       <div>

@@ -19,7 +19,7 @@ const getRelevantFields = (fullData, relevantFields) => {
   const formattedData = [];
   const originalFieldNames = Object.keys(relevantFields);
 
-  // we only want certain fields from the data, with a 
+  // we only want certain fields from the data, with a
   fullData.forEach((elem) =>{
     let formattedRow = formRowWithRelevantFields(elem);
     formattedData.push(formattedRow);
@@ -50,7 +50,7 @@ const groupBy = (dataset, field, specialKeyMapping) => {
 
     // add it to an existing key groupedData, or make new key
     addToGroupedData(row, level);
-  } 
+  }
 
   return groupedData;
 

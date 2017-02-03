@@ -6,13 +6,13 @@ import FieldNames from './FieldNames.js';
 class CountryList extends React.Component{
   render() {
     // a level is a possible answer for the group chosen
-    const levels = Object.keys(this.props.countryData); 
+    const levels = Object.keys(this.props.countryData);
     return (
       <table className="card">
         <FieldNames fields={this.props.fields}/>
         {
-          levels.map((level) => {          
-            let levelCountries = this.props.countryData[level];        
+          levels.map((level) => {
+            let levelCountries = this.props.countryData[level];
             return (
               <Grouping spanAll={this.props.fields.length} key={level} level={level} countryList={levelCountries} id={this.props.id}/>
             );

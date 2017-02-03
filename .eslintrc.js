@@ -24,6 +24,7 @@ module.exports = {
         "linebreak-style": ["error","unix"],
         "quotes": [1,"single"],
         "semi": ["error", "always"],
-        "mocha/no-exclusive-tests": "error"
+        "mocha/no-exclusive-tests": "error",
+        "no-trailing-spaces": ["error", { "skipBlankLines": true }]
     }
 };
