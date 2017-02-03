@@ -164,6 +164,7 @@ table {
 
 .country-row {
   height: 35px;
+  cursor: pointer;
 }
 
 .cell {
