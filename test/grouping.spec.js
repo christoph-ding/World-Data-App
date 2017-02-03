@@ -14,10 +14,12 @@ describe('Grouping elements', () => {
   };
   let wrapper;
   beforeEach( () => {
-    wrapper = shallow(<Grouping spanAll={propData.spanAll} key={'name'} level={propData.level} countryList={propData.countryList} id={'name'}/>);
+    wrapper = shallow(<Grouping spanAll={propData.spanAll} key={'name'}
+                       level={propData.level} countryList={propData.countryList}
+                      id={'name'}/>);
   });
   // tests
-  it('should contain render the correct number of countries based on its input props', () => {
+  it('should contain render the correct number of countries', () => {
     expect(wrapper.find(Country)).to.have.length(3);
   });
 });

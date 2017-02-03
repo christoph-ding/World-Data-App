@@ -17,7 +17,8 @@ describe('Country states and clicking to hide/unhide data', () => {
   };
   let wrapper;
   beforeEach( () => {
-    wrapper = shallow(<Country id={propData.id} countryData={propData.countryData}/>);
+    wrapper = shallow(<Country id={propData.id}
+                       countryData={propData.countryData}/>);
   });
 
   // tests
@@ -27,7 +28,8 @@ describe('Country states and clicking to hide/unhide data', () => {
   });
 
   it('should correctly determine which fields to hide', () => {
-    expect(wrapper.state('hiddenFields')).to.eql(['population', 'region', 'language']);
+    expect(wrapper.state('hiddenFields')).to.eql(
+      ['population', 'region', 'language']);
   });
 
   it('should unhide hidden rows when clicked', () => {

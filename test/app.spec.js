@@ -43,11 +43,12 @@ describe('App initial state and data', () => {
     expect(wrapper.state('dataFields')).to.eql([]);
   });
 
-  it('should start with states that hold the user chosen filter parameters', () => {
-    expect(wrapper.state('selectGrouping')).to.eql(undefined);
-    expect(wrapper.state('selectedSorting')).to.eql(undefined);
-    expect(wrapper.state('selectedFilterField')).to.eql(undefined);
-    expect(wrapper.state('selectedOperator')).to.eql(undefined);
-    expect(wrapper.state('filterThreshold')).to.eql('');
-  });
+  it('should start with states that hold the user chosen filter parameters',
+    () => {
+      expect(wrapper.state('selectGrouping')).to.eql(undefined);
+      expect(wrapper.state('selectedSorting')).to.eql(undefined);
+      expect(wrapper.state('selectedFilterField')).to.eql(undefined);
+      expect(wrapper.state('selectedOperator')).to.eql(undefined);
+      expect(wrapper.state('filterThreshold')).to.eql('');
+    });
 });

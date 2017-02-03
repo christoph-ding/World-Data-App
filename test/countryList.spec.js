@@ -17,7 +17,8 @@ describe('CountryList contains presentation components', () => {
   const propFields = ['name', 'population'];
   let wrapper;
   beforeEach( () => {
-    wrapper = mount(<CountryList countryData={propCountryData} fields={propFields}/>);
+    wrapper = mount(<CountryList countryData={propCountryData}
+                     fields={propFields}/>);
   });
 
   // tests
