@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "28524f34a8afb537d4c5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "bcc7bacd5577151da7d9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31608,6 +31608,7 @@
 	// fetch the data from the api
 
 	var getDataFromAPI = function getDataFromAPI(url, desiredFields, cb) {
+	  console.log('fetching: ', url);
 	  fetch(url).then(function (res) {
 	    res.json().then(function (rawData) {
 	      var dataWithRelevantFields = getRelevantFields(rawData, desiredFields);
@@ -31741,10 +31742,7 @@
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var options = {
+	module.exports = {
 	  levelValueMapping: { '': 'not available' },
 	  relevantFields: { 'name': 'Country Name',
 	    'alpha2Code': 'Code',
@@ -31756,8 +31754,6 @@
 	  europeDataAPI: 'https://restcountries.eu/rest/v1/all',
 	  defaults: { 'grouping': 'Region', 'sorting': 'Population' }
 	};
-
-	exports.default = options;
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(271); if (makeExportsHot(module, __webpack_require__(174))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "appOptions.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))

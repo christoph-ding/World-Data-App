@@ -1,4 +1,4 @@
-const options = {
+module.exports = {
   levelValueMapping: {'': 'not available'},
   relevantFields: {'name': 'Country Name',
     'alpha2Code': 'Code',
@@ -10,5 +10,3 @@ const options = {
   europeDataAPI: 'https://restcountries.eu/rest/v1/all',
   defaults: {'grouping': 'Region', 'sorting': 'Population'}
 }
-
-export default options;
