@@ -27,6 +27,7 @@ module.exports = {
         "mocha/no-exclusive-tests": "error",
         "no-trailing-spaces": ["error", { "skipBlankLines": true }],
         "no-unused-vars": 1,
-        "no-undef" : 1
+        "no-undef" : 1,
+        "max-len": ["error", 80]
     }
 };

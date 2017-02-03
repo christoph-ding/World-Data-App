@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0efc90c82e47f890e5b9"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "039de35901c555c21004"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -30546,7 +30546,8 @@
 	    var _this = _possibleConstructorReturn(this, (WorldDataApp.__proto__ || Object.getPrototypeOf(WorldDataApp)).call(this, props));
 
 	    _this.state = {
-	      // formattedRawData is the 'true' data, but with only the fields specified by the user
+	      // formattedRawData is the 'true' JSON data from the api, but with only
+	      // the fields specified by the user
 	      formattedRawData: [],
 	      groupedData: {},
 	      dataFields: [],
@@ -30558,6 +30559,8 @@
 	      filterThreshold: ''
 	    };
 
+	    // this is not neccesary, but makes it less verbose to pass functions to
+	    // child components
 	    _this.actions = {
 	      regroup: _this.regroup.bind(_this),
 	      resort: _this.resort.bind(_this),
@@ -30588,6 +30591,10 @@
 	    value: function componentDidMount() {
 	      this.getData();
 	    }
+
+	    // get a list of fields from the data to pass to child components that render
+	    // filter options
+
 	  }, {
 	    key: 'getFields',
 	    value: function getFields() {
@@ -30602,15 +30609,15 @@
 	  }, {
 	    key: 'groupData',
 	    value: function groupData() {
-	      var groupField = this.state.selectedGrouping;
+	      var groupByField = this.state.selectedGrouping;
 
 	      // by default, we group by region and sort by name
-	      if (typeof groupField === 'undefined') {
-	        groupField = this.props.defaults.grouping;
+	      if (typeof groupByField === 'undefined') {
+	        groupByField = this.props.defaults.grouping;
 	      }
 
-	      var rearrangedData = data.groupBy(this.state.formattedRawData, groupField, this.props.keyMapping);
-	      this.setState({ groupedData: rearrangedData }, function () {
+	      var groupedByFieldData = data.groupBy(this.state.formattedRawData, groupByField, this.props.keyMapping);
+	      this.setState({ groupedData: groupedByFieldData }, function () {
 	        // resort after changing the groups
 	        // this.sortData(sortField);
 	      });
@@ -30618,26 +30625,26 @@
 	  }, {
 	    key: 'sortData',
 	    value: function sortData() {
-	      var newGroupedData = {};
-	      var sortField = this.state.selectedSorting;
+	      var sortedGroupedData = {};
+	      var sortOnField = this.state.selectedSorting;
 
-	      if (typeof sortField === 'undefined') {
-	        sortField = this.props.defaults.sorting;
+	      if (typeof sortOnField === 'undefined') {
+	        sortOnField = this.props.defaults.sorting;
 	      }
 
-	      // sort the data within each level of the groupedData
+	      // sort the data within each level of groupedData
 	      for (var level in this.state.groupedData) {
 	        var levelData = this.state.groupedData[level];
-	        var sortedLevelData = data.sortBy(levelData, sortField);
-	        newGroupedData[level] = sortedLevelData;
+	        var sortedLevelData = data.sortBy(levelData, sortOnField);
+	        sortedGroupedData[level] = sortedLevelData;
 	      }
 
-	      this.setState({ groupedData: newGroupedData });
+	      this.setState({ groupedData: sortedGroupedData });
 	    }
 	  }, {
 	    key: 'filterData',
 	    value: function filterData() {
-	      // create the compare function using the user inputs to this filter
+	      // create the compare function using the user inputs to filter
 	      var selectedFilterField = this.state.selectedFilterField;
 	      var threshold = this.state.filterThreshold;
 
@@ -30654,19 +30661,19 @@
 	      };
 
 	      var relevantFilter = operatorTable[this.state.selectedOperator];
-	      var newGroupedData = {};
+	      var filteredGroupedData = {};
 
 	      // apply the filter to the sorted data of the grouped data
 	      for (var level in this.state.groupedData) {
 	        var originalData = this.state.groupedData[level];
 	        var filteredData = originalData.filter(relevantFilter);
-	        newGroupedData[level] = filteredData;
+	        filteredGroupedData[level] = filteredData;
 	      }
 
-	      this.setState({ groupedData: newGroupedData });
+	      this.setState({ groupedData: filteredGroupedData });
 	    }
 
-	    // filter, sort, grouping actions passed to filter form
+	    // these functions expose this component's data to child elements
 
 	  }, {
 	    key: 'regroup',
@@ -30738,7 +30745,8 @@
 	        null,
 	        _react2.default.createElement(_Title2.default, null),
 	        _react2.default.createElement(_FilterDataForm2.default, { actions: this.actions, fields: this.state.dataFields }),
-	        _react2.default.createElement(_CountryList2.default, { countryData: this.state.groupedData, fields: this.state.dataFields, id: 'Country Name' })
+	        _react2.default.createElement(_CountryList2.default, { countryData: this.state.groupedData,
+	          fields: this.state.dataFields, id: 'Country Name' })
 	      );
 	    }
 	  }]);

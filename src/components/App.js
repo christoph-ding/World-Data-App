@@ -11,7 +11,8 @@ class WorldDataApp extends React.Component{
     super(props);
 
     this.state = {
-      // formattedRawData is the 'true' data, but with only the fields specified by the user
+      // formattedRawData is the 'true' JSON data from the api, but with only
+      // the fields specified by the user
       formattedRawData : [],
       groupedData: {},
       dataFields: [],
@@ -23,6 +24,8 @@ class WorldDataApp extends React.Component{
       filterThreshold: ''
     };
 
+    // this is not neccesary, but makes it less verbose to pass functions to
+    // child components
     this.actions = {
       regroup: this.regroup.bind(this),
       resort: this.resort.bind(this),
@@ -34,18 +37,22 @@ class WorldDataApp extends React.Component{
 
   // get data upon initializing the app
   getData() {
-    data.getDataFromAPI(this.props.apiEndPoint, this.props.relevantFields, (originalData) => {
-      this.setState({formattedRawData: originalData}, () => {
-        this.groupData();
-        this.getFields();
-      });
-    });
+    data.getDataFromAPI(this.props.apiEndPoint, this.props.relevantFields,
+      (originalData) => {
+        this.setState({formattedRawData: originalData}, () => {
+          this.groupData();
+          this.getFields();
+        });
+      }
+    );
   }
 
   componentDidMount() {
     this.getData();
   }
 
+  // get a list of fields from the data to pass to child components that render
+  // filter options
   getFields() {
     // I am assuming that the 'rows' in the dataset all have the same fields
     let sampleRow = this.state.formattedRawData[0];
@@ -55,63 +62,68 @@ class WorldDataApp extends React.Component{
 
   // functions for manipulating the data in state
   groupData() {
-    let groupField = this.state.selectedGrouping;
+    let groupByField = this.state.selectedGrouping;
     
     // by default, we group by region and sort by name
-    if (typeof(groupField) === 'undefined') {
-      groupField = this.props.defaults.grouping;
+    if (typeof(groupByField) === 'undefined') {
+      groupByField = this.props.defaults.grouping;
     }
 
-    const rearrangedData = data.groupBy(this.state.formattedRawData, groupField, this.props.keyMapping);
-    this.setState({groupedData: rearrangedData}, () => {
+    const groupedByFieldData = data.groupBy(this.state.formattedRawData,
+                                            groupByField,
+                                            this.props.keyMapping);
+    this.setState({groupedData: groupedByFieldData}, () => {
       // resort after changing the groups
       // this.sortData(sortField);
     });
   }
 
   sortData() {
-    let newGroupedData = {};
-    let sortField = this.state.selectedSorting;
+    let sortedGroupedData = {};
+    let sortOnField = this.state.selectedSorting;
 
-    if (typeof(sortField) === 'undefined') {
-      sortField = this.props.defaults.sorting;
+    if (typeof(sortOnField) === 'undefined') {
+      sortOnField = this.props.defaults.sorting;
     }
 
-    // sort the data within each level of the groupedData
+    // sort the data within each level of groupedData
     for (var level in this.state.groupedData) {
       let levelData = this.state.groupedData[level];
-      let sortedLevelData = data.sortBy(levelData, sortField);
-      newGroupedData[level] = sortedLevelData;
+      let sortedLevelData = data.sortBy(levelData, sortOnField);
+      sortedGroupedData[level] = sortedLevelData;
     }
 
-    this.setState({groupedData: newGroupedData});
+    this.setState({groupedData: sortedGroupedData});
   }
 
   filterData() {
-    // create the compare function using the user inputs to this filter
+    // create the compare function using the user inputs to filter
     const selectedFilterField = this.state.selectedFilterField;
     const threshold = this.state.filterThreshold;
 
     const operatorTable = {
-      '=': function(element) {return element[selectedFilterField] == threshold;},
-      '>': function(element) {return element[selectedFilterField] > threshold;},
-      '<': function(element) {return element[selectedFilterField] < threshold;}
+      '=': function(element) {
+        return element[selectedFilterField] == threshold;},
+      '>': function(element) {
+        return element[selectedFilterField] > threshold;},
+      '<': function(element) {
+        return element[selectedFilterField] < threshold;}
     };
 
     const relevantFilter = operatorTable[this.state.selectedOperator];
-    const newGroupedData = {};
+    const filteredGroupedData = {};
 
     // apply the filter to the sorted data of the grouped data
     for (var level in this.state.groupedData) {
       let originalData = this.state.groupedData[level];
       let filteredData = originalData.filter(relevantFilter);
-      newGroupedData[level] = filteredData;
+      filteredGroupedData[level] = filteredData;
     }
 
-    this.setState({groupedData: newGroupedData});
+    this.setState({groupedData: filteredGroupedData});
   }
 
-  // filter, sort, grouping actions passed to filter form
+  // these functions expose this component's data to child elements
   regroup(groupField) {
     this.setState({selectedGrouping: groupField}, ()=>{
       this.groupData();
@@ -150,7 +162,9 @@ class WorldDataApp extends React.Component{
 
   // only filter if all the necceary parameters are supplied
   completeFilterExists() {
-    return (this.state.selectedFilterField !== undefined && this.state.selectedOperator !== undefined && this.state.filterThreshold !== '');
+    return (this.state.selectedFilterField !== undefined &&
+            this.state.selectedOperator !== undefined &&
+            this.state.filterThreshold !== '');
   }
 
   // presentation
@@ -159,7 +173,8 @@ class WorldDataApp extends React.Component{
       <div>
         <Title />
         <FilterDataForm actions={this.actions} fields={this.state.dataFields} />
-        <CountryList countryData={this.state.groupedData} fields={this.state.dataFields} id={'Country Name'}/>
+        <CountryList countryData={this.state.groupedData}
+         fields={this.state.dataFields} id={'Country Name'}/>
       </div>
     );
   }
