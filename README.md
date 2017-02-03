@@ -8,9 +8,11 @@ world.
 Install and run the World Data Viewer using git and npm.
 ```
 $ git clone https://github.com/ironpup/World-Data-App.git
+$ cd World-Data-App
+$ npm install
 $ npm start
 ```
-Go see the app at http://localhost:8000.
+Go see the app at in your [browser](http://localhost:8000).
 
 ## Configuring the app
 By default, the app will make a call to get all European countries from the 
