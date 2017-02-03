@@ -1,27 +1,29 @@
 'use strict';
 
 // fetch the data from the api
-const getDataFromAPI = (url, fieldMap, cb) => {
+const getDataFromAPI = (url, desiredFields, cb) => {
   fetch(url)
   .then((res) => {
     res.json()
-       .then((rawData) => {
-         const dataWithRelevantFields = getRelevantFields(rawData, fieldMap);
-         cb(dataWithRelevantFields);
-       });
+   .then((rawData) => {
+     const dataWithRelevantFields = getRelevantFields(rawData, desiredFields);
+     cb(dataWithRelevantFields);
+   });
   });
 };
 
 // make a dataset with only the fields that the user cares about
-// as far as I can tell, the user will never need the fields that she did not
-// expicitely ask for, so there is no reason to return the 'full' data to the app
-const getRelevantFields = (fullData, relevantFields) => {
+// the user will never need the fields that she did not expicitely
+// ask for, so there is no reason to return the 'full' data to the app
+// the 'fieldMapping' is a list of the fields desired by the user,
+// and how they would like that field to be displayed.
+const getRelevantFields = (fullData, fieldMapping) => {
   const formattedData = [];
-  const originalFieldNames = Object.keys(relevantFields);
+  const originalFieldNames = Object.keys(fieldMapping);
 
-  // we only want certain fields from the data, with a
-  fullData.forEach((elem) =>{
-    let formattedRow = formRowWithRelevantFields(elem);
+  // we only want certain fields from the data
+  fullData.forEach((row) =>{
+    let formattedRow = formRowWithRelevantFields(row);
     formattedData.push(formattedRow);
   });
 
@@ -32,7 +34,7 @@ const getRelevantFields = (fullData, relevantFields) => {
     const filteredRow = {};
 
     originalFieldNames.forEach((originalField)=> {
-      let newColumnName = relevantFields[originalField];
+      let newColumnName = fieldMapping[originalField];
       filteredRow[newColumnName] = originalRow[originalField];
     });
 
@@ -40,7 +42,7 @@ const getRelevantFields = (fullData, relevantFields) => {
   }
 };
 
-const groupBy = (dataset, field, specialKeyMapping) => {
+const groupBy = (dataset, field, levelMapping) => {
   // for accessing the data in a field level quickly
   const groupedData = {};
 
@@ -58,10 +60,11 @@ const groupBy = (dataset, field, specialKeyMapping) => {
   function determineLevelLabel(row) {
     var level = row[field];
 
-    // accomodate translatåons between levels in the field and how user would like it to output
-    // i.e. user may want 'M' in the raw data to be translated to "Male" in the grouped data
-    if (specialKeyMapping && specialKeyMapping.hasOwnProperty(level)) {
-      level = specialKeyMapping[level];
+    // accomodate translations between levels in the field and how user would
+    // like it to output.  i.e. user may want 'M' in the raw data to be
+    // translated to "Male" in the grouped data
+    if (levelMapping && levelMapping.hasOwnProperty(level)) {
+      level = levelMapping[level];
     }
 
     return level;

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "039de35901c555c21004"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "bfbd4d86c52ec71428f3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8474,11 +8474,19 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var keyMapping = { '': 'not available' };
-	var relevantFields = { 'name': 'Country Name', 'alpha2Code': 'Code', 'capital': 'Capital', 'region': 'Region', 'subregion': 'Subregion', 'population': 'Population', 'area': 'Area' };
+	var relevantFields = { 'name': 'Country Name',
+	  'alpha2Code': 'Code',
+	  'capital': 'Capital',
+	  'region': 'Region',
+	  'subregion': 'Subregion',
+	  'population': 'Population',
+	  'area': 'Area' };
 	var europeDataAPI = 'https://restcountries.eu/rest/v1/all';
 	var defaults = { 'grouping': 'Region', 'sorting': 'Population' };
 
-	(0, _reactDom.render)(_react2.default.createElement(_App2.default, { apiEndPoint: europeDataAPI, relevantFields: relevantFields, keyMapping: keyMapping, defaults: defaults }), document.getElementById('root'));
+	(0, _reactDom.render)(_react2.default.createElement(_App2.default, { apiEndPoint: europeDataAPI,
+	  relevantFields: relevantFields, keyMapping: keyMapping,
+	  defaults: defaults }), document.getElementById('root'));
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(271); if (makeExportsHot(module, __webpack_require__(174))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
@@ -30786,7 +30794,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var title = 'World Data Viewer';
-	var description = 'Glossier cred keffiyeh kinfolk. Etsy 8-bit seitan 3 wolf moon, kombucha street art master cleanse yr lo-fi roof party vinyl chillwave meggings. Salvia 3 wolf moon master cleanse enamel pin scenester post-ironic, authentic humblebrag coloring book green juice gluten-free put a bird on it 90s.  Lumbersexual fam chillwave live-edge swag, sustainable copper mug. Hot chicken distillery bushwick, master cleanse air plant forage marfa austin migas. Affogato actually portland, offal disrupt swag readymade pabst etsy man bun.';
+	var description = 'Glossier cred keffiyeh kinfolk. Etsy 8-bit seitan 3 wolf' + 'moon, kombucha street art master cleanse yr lo-fi roof' + 'party vinyl chillwave meggings. Salvia 3 wolf moon' + 'master cleanse enamel pin scenester post-ironic, ' + 'authentic humblebrag coloring book green juice ' + 'gluten-free put a bird on it 90s.  Lumbersexual fam ' + 'chillwave live-edge swag, sustainable copper mug. ' + 'Hot chicken distillery bushwick, master cleanse air ' + 'plantforage marfa austin migas. Affogato actually ' + 'portland, offal disrupt swag readymade pabst etsy man.';
 
 	var Title = function (_React$Component) {
 	  _inherits(Title, _React$Component);
@@ -31012,9 +31020,15 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'card filter-box' },
-	          _react2.default.createElement(_changeDataOrdering2.default, { className: 'group-by', title: 'Group By', action: this.props.actions.regroup, fields: this.props.fields }),
-	          _react2.default.createElement(_changeDataOrdering2.default, { title: 'Sort By', action: this.props.actions.resort, fields: this.props.fields }),
-	          _react2.default.createElement(_FilterBy2.default, { title: 'Filter By', action: { updateFilterField: this.props.actions.updateFilterField, updateOperator: this.props.actions.updateOperator, updateThreshold: this.props.actions.updateThreshold }, fields: this.props.fields })
+	          _react2.default.createElement(_changeDataOrdering2.default, { className: 'group-by', title: 'Group By',
+	            action: this.props.actions.regroup, fields: this.props.fields }),
+	          _react2.default.createElement(_changeDataOrdering2.default, { title: 'Sort By', action: this.props.actions.resort,
+	            fields: this.props.fields }),
+	          _react2.default.createElement(_FilterBy2.default, { title: 'Filter By',
+	            action: { updateFilterField: this.props.actions.updateFilterField,
+	              updateOperator: this.props.actions.updateOperator,
+	              updateThreshold: this.props.actions.updateThreshold },
+	            fields: this.props.fields })
 	        )
 	      );
 	    }
@@ -31120,7 +31134,8 @@
 	          ),
 	          _react2.default.createElement(
 	            'select',
-	            { className: 'drop-down', onChange: this.updateOperator.bind(this) },
+	            { className: 'drop-down',
+	              onChange: this.updateOperator.bind(this) },
 	            _react2.default.createElement(
 	              'option',
 	              null,
@@ -31145,7 +31160,8 @@
 	          _react2.default.createElement('input', { className: 'drop-down', ref: function ref(input) {
 	              _this2.filterThreshold = input;
 	            } }),
-	          _react2.default.createElement('input', { className: 'drop-down', type: 'button', onClick: this.updateThreshold.bind(this), value: 'Add' })
+	          _react2.default.createElement('input', { className: 'drop-down', type: 'button',
+	            onClick: this.updateThreshold.bind(this), value: 'Add' })
 	        )
 	      );
 	    }
@@ -31218,7 +31234,8 @@
 	          ),
 	          _react2.default.createElement(
 	            'select',
-	            { className: 'drop-down', onChange: this.handleChange.bind(this) },
+	            { className: 'drop-down',
+	              onChange: this.handleChange.bind(this) },
 	            _react2.default.createElement(
 	              'option',
 	              null,
@@ -31373,14 +31390,16 @@
 	          null,
 	          _react2.default.createElement(
 	            'td',
-	            { className: 'group-level', colSpan: this.props.spanAll },
+	            { className: 'group-level',
+	              colSpan: this.props.spanAll },
 	            ' ',
 	            this.props.level,
 	            ' '
 	          )
 	        ),
 	        this.props.countryList.map(function (country) {
-	          return _react2.default.createElement(_Country2.default, { key: country[_this2.props.id], id: _this2.props.id, countryData: country });
+	          return _react2.default.createElement(_Country2.default, { key: country[_this2.props.id],
+	            id: _this2.props.id, countryData: country });
 	        })
 	      );
 	    }
@@ -31531,25 +31550,27 @@
 
 	// fetch the data from the api
 
-	var getDataFromAPI = function getDataFromAPI(url, fieldMap, cb) {
+	var getDataFromAPI = function getDataFromAPI(url, desiredFields, cb) {
 	  fetch(url).then(function (res) {
 	    res.json().then(function (rawData) {
-	      var dataWithRelevantFields = getRelevantFields(rawData, fieldMap);
+	      var dataWithRelevantFields = getRelevantFields(rawData, desiredFields);
 	      cb(dataWithRelevantFields);
 	    });
 	  });
 	};
 
 	// make a dataset with only the fields that the user cares about
-	// as far as I can tell, the user will never need the fields that she did not
-	// expicitely ask for, so there is no reason to return the 'full' data to the app
-	var getRelevantFields = function getRelevantFields(fullData, relevantFields) {
+	// the user will never need the fields that she did not expicitely
+	// ask for, so there is no reason to return the 'full' data to the app
+	// the 'fieldMapping' is a list of the fields desired by the user,
+	// and how they would like that field to be displayed.
+	var getRelevantFields = function getRelevantFields(fullData, fieldMapping) {
 	  var formattedData = [];
-	  var originalFieldNames = Object.keys(relevantFields);
+	  var originalFieldNames = Object.keys(fieldMapping);
 
-	  // we only want certain fields from the data, with a
-	  fullData.forEach(function (elem) {
-	    var formattedRow = formRowWithRelevantFields(elem);
+	  // we only want certain fields from the data
+	  fullData.forEach(function (row) {
+	    var formattedRow = formRowWithRelevantFields(row);
 	    formattedData.push(formattedRow);
 	  });
 
@@ -31560,7 +31581,7 @@
 	    var filteredRow = {};
 
 	    originalFieldNames.forEach(function (originalField) {
-	      var newColumnName = relevantFields[originalField];
+	      var newColumnName = fieldMapping[originalField];
 	      filteredRow[newColumnName] = originalRow[originalField];
 	    });
 
@@ -31568,7 +31589,7 @@
 	  }
 	};
 
-	var groupBy = function groupBy(dataset, field, specialKeyMapping) {
+	var groupBy = function groupBy(dataset, field, levelMapping) {
 	  // for accessing the data in a field level quickly
 	  var groupedData = {};
 
@@ -31607,10 +31628,11 @@
 	  function determineLevelLabel(row) {
 	    var level = row[field];
 
-	    // accomodate translatåons between levels in the field and how user would like it to output
-	    // i.e. user may want 'M' in the raw data to be translated to "Male" in the grouped data
-	    if (specialKeyMapping && specialKeyMapping.hasOwnProperty(level)) {
-	      level = specialKeyMapping[level];
+	    // accomodate translations between levels in the field and how user would
+	    // like it to output.  i.e. user may want 'M' in the raw data to be
+	    // translated to "Male" in the grouped data
+	    if (levelMapping && levelMapping.hasOwnProperty(level)) {
+	      level = levelMapping[level];
 	    }
 
 	    return level;
