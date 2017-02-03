@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 import React from 'react';
 
 const title = 'World Data Viewer';
@@ -13,8 +13,8 @@ class Title extends React.Component{
         <p className='description'>  {description} </p>
       </div>
       </div>
-    )
+    );
   }
 }
 
-export default Title
+export default Title;

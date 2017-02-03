@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // fetch the data from the api
 const getDataFromAPI = (url, fieldMap, cb) => {
@@ -6,12 +6,11 @@ const getDataFromAPI = (url, fieldMap, cb) => {
   .then((res) => {
     res.json()
        .then((rawData) => {
-          console.log(rawData[0]); 
-          const dataWithRelevantFields = getRelevantFields(rawData, fieldMap);
-          cb(dataWithRelevantFields);
-        })
-  })
-}
+         const dataWithRelevantFields = getRelevantFields(rawData, fieldMap);
+         cb(dataWithRelevantFields);
+       });
+  });
+};
 
 // make a dataset with only the fields that the user cares about
 // as far as I can tell, the user will never need the fields that she did not
@@ -39,17 +38,17 @@ const getRelevantFields = (fullData, relevantFields) => {
 
     return filteredRow;
   }
-}
+};
 
 const groupBy = (dataset, field, specialKeyMapping) => {
   // for accessing the data in a field level quickly
   const groupedData = {};
 
-  for (var row of dataset) {    
-    // 'level' is a possible value within a field    
+  for (var row of dataset) {
+    // 'level' is a possible value within a field
     var level = determineLevelLabel(row);
 
-    // add it to an existing key groupedData, or make new key    
+    // add it to an existing key groupedData, or make new key
     addToGroupedData(row, level);
   } 
 
@@ -79,7 +78,7 @@ const groupBy = (dataset, field, specialKeyMapping) => {
     var rowsWithSameFieldLevel = groupedData[level];
     rowsWithSameFieldLevel.push(row);
   }
-}
+};
 
 const sortBy = (dataset, field) => {
   dataset.sort(compare);
@@ -95,10 +94,10 @@ const sortBy = (dataset, field) => {
     }
     return 0;
   }
-}
+};
 
 module.exports = {
   getDataFromAPI: getDataFromAPI,
   groupBy: groupBy,
   sortBy: sortBy
-}
+};

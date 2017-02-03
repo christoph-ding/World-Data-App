@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 import React from 'react';
 
 class FilterByForm extends React.Component{
@@ -29,7 +29,7 @@ class FilterByForm extends React.Component{
               this.props.fields.map((field) => {
                 return (
                   <option key={field}> {field} </option>
-                )
+                );
               })
             }
           </select>
@@ -39,7 +39,7 @@ class FilterByForm extends React.Component{
               <option> &gt; </option>
               <option> &lt; </option>              
           </select>
-          <input className="drop-down" ref={(input) => {this.filterThreshold = input}}/>
+          <input className="drop-down" ref={(input) => {this.filterThreshold = input;}}/>
           <input className="drop-down" type="button" onClick={this.updateThreshold.bind(this)} value="Add" />
         </form>
       </div>

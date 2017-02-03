@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c180a9dce37105926e4e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d5ad15b6e63e3d3b0c68"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8457,7 +8457,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	var _react = __webpack_require__(174);
 
@@ -30757,7 +30757,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -31028,7 +31028,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -31058,86 +31058,86 @@
 	  }
 
 	  _createClass(FilterByForm, [{
-	    key: "updateThreshold",
+	    key: 'updateThreshold',
 	    value: function updateThreshold() {
 	      var newThreshold = this.filterThreshold.value;
 	      this.props.action.updateThreshold(newThreshold);
 	    }
 	  }, {
-	    key: "updateField",
+	    key: 'updateField',
 	    value: function updateField(e) {
 	      var newField = e.target.value;
 	      this.props.action.updateFilterField(newField);
 	    }
 	  }, {
-	    key: "updateOperator",
+	    key: 'updateOperator',
 	    value: function updateOperator(e) {
 	      var newOperator = e.target.value;
 	      this.props.action.updateOperator(newOperator);
 	    }
 	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
 
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "single-filter-form" },
+	        'div',
+	        { className: 'single-filter-form' },
 	        _react2.default.createElement(
-	          "form",
+	          'form',
 	          null,
 	          _react2.default.createElement(
-	            "h3",
-	            { className: "filter-label" },
+	            'h3',
+	            { className: 'filter-label' },
 	            this.props.title,
-	            ": "
+	            ': '
 	          ),
 	          _react2.default.createElement(
-	            "select",
-	            { className: "drop-down", onChange: this.updateField.bind(this) },
+	            'select',
+	            { className: 'drop-down', onChange: this.updateField.bind(this) },
 	            _react2.default.createElement(
-	              "option",
+	              'option',
 	              null,
-	              " "
+	              ' '
 	            ),
 	            this.props.fields.map(function (field) {
 	              return _react2.default.createElement(
-	                "option",
+	                'option',
 	                { key: field },
-	                " ",
+	                ' ',
 	                field,
-	                " "
+	                ' '
 	              );
 	            })
 	          ),
 	          _react2.default.createElement(
-	            "select",
-	            { className: "drop-down", onChange: this.updateOperator.bind(this) },
+	            'select',
+	            { className: 'drop-down', onChange: this.updateOperator.bind(this) },
 	            _react2.default.createElement(
-	              "option",
+	              'option',
 	              null,
-	              " "
+	              ' '
 	            ),
 	            _react2.default.createElement(
-	              "option",
+	              'option',
 	              null,
-	              " = "
+	              ' = '
 	            ),
 	            _react2.default.createElement(
-	              "option",
+	              'option',
 	              null,
-	              " > "
+	              ' > '
 	            ),
 	            _react2.default.createElement(
-	              "option",
+	              'option',
 	              null,
-	              " < "
+	              ' < '
 	            )
 	          ),
-	          _react2.default.createElement("input", { className: "drop-down", ref: function ref(input) {
+	          _react2.default.createElement('input', { className: 'drop-down', ref: function ref(input) {
 	              _this2.filterThreshold = input;
 	            } }),
-	          _react2.default.createElement("input", { className: "drop-down", type: "button", onClick: this.updateThreshold.bind(this), value: "Add" })
+	          _react2.default.createElement('input', { className: 'drop-down', type: 'button', onClick: this.updateThreshold.bind(this), value: 'Add' })
 	        )
 	      );
 	    }
@@ -31519,14 +31519,13 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	// fetch the data from the api
 
 	var getDataFromAPI = function getDataFromAPI(url, fieldMap, cb) {
 	  fetch(url).then(function (res) {
 	    res.json().then(function (rawData) {
-	      console.log(rawData[0]);
 	      var dataWithRelevantFields = getRelevantFields(rawData, fieldMap);
 	      cb(dataWithRelevantFields);
 	    });
@@ -31573,10 +31572,10 @@
 	    for (var _iterator = dataset[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	      var row = _step.value;
 
-	      // 'level' is a possible value within a field    
+	      // 'level' is a possible value within a field
 	      var level = determineLevelLabel(row);
 
-	      // add it to an existing key groupedData, or make new key    
+	      // add it to an existing key groupedData, or make new key
 	      addToGroupedData(row, level);
 	    }
 	  } catch (err) {
