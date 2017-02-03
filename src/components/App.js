@@ -75,6 +75,9 @@ class WorldDataApp extends React.Component{
     this.setState({groupedData: groupedByFieldData}, () => {
       // resort after changing the groups
       this.sortData();
+      if (this.completeFilterExists()) {
+        this.filterData();
+      }
     });
   }
 
@@ -120,18 +123,38 @@ class WorldDataApp extends React.Component{
       filteredGroupedData[level] = filteredData;
     }
 
-    this.setState({groupedData: filteredGroupedData});
+    this.setState({groupedData: filteredGroupedData}, this.resetFilter);
   }
+
+  resetFilter() {
+    this.setState({selectedFilterField: undefined,
+                   selectedOperator: undefined,
+                   filterThreshold: ''
+                  })
+  }
+
 
   // these functions expose this component's data to child elements
   regroup(groupField) {
-    this.setState({selectedGrouping: groupField}, ()=>{
+    let newGrouping;
+    if (groupField === "None Selected") {
+      newGrouping = undefined;
+    } else {
+      newGrouping = groupField;
+    }
+    this.setState({selectedGrouping: newGrouping}, ()=>{
       this.groupData();
     });
   }
 
   resort(sortField) {
-    this.setState({selectedSorting: sortField}, ()=>{
+    let newSort;
+    if (sortField === "None Selected") {
+      newSort = undefined;
+    } else {
+      newSort = sortField;
+    }
+    this.setState({selectedSorting: newSort}, ()=>{
       this.sortData();
     });
   }
@@ -139,7 +162,10 @@ class WorldDataApp extends React.Component{
   updateFilterField(newField) {
     this.setState({selectedFilterField: newField}, ()=>{
       if (this.completeFilterExists()) {
-        this.filterData();
+        // the data should be regrouped and resorted before applying filter
+        // otherwise, the filters will continually stack and
+        // the dataset will get smaller and smaller
+        this.groupData();
       }
     });
   }
@@ -147,7 +173,10 @@ class WorldDataApp extends React.Component{
   updateOperator(newOperator) {
     this.setState({selectedOperator: newOperator}, ()=>{
       if (this.completeFilterExists()) {
-        this.filterData();
+        // the data should be regrouped and resorted before applying filter
+        // otherwise, the filters will continually stack and
+        // the dataset will get smaller and smaller
+        this.groupData();
       }
     });
   }
@@ -155,7 +184,10 @@ class WorldDataApp extends React.Component{
   updateThreshold(newThreshold) {
     this.setState({filterThreshold: newThreshold}, ()=>{
       if (this.completeFilterExists()) {
-        this.filterData();
+        // the data should be regrouped and resorted before applying filter
+        // otherwise, the filters will continually stack and
+        // the dataset will get smaller and smaller
+        this.groupData();
       }
     });
   }
