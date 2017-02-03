@@ -2,7 +2,6 @@
 
 // fetch the data from the api
 const getDataFromAPI = (url, desiredFields, cb) => {
-  console.log('fetching: ', url);
   fetch(url)
   .then((res) => {
     res.json()
