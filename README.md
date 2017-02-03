@@ -5,17 +5,17 @@ world.
 
 ## Installation
 
-Install the World Data Viewer using git.
-,,,
+Install the World Data Viewer using git.g
+```
 $ git clone https://github.com/ironpup/World-Data-App.git
-,,,
+```
 
 ## Configuring the app
 By default, the app will make a call to get all European countries from the 
 [Rest Countries Api](https://restcountries.eu), and group the data by
 Region and sort on Population.
 
-The user can change these options in options.json
+The user can change these options in appOptions.json in the /src folder.
 
 ## Using the data
 The user can group and sort the data on different fields, and filter the data.
