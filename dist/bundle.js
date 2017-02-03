@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "bfbd4d86c52ec71428f3"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "28524f34a8afb537d4c5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8471,22 +8471,18 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
+	var _appOptions = __webpack_require__(282);
+
+	var options = _interopRequireWildcard(_appOptions);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var keyMapping = { '': 'not available' };
-	var relevantFields = { 'name': 'Country Name',
-	  'alpha2Code': 'Code',
-	  'capital': 'Capital',
-	  'region': 'Region',
-	  'subregion': 'Subregion',
-	  'population': 'Population',
-	  'area': 'Area' };
-	var europeDataAPI = 'https://restcountries.eu/rest/v1/all';
-	var defaults = { 'grouping': 'Region', 'sorting': 'Population' };
-
-	(0, _reactDom.render)(_react2.default.createElement(_App2.default, { apiEndPoint: europeDataAPI,
-	  relevantFields: relevantFields, keyMapping: keyMapping,
-	  defaults: defaults }), document.getElementById('root'));
+	(0, _reactDom.render)(_react2.default.createElement(_App2.default, { apiEndPoint: options.europeDataAPI,
+	        relevantFields: options.relevantFields,
+	        levelValueMapping: options.levelValueMapping,
+	        defaults: options.defaults }), document.getElementById('root'));
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(271); if (makeExportsHot(module, __webpack_require__(174))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
@@ -30527,11 +30523,11 @@
 
 	var _FilterDataForm2 = _interopRequireDefault(_FilterDataForm);
 
-	var _CountryList = __webpack_require__(284);
+	var _CountryList = __webpack_require__(277);
 
 	var _CountryList2 = _interopRequireDefault(_CountryList);
 
-	var _getData = __webpack_require__(287);
+	var _getData = __webpack_require__(281);
 
 	var data = _interopRequireWildcard(_getData);
 
@@ -30617,6 +30613,8 @@
 	  }, {
 	    key: 'groupData',
 	    value: function groupData() {
+	      var _this3 = this;
+
 	      var groupByField = this.state.selectedGrouping;
 
 	      // by default, we group by region and sort by name
@@ -30627,7 +30625,7 @@
 	      var groupedByFieldData = data.groupBy(this.state.formattedRawData, groupByField, this.props.keyMapping);
 	      this.setState({ groupedData: groupedByFieldData }, function () {
 	        // resort after changing the groups
-	        // this.sortData(sortField);
+	        _this3.sortData();
 	      });
 	    }
 	  }, {
@@ -30686,51 +30684,51 @@
 	  }, {
 	    key: 'regroup',
 	    value: function regroup(groupField) {
-	      var _this3 = this;
+	      var _this4 = this;
 
 	      this.setState({ selectedGrouping: groupField }, function () {
-	        _this3.groupData();
+	        _this4.groupData();
 	      });
 	    }
 	  }, {
 	    key: 'resort',
 	    value: function resort(sortField) {
-	      var _this4 = this;
+	      var _this5 = this;
 
 	      this.setState({ selectedSorting: sortField }, function () {
-	        _this4.sortData();
+	        _this5.sortData();
 	      });
 	    }
 	  }, {
 	    key: 'updateFilterField',
 	    value: function updateFilterField(newField) {
-	      var _this5 = this;
-
-	      this.setState({ selectedFilterField: newField }, function () {
-	        if (_this5.completeFilterExists()) {
-	          _this5.filterData();
-	        }
-	      });
-	    }
-	  }, {
-	    key: 'updateOperator',
-	    value: function updateOperator(newOperator) {
 	      var _this6 = this;
 
-	      this.setState({ selectedOperator: newOperator }, function () {
+	      this.setState({ selectedFilterField: newField }, function () {
 	        if (_this6.completeFilterExists()) {
 	          _this6.filterData();
 	        }
 	      });
 	    }
 	  }, {
-	    key: 'updateThreshold',
-	    value: function updateThreshold(newThreshold) {
+	    key: 'updateOperator',
+	    value: function updateOperator(newOperator) {
 	      var _this7 = this;
 
-	      this.setState({ filterThreshold: newThreshold }, function () {
+	      this.setState({ selectedOperator: newOperator }, function () {
 	        if (_this7.completeFilterExists()) {
 	          _this7.filterData();
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'updateThreshold',
+	    value: function updateThreshold(newThreshold) {
+	      var _this8 = this;
+
+	      this.setState({ filterThreshold: newThreshold }, function () {
+	        if (_this8.completeFilterExists()) {
+	          _this8.filterData();
 	        }
 	      });
 	    }
@@ -30986,11 +30984,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FilterBy = __webpack_require__(277);
+	var _FilterBy = __webpack_require__(275);
 
 	var _FilterBy2 = _interopRequireDefault(_FilterBy);
 
-	var _changeDataOrdering = __webpack_require__(279);
+	var _changeDataOrdering = __webpack_require__(276);
 
 	var _changeDataOrdering2 = _interopRequireDefault(_changeDataOrdering);
 
@@ -31043,9 +31041,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ },
-/* 275 */,
-/* 276 */,
-/* 277 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -31176,8 +31172,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ },
-/* 278 */,
-/* 279 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -31265,11 +31260,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ },
-/* 280 */,
-/* 281 */,
-/* 282 */,
-/* 283 */,
-/* 284 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -31286,11 +31277,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Grouping = __webpack_require__(285);
+	var _Grouping = __webpack_require__(278);
 
 	var _Grouping2 = _interopRequireDefault(_Grouping);
 
-	var _FieldNames = __webpack_require__(288);
+	var _FieldNames = __webpack_require__(280);
 
 	var _FieldNames2 = _interopRequireDefault(_FieldNames);
 
@@ -31339,7 +31330,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ },
-/* 285 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -31356,7 +31347,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Country = __webpack_require__(286);
+	var _Country = __webpack_require__(279);
 
 	var _Country2 = _interopRequireDefault(_Country);
 
@@ -31414,7 +31405,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ },
-/* 286 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -31541,7 +31532,73 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ },
-/* 287 */
+/* 280 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(174);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Country = __webpack_require__(279);
+
+	var _Country2 = _interopRequireDefault(_Country);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var FieldNames = function (_React$Component) {
+	  _inherits(FieldNames, _React$Component);
+
+	  function FieldNames() {
+	    _classCallCheck(this, FieldNames);
+
+	    return _possibleConstructorReturn(this, (FieldNames.__proto__ || Object.getPrototypeOf(FieldNames)).apply(this, arguments));
+	  }
+
+	  _createClass(FieldNames, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'tr',
+	        null,
+	        this.props.fields.map(function (field) {
+	          return _react2.default.createElement(
+	            'th',
+	            { className: 'column-headers', key: field },
+	            ' ',
+	            field,
+	            ' '
+	          );
+	        })
+	      );
+	    }
+	  }]);
+
+	  return FieldNames;
+	}(_react2.default.Component);
+
+	exports.default = FieldNames;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(271); if (makeExportsHot(module, __webpack_require__(174))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FieldNames.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -31677,7 +31734,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ },
-/* 288 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -31687,59 +31744,22 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	var options = {
+	  levelValueMapping: { '': 'not available' },
+	  relevantFields: { 'name': 'Country Name',
+	    'alpha2Code': 'Code',
+	    'capital': 'Capital',
+	    'region': 'Region',
+	    'subregion': 'Subregion',
+	    'population': 'Population',
+	    'area': 'Area' },
+	  europeDataAPI: 'https://restcountries.eu/rest/v1/all',
+	  defaults: { 'grouping': 'Region', 'sorting': 'Population' }
+	};
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	exports.default = options;
 
-	var _react = __webpack_require__(174);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Country = __webpack_require__(286);
-
-	var _Country2 = _interopRequireDefault(_Country);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var FieldNames = function (_React$Component) {
-	  _inherits(FieldNames, _React$Component);
-
-	  function FieldNames() {
-	    _classCallCheck(this, FieldNames);
-
-	    return _possibleConstructorReturn(this, (FieldNames.__proto__ || Object.getPrototypeOf(FieldNames)).apply(this, arguments));
-	  }
-
-	  _createClass(FieldNames, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'tr',
-	        null,
-	        this.props.fields.map(function (field) {
-	          return _react2.default.createElement(
-	            'th',
-	            { className: 'column-headers', key: field },
-	            ' ',
-	            field,
-	            ' '
-	          );
-	        })
-	      );
-	    }
-	  }]);
-
-	  return FieldNames;
-	}(_react2.default.Component);
-
-	exports.default = FieldNames;
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(271); if (makeExportsHot(module, __webpack_require__(174))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FieldNames.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(271); if (makeExportsHot(module, __webpack_require__(174))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "appOptions.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ }

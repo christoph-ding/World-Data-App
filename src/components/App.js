@@ -74,7 +74,7 @@ class WorldDataApp extends React.Component{
                                             this.props.keyMapping);
     this.setState({groupedData: groupedByFieldData}, () => {
       // resort after changing the groups
-      // this.sortData(sortField);
+      this.sortData();
     });
   }
 
