@@ -67,7 +67,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _appOptions = __webpack_require__(193);
+	var _appOptions = __webpack_require__(184);
 
 	var options = _interopRequireWildcard(_appOptions);
 
@@ -21882,19 +21882,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Title = __webpack_require__(184);
+	var _Title = __webpack_require__(185);
 
 	var _Title2 = _interopRequireDefault(_Title);
 
-	var _FilterDataForm = __webpack_require__(185);
+	var _FilterDataForm = __webpack_require__(186);
 
 	var _FilterDataForm2 = _interopRequireDefault(_FilterDataForm);
 
-	var _CountryList = __webpack_require__(188);
+	var _CountryList = __webpack_require__(189);
 
 	var _CountryList2 = _interopRequireDefault(_CountryList);
 
-	var _getData = __webpack_require__(192);
+	var _getData = __webpack_require__(193);
 
 	var data = _interopRequireWildcard(_getData);
 
@@ -22139,6 +22139,29 @@
 
 	'use strict';
 
+	module.exports = {
+	  levelValueMapping: { '': 'not available' },
+	  relevantFields: { 'name': 'Country Name',
+	    'alpha2Code': 'Code',
+	    'capital': 'Capital',
+	    'region': 'Region',
+	    'subregion': 'Subregion',
+	    'population': 'Population',
+	    'area': 'Area' },
+	  europeDataAPI: 'https://restcountries.eu/rest/v1/all',
+	  defaults: { 'grouping': 'Region', 'sorting': 'Population' }
+	};
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "appOptions.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -22205,7 +22228,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Title.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22222,11 +22245,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FilterBy = __webpack_require__(186);
+	var _FilterBy = __webpack_require__(187);
 
 	var _FilterBy2 = _interopRequireDefault(_FilterBy);
 
-	var _changeDataOrdering = __webpack_require__(187);
+	var _changeDataOrdering = __webpack_require__(188);
 
 	var _changeDataOrdering2 = _interopRequireDefault(_changeDataOrdering);
 
@@ -22278,7 +22301,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FilterDataForm.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 186 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22353,7 +22376,7 @@
 	            _react2.default.createElement(
 	              'option',
 	              null,
-	              ' '
+	              ' None Selected '
 	            ),
 	            this.props.fields.map(function (field) {
 	              return _react2.default.createElement(
@@ -22408,7 +22431,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FilterBy.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 187 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22470,7 +22493,7 @@
 	            _react2.default.createElement(
 	              'option',
 	              null,
-	              ' '
+	              ' None Selected '
 	            ),
 	            this.props.fields.map(function (field) {
 	              return _react2.default.createElement(
@@ -22495,7 +22518,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "changeDataOrdering.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 188 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22512,11 +22535,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Grouping = __webpack_require__(189);
+	var _Grouping = __webpack_require__(190);
 
 	var _Grouping2 = _interopRequireDefault(_Grouping);
 
-	var _FieldNames = __webpack_require__(191);
+	var _FieldNames = __webpack_require__(192);
 
 	var _FieldNames2 = _interopRequireDefault(_FieldNames);
 
@@ -22564,7 +22587,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "CountryList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 189 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22581,7 +22604,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Country = __webpack_require__(190);
+	var _Country = __webpack_require__(191);
 
 	var _Country2 = _interopRequireDefault(_Country);
 
@@ -22638,7 +22661,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Grouping.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22764,7 +22787,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Country.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22781,7 +22804,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Country = __webpack_require__(190);
+	var _Country = __webpack_require__(191);
 
 	var _Country2 = _interopRequireDefault(_Country);
 
@@ -22829,7 +22852,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FieldNames.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 192 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22839,7 +22862,6 @@
 	// fetch the data from the api
 
 	var getDataFromAPI = function getDataFromAPI(url, desiredFields, cb) {
-	  console.log('fetching: ', url);
 	  fetch(url).then(function (res) {
 	    res.json().then(function (rawData) {
 	      var dataWithRelevantFields = getRelevantFields(rawData, desiredFields);
@@ -22963,29 +22985,6 @@
 	};
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "getData.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ },
-/* 193 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	module.exports = {
-	  levelValueMapping: { '': 'not available' },
-	  relevantFields: { 'name': 'Country Name',
-	    'alpha2Code': 'Code',
-	    'capital': 'Capital',
-	    'region': 'Region',
-	    'subregion': 'Subregion',
-	    'population': 'Population',
-	    'area': 'Area' },
-	  europeDataAPI: 'https://restcountries.eu/rest/v1/all',
-	  defaults: { 'grouping': 'Region', 'sorting': 'Population' }
-	};
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "appOptions.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }
 /******/ ]);

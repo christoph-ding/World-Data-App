@@ -24,7 +24,7 @@ class FilterByForm extends React.Component{
         <form>
           <h3 className="filter-label">{this.props.title}: </h3>
           <select className="drop-down" onChange={this.updateField.bind(this)}>
-            <option> </option>
+            <option> None Selected </option>
             {
               this.props.fields.map((field) => {
                 return (
