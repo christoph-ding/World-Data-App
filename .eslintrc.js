@@ -2,7 +2,7 @@ module.exports = {
     "env": {
         "browser": true,
         "es6": true,
-        mocha: true
+        "mocha": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -16,23 +16,14 @@ module.exports = {
         "react",
         "mocha"
     ],
+    "ecmaFeatures": { 
+        "jsx": true 
+    },
     "rules": {
-        "indent": [
-            "error",
-            2
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
+        "indent": ["error",2],
+        "linebreak-style": ["error","unix"],
+        "quotes": [1,"single"],
+        "semi": ["error", "always"],
         "mocha/no-exclusive-tests": "error"
     }
 };

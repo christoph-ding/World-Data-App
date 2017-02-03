@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 import React from 'react';
 
 class ChangeOrderForm extends React.Component{
@@ -19,7 +19,7 @@ class ChangeOrderForm extends React.Component{
                 this.props.fields.map((field) => {
                   return (
                     <option key={field}> {field} </option>
-                  )
+                  );
                 })
               }
             </select>

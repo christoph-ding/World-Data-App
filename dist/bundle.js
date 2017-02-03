@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "926524430cdf121040a3"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c180a9dce37105926e4e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -30958,7 +30958,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -31158,7 +31158,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -31188,41 +31188,41 @@
 	  }
 
 	  _createClass(ChangeOrderForm, [{
-	    key: "handleChange",
+	    key: 'handleChange',
 	    value: function handleChange(e) {
 	      var newOption = e.target.value;
 	      this.props.action(newOption);
 	    }
 	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "single-filter-form" },
+	        'div',
+	        { className: 'single-filter-form' },
 	        _react2.default.createElement(
-	          "form",
+	          'form',
 	          null,
 	          _react2.default.createElement(
-	            "h3",
-	            { className: "filter-label" },
+	            'h3',
+	            { className: 'filter-label' },
 	            this.props.title,
-	            ": "
+	            ': '
 	          ),
 	          _react2.default.createElement(
-	            "select",
-	            { className: "drop-down", onChange: this.handleChange.bind(this) },
+	            'select',
+	            { className: 'drop-down', onChange: this.handleChange.bind(this) },
 	            _react2.default.createElement(
-	              "option",
+	              'option',
 	              null,
-	              " "
+	              ' '
 	            ),
 	            this.props.fields.map(function (field) {
 	              return _react2.default.createElement(
-	                "option",
+	                'option',
 	                { key: field },
-	                " ",
+	                ' ',
 	                field,
-	                " "
+	                ' '
 	              );
 	            })
 	          )
@@ -31319,7 +31319,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(79), RootInstanceProvider = __webpack_require__(87), ReactMount = __webpack_require__(89), React = __webpack_require__(174); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
