@@ -20,6 +20,11 @@ class Title extends React.Component{
       <div className="card title-box">
         <h1 className="title"> {title} </h1>
         <p className="description">  {description} </p>
+        <br />
+        <p className="description">  {'Check out the '}
+          <a target="_blank" href="https://github.com/ironpup/World-Data-App"> 
+           Github</a>
+        </p>
       </div>
       </div>
     );
