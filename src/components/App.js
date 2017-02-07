@@ -64,6 +64,7 @@ class WorldDataApp extends React.Component{
   groupData() {
     let groupByField = this.state.selectedGrouping;
     
+
     // by default, we group by region and sort by name
     if (typeof(groupByField) === 'undefined') {
       groupByField = this.props.defaults.grouping;
@@ -84,6 +85,7 @@ class WorldDataApp extends React.Component{
   sortData() {
     let sortedGroupedData = {};
     let sortOnField = this.state.selectedSorting;
+
 
     if (typeof(sortOnField) === 'undefined') {
       sortOnField = this.props.defaults.sorting;
@@ -128,16 +130,16 @@ class WorldDataApp extends React.Component{
 
   resetFilter() {
     this.setState({selectedFilterField: undefined,
-                   selectedOperator: undefined,
-                   filterThreshold: ''
-                  })
+      selectedOperator: undefined,
+      filterThreshold: ''
+    });
   }
 
 
   // these functions expose this component's data to child elements
   regroup(groupField) {
     let newGrouping;
-    if (groupField === "None Selected") {
+    if (groupField === 'None Selected') {
       newGrouping = undefined;
     } else {
       newGrouping = groupField;
@@ -149,7 +151,7 @@ class WorldDataApp extends React.Component{
 
   resort(sortField) {
     let newSort;
-    if (sortField === "None Selected") {
+    if (sortField === 'None Selected') {
       newSort = undefined;
     } else {
       newSort = sortField;

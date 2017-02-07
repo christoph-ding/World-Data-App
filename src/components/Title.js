@@ -22,7 +22,7 @@ class Title extends React.Component{
         <p className="description">  {description} </p>
         <br />
         <p className="description">  {'Check out the '}
-          <a target="_blank" href="https://github.com/ironpup/World-Data-App"> 
+          <a target="_blank" href="https://github.com/ironpup/World-Data-App">
            Github</a>
         </p>
       </div>

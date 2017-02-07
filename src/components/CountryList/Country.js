@@ -8,7 +8,8 @@ class Country extends React.Component{
     this.state = {
       expanded: false,
       display: 'none',
-      hiddenFields: this.determineHiddenFields(this.props.id, this.props.countryData)
+      hiddenFields: this.determineHiddenFields(this.props.id,
+        this.props.countryData)
     };
   }
 
@@ -35,7 +36,8 @@ class Country extends React.Component{
 
   // flattening the fields which contain data that are collections
   isCollection(variable) {
-    return (Array.isArray(variable) || Object.prototype.toString.call(variable) == '[object Object]');
+    return (Array.isArray(variable)
+            || Object.prototype.toString.call(variable) == '[object Object]');
   }
 
   flattenCollection(collection) {
@@ -61,7 +63,8 @@ class Country extends React.Component{
               fieldValue = this.flattenCollection(fieldValue);
             }
 
-            return (<td className="cell" key={field} style={{display: this.state.display}}> {fieldValue} </td>);
+            return (<td className="cell" key={field}
+              style={{display: this.state.display}}> {fieldValue} </td>);
           })
         }
      </tr>

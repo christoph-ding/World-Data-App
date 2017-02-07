@@ -22065,7 +22065,7 @@
 	      var _this4 = this;
 
 	      var newGrouping = void 0;
-	      if (groupField === "None Selected") {
+	      if (groupField === 'None Selected') {
 	        newGrouping = undefined;
 	      } else {
 	        newGrouping = groupField;
@@ -22080,7 +22080,7 @@
 	      var _this5 = this;
 
 	      var newSort = void 0;
-	      if (sortField === "None Selected") {
+	      if (sortField === 'None Selected') {
 	        newSort = undefined;
 	      } else {
 	        newSort = sortField;
@@ -22594,7 +22594,8 @@
 	        _react2.default.createElement(_FieldNames2.default, { fields: this.props.fields }),
 	        levels.map(function (level) {
 	          var levelCountries = _this2.props.countryData[level];
-	          return _react2.default.createElement(_Grouping2.default, { spanAll: _this2.props.fields.length, key: level, level: level, countryList: levelCountries, id: _this2.props.id });
+	          return _react2.default.createElement(_Grouping2.default, { spanAll: _this2.props.fields.length, key: level,
+	            level: level, countryList: levelCountries, id: _this2.props.id });
 	        })
 	      );
 	    }
@@ -22790,7 +22791,8 @@
 
 	          return _react2.default.createElement(
 	            'td',
-	            { className: 'cell', key: field, style: { display: _this2.state.display } },
+	            { className: 'cell', key: field,
+	              style: { display: _this2.state.display } },
 	            ' ',
 	            fieldValue,
 	            ' '
