@@ -21985,7 +21985,7 @@
 	      var groupByField = this.state.selectedGrouping;
 
 	      // by default, we group by region and sort by name
-	      if (typeof groupByField === 'undefined' || groupByField === 'None Selected') {
+	      if (typeof groupByField === 'undefined') {
 	        groupByField = this.props.defaults.grouping;
 	      }
 
@@ -22001,7 +22001,7 @@
 	      var sortedGroupedData = {};
 	      var sortOnField = this.state.selectedSorting;
 
-	      if (typeof sortOnField === 'undefined' || sortOnField === 'None Selected') {
+	      if (typeof sortOnField === 'undefined') {
 	        sortOnField = this.props.defaults.sorting;
 	      }
 
@@ -22550,6 +22550,9 @@
 	        _react2.default.createElement(_FieldNames2.default, { fields: this.props.fields }),
 	        levels.map(function (level) {
 	          var levelCountries = _this2.props.countryData[level];
+	          if (level === 'undefined') {
+	            level = 'None Selected';
+	          }
 	          return _react2.default.createElement(_Grouping2.default, { spanAll: _this2.props.fields.length, key: level,
 	            level: level, countryList: levelCountries, id: _this2.props.id });
 	        })

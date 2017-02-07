@@ -65,8 +65,7 @@ class WorldDataApp extends React.Component{
     let groupByField = this.state.selectedGrouping;
     
     // by default, we group by region and sort by name
-    if (typeof(groupByField) === 'undefined'
-      || groupByField === 'None Selected') {
+    if (typeof(groupByField) === 'undefined') {
       groupByField = this.props.defaults.grouping;
     }
 
@@ -83,8 +82,7 @@ class WorldDataApp extends React.Component{
     let sortedGroupedData = {};
     let sortOnField = this.state.selectedSorting;
 
-    if (typeof(sortOnField) === 'undefined'
-      || sortOnField === 'None Selected') {
+    if (typeof(sortOnField) === 'undefined') {
       sortOnField = this.props.defaults.sorting;
     }
 
