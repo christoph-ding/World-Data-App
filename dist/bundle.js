@@ -21978,7 +21978,7 @@
 
 	  }, {
 	    key: 'groupData',
-	    value: function groupData() {
+	    value: function groupData(callback) {
 	      var _this3 = this;
 
 	      var groupByField = this.state.selectedGrouping;
@@ -21991,12 +21991,18 @@
 	      var groupedByFieldData = data.groupBy(this.state.formattedRawData, groupByField);
 	      this.setState({ groupedData: groupedByFieldData }, function () {
 	        // resort after changing the groups
-	        _this3.sortData();
+	        if (typeof callback !== 'undefined') {
+	          _this3.sortData(callback);
+	        } else {
+	          _this3.sortData();
+	        }
 	      });
 	    }
 	  }, {
 	    key: 'sortData',
-	    value: function sortData() {
+	    value: function sortData(callback) {
+	      var _this4 = this;
+
 	      var sortedGroupedData = {};
 	      var sortOnField = this.state.selectedSorting;
 
@@ -22011,7 +22017,11 @@
 	        sortedGroupedData[level] = sortedLevelData;
 	      }
 
-	      this.setState({ groupedData: sortedGroupedData });
+	      this.setState({ groupedData: sortedGroupedData }, function () {
+	        if (typeof callback !== 'undefined') {
+	          _this4.filterData(callback);
+	        }
+	      });
 	    }
 	  }, {
 	    key: 'filterData',
@@ -22050,19 +22060,19 @@
 	  }, {
 	    key: 'regroup',
 	    value: function regroup(groupField) {
-	      var _this4 = this;
+	      var _this5 = this;
 
 	      this.setState({ selectedGrouping: groupField }, function () {
-	        _this4.groupData();
+	        _this5.groupData();
 	      });
 	    }
 	  }, {
 	    key: 'resort',
 	    value: function resort(sortField) {
-	      var _this5 = this;
+	      var _this6 = this;
 
 	      this.setState({ selectedSorting: sortField }, function () {
-	        _this5.sortData();
+	        _this6.sortData();
 	      });
 	    }
 	  }, {
@@ -22078,11 +22088,11 @@
 	  }, {
 	    key: 'updateThreshold',
 	    value: function updateThreshold(newThreshold) {
-	      var _this6 = this;
+	      var _this7 = this;
 
 	      this.setState({ filterThreshold: newThreshold }, function () {
-	        if (_this6.completeFilterExists()) {
-	          _this6.filterData();
+	        if (_this7.completeFilterExists()) {
+	          _this7.groupData(_this7.filterData);
 	        }
 	      });
 	    }

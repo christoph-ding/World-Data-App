@@ -61,7 +61,7 @@ class WorldDataApp extends React.Component{
   }
 
   // functions for manipulating the data in state
-  groupData() {
+  groupData(callback) {
     let groupByField = this.state.selectedGrouping;
     
     // by default, we group by region and sort by name
@@ -73,11 +73,15 @@ class WorldDataApp extends React.Component{
                                             groupByField);
     this.setState({groupedData: groupedByFieldData}, () => {
       // resort after changing the groups
-      this.sortData();
+      if (typeof(callback) !== 'undefined') {
+        this.sortData(callback);
+      } else {
+        this.sortData();
+      }
     });
   }
 
-  sortData() {
+  sortData(callback) {
     let sortedGroupedData = {};
     let sortOnField = this.state.selectedSorting;
 
@@ -92,7 +96,11 @@ class WorldDataApp extends React.Component{
       sortedGroupedData[level] = sortedLevelData;
     }
 
-    this.setState({groupedData: sortedGroupedData});
+    this.setState({groupedData: sortedGroupedData}, () => {
+      if (typeof(callback) !== 'undefined') {
+        this.filterData(callback);
+      }
+    });
   }
 
   filterData() {
@@ -146,7 +154,7 @@ class WorldDataApp extends React.Component{
   updateThreshold(newThreshold) {
     this.setState({filterThreshold: newThreshold}, ()=>{
       if (this.completeFilterExists()) {
-        this.filterData();
+        this.groupData(this.filterData);
       }
     });
   }
