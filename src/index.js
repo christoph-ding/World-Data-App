@@ -7,6 +7,5 @@ import * as options from './appOptions';
 
 render(<WorldDataApp apiEndPoint={options.europeDataAPI}
         relevantFields={options.relevantFields}
-        levelValueMapping={options.levelValueMapping}
         defaults={options.defaults}/>,
         document.getElementById('root'));

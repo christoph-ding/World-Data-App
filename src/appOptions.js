@@ -1,5 +1,4 @@
 module.exports = {
-  levelValueMapping: {'': 'not available'},
   relevantFields: {'name': 'Country Name',
     'alpha2Code': 'Code',
     'capital': 'Capital',

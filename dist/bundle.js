@@ -77,7 +77,6 @@
 
 	(0, _reactDom.render)(_react2.default.createElement(_App2.default, { apiEndPoint: options.europeDataAPI,
 	        relevantFields: options.relevantFields,
-	        levelValueMapping: options.levelValueMapping,
 	        defaults: options.defaults }), document.getElementById('root'));
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/Desktop/World-Data-App/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -21989,7 +21988,7 @@
 	        groupByField = this.props.defaults.grouping;
 	      }
 
-	      var groupedByFieldData = data.groupBy(this.state.formattedRawData, groupByField, this.props.keyMapping);
+	      var groupedByFieldData = data.groupBy(this.state.formattedRawData, groupByField);
 	      this.setState({ groupedData: groupedByFieldData }, function () {
 	        // resort after changing the groups
 	        _this3.sortData();
@@ -22069,33 +22068,21 @@
 	  }, {
 	    key: 'updateFilterField',
 	    value: function updateFilterField(newField) {
-	      var _this6 = this;
-
-	      this.setState({ selectedFilterField: newField }, function () {
-	        if (_this6.completeFilterExists()) {
-	          _this6.filterData();
-	        }
-	      });
+	      this.setState({ selectedFilterField: newField });
 	    }
 	  }, {
 	    key: 'updateOperator',
 	    value: function updateOperator(newOperator) {
-	      var _this7 = this;
-
-	      this.setState({ selectedOperator: newOperator }, function () {
-	        if (_this7.completeFilterExists()) {
-	          _this7.filterData();
-	        }
-	      });
+	      this.setState({ selectedOperator: newOperator });
 	    }
 	  }, {
 	    key: 'updateThreshold',
 	    value: function updateThreshold(newThreshold) {
-	      var _this8 = this;
+	      var _this6 = this;
 
 	      this.setState({ filterThreshold: newThreshold }, function () {
-	        if (_this8.completeFilterExists()) {
-	          _this8.filterData();
+	        if (_this6.completeFilterExists()) {
+	          _this6.filterData();
 	        }
 	      });
 	    }
@@ -22882,7 +22869,7 @@
 	  }
 	};
 
-	var groupBy = function groupBy(dataset, field, levelMapping) {
+	var groupBy = function groupBy(dataset, field) {
 	  // for accessing the data in a field level quickly
 	  var groupedData = {};
 
@@ -22895,7 +22882,7 @@
 	      var row = _step.value;
 
 	      // 'level' is a possible value within a field
-	      var level = determineLevelLabel(row);
+	      var level = row[field];
 
 	      // add it to an existing key groupedData, or make new key
 	      addToGroupedData(row, level);
@@ -22916,20 +22903,6 @@
 	  }
 
 	  return groupedData;
-
-	  // helper functions
-	  function determineLevelLabel(row) {
-	    var level = row[field];
-
-	    // accomodate translations between levels in the field and how user would
-	    // like it to output.  i.e. user may want 'M' in the raw data to be
-	    // translated to "Male" in the grouped data
-	    if (levelMapping && levelMapping.hasOwnProperty(level)) {
-	      level = levelMapping[level];
-	    }
-
-	    return level;
-	  }
 
 	  function addToGroupedData(row, level) {
 	    var newFieldLevel = !groupedData.hasOwnProperty(level);
@@ -22977,7 +22950,6 @@
 	'use strict';
 
 	module.exports = {
-	  levelValueMapping: { '': 'not available' },
 	  relevantFields: { 'name': 'Country Name',
 	    'alpha2Code': 'Code',
 	    'capital': 'Capital',

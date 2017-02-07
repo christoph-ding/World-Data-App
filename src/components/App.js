@@ -70,8 +70,7 @@ class WorldDataApp extends React.Component{
     }
 
     const groupedByFieldData = data.groupBy(this.state.formattedRawData,
-                                            groupByField,
-                                            this.props.keyMapping);
+                                            groupByField);
     this.setState({groupedData: groupedByFieldData}, () => {
       // resort after changing the groups
       this.sortData();
@@ -137,19 +136,11 @@ class WorldDataApp extends React.Component{
   }
 
   updateFilterField(newField) {
-    this.setState({selectedFilterField: newField}, ()=>{
-      if (this.completeFilterExists()) {
-        this.filterData();
-      }
-    });
+    this.setState({selectedFilterField: newField});
   }
 
   updateOperator(newOperator) {
-    this.setState({selectedOperator: newOperator}, ()=>{
-      if (this.completeFilterExists()) {
-        this.filterData();
-      }
-    });
+    this.setState({selectedOperator: newOperator});
   }
 
   updateThreshold(newThreshold) {
