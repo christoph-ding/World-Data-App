@@ -21894,7 +21894,7 @@
 
 	var _CountryList2 = _interopRequireDefault(_CountryList);
 
-	var _getData = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./../getData\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _getData = __webpack_require__(192);
 
 	var data = _interopRequireWildcard(_getData);
 
@@ -22875,7 +22875,141 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FieldNames.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 192 */,
+/* 192 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	// fetch the data from the api
+
+	var getDataFromAPI = function getDataFromAPI(url, desiredFields, cb) {
+	  fetch(url).then(function (res) {
+	    res.json().then(function (rawData) {
+	      var dataWithRelevantFields = getRelevantFields(rawData, desiredFields);
+	      cb(dataWithRelevantFields);
+	    });
+	  });
+	};
+
+	// make a dataset with only the fields that the user cares about
+	// the user will never need the fields that she did not expicitely
+	// ask for, so there is no reason to return the 'full' data to the app
+	// the 'fieldMapping' is a list of the fields desired by the user,
+	// and how they would like that field to be displayed.
+	var getRelevantFields = function getRelevantFields(fullData, fieldMapping) {
+	  var formattedData = [];
+	  var originalFieldNames = Object.keys(fieldMapping);
+
+	  // we only want certain fields from the data
+	  fullData.forEach(function (row) {
+	    var formattedRow = formRowWithRelevantFields(row);
+	    formattedData.push(formattedRow);
+	  });
+
+	  return formattedData;
+
+	  // helper functions
+	  function formRowWithRelevantFields(originalRow) {
+	    var filteredRow = {};
+
+	    originalFieldNames.forEach(function (originalField) {
+	      var newColumnName = fieldMapping[originalField];
+	      filteredRow[newColumnName] = originalRow[originalField];
+	    });
+
+	    return filteredRow;
+	  }
+	};
+
+	var groupBy = function groupBy(dataset, field, levelMapping) {
+	  // for accessing the data in a field level quickly
+	  var groupedData = {};
+
+	  var _iteratorNormalCompletion = true;
+	  var _didIteratorError = false;
+	  var _iteratorError = undefined;
+
+	  try {
+	    for (var _iterator = dataset[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	      var row = _step.value;
+
+	      // 'level' is a possible value within a field
+	      var level = determineLevelLabel(row);
+
+	      // add it to an existing key groupedData, or make new key
+	      addToGroupedData(row, level);
+	    }
+	  } catch (err) {
+	    _didIteratorError = true;
+	    _iteratorError = err;
+	  } finally {
+	    try {
+	      if (!_iteratorNormalCompletion && _iterator.return) {
+	        _iterator.return();
+	      }
+	    } finally {
+	      if (_didIteratorError) {
+	        throw _iteratorError;
+	      }
+	    }
+	  }
+
+	  return groupedData;
+
+	  // helper functions
+	  function determineLevelLabel(row) {
+	    var level = row[field];
+
+	    // accomodate translations between levels in the field and how user would
+	    // like it to output.  i.e. user may want 'M' in the raw data to be
+	    // translated to "Male" in the grouped data
+	    if (levelMapping && levelMapping.hasOwnProperty(level)) {
+	      level = levelMapping[level];
+	    }
+
+	    return level;
+	  }
+
+	  function addToGroupedData(row, level) {
+	    var newFieldLevel = !groupedData.hasOwnProperty(level);
+
+	    // add row to appropriate field level, capture all possible field levels
+	    if (newFieldLevel) {
+	      groupedData[level] = [];
+	    }
+
+	    var rowsWithSameFieldLevel = groupedData[level];
+	    rowsWithSameFieldLevel.push(row);
+	  }
+	};
+
+	var sortBy = function sortBy(dataset, field) {
+	  dataset.sort(compare);
+	  return dataset;
+
+	  function compare(a, b) {
+	    var valueA = a[field];
+	    var valueB = b[field];
+	    if (valueA < valueB) {
+	      return -1;
+	    } else if (valueA > valueB) {
+	      return 1;
+	    }
+	    return 0;
+	  }
+	};
+
+	module.exports = {
+	  getDataFromAPI: getDataFromAPI,
+	  groupBy: groupBy,
+	  sortBy: sortBy
+	};
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/christophding/coding/world-data-app/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "getData.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
 /* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
