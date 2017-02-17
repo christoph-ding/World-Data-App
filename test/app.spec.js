@@ -2,10 +2,10 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import WorldDataApp from '../src/components/App';
-import Title from '../src/components/Title';
-import FilterDataForm from '../src/components/FilterDataForm/FilterDataForm';
-import CountryList from '../src/components/CountryList/CountryList';
+import WorldDataApp from '../js/lib/components/App';
+import Title from '../js/lib/components/Title';
+import FilterDataForm from '../js/lib/components/FilterDataForm/FilterDataForm';
+import CountryList from '../js/lib/components/CountryList/CountryList';
 
 describe('App elements', () => {
   // set up the component

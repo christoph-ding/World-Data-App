@@ -2,9 +2,9 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 
-import CountryList from '../src/components/CountryList/CountryList';
-import FieldNames from '../src/components/CountryList/FieldNames';
-import Grouping from '../src/components/CountryList/Grouping';
+import CountryList from '../js/lib/components/CountryList/CountryList';
+import FieldNames from '../js/lib/components/CountryList/FieldNames';
+import Grouping from '../js/lib/components/CountryList/Grouping';
 
 describe('CountryList contains presentation components', () => {
   // set up the component
