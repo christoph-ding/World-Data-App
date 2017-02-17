@@ -61,7 +61,7 @@ class WorldDataApp extends React.Component{
   }
 
   // functions for manipulating the data in state
-  groupData() {
+  groupData(callback) {
     let groupByField = this.state.selectedGrouping;
     
 
@@ -71,18 +71,18 @@ class WorldDataApp extends React.Component{
     }
 
     const groupedByFieldData = data.groupBy(this.state.formattedRawData,
-                                            groupByField,
-                                            this.props.keyMapping);
+                                            groupByField);
     this.setState({groupedData: groupedByFieldData}, () => {
       // resort after changing the groups
-      this.sortData();
-      if (this.completeFilterExists()) {
-        this.filterData();
+      if (typeof(callback) !== 'undefined') {
+        this.sortData(callback);
+      } else {
+        this.sortData();
       }
     });
   }
 
-  sortData() {
+  sortData(callback) {
     let sortedGroupedData = {};
     let sortOnField = this.state.selectedSorting;
 
@@ -98,7 +98,11 @@ class WorldDataApp extends React.Component{
       sortedGroupedData[level] = sortedLevelData;
     }
 
-    this.setState({groupedData: sortedGroupedData});
+    this.setState({groupedData: sortedGroupedData}, () => {
+      if (typeof(callback) !== 'undefined') {
+        this.filterData(callback);
+      }
+    });
   }
 
   filterData() {
@@ -161,35 +165,14 @@ class WorldDataApp extends React.Component{
     });
   }
 
-  updateFilterField(newField) {
-    this.setState({selectedFilterField: newField}, ()=>{
-      if (this.completeFilterExists()) {
-        // the data should be regrouped and resorted before applying filter
-        // otherwise, the filters will continually stack and
-        // the dataset will get smaller and smaller
-        this.groupData();
-      }
-    });
-  }
-
   updateOperator(newOperator) {
-    this.setState({selectedOperator: newOperator}, ()=>{
-      if (this.completeFilterExists()) {
-        // the data should be regrouped and resorted before applying filter
-        // otherwise, the filters will continually stack and
-        // the dataset will get smaller and smaller
-        this.groupData();
-      }
-    });
+    this.setState({selectedOperator: newOperator});
   }
 
   updateThreshold(newThreshold) {
     this.setState({filterThreshold: newThreshold}, ()=>{
       if (this.completeFilterExists()) {
-        // the data should be regrouped and resorted before applying filter
-        // otherwise, the filters will continually stack and
-        // the dataset will get smaller and smaller
-        this.groupData();
+        this.groupData(this.filterData);
       }
     });
   }

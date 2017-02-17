@@ -21979,7 +21979,7 @@
 
 	  }, {
 	    key: 'groupData',
-	    value: function groupData() {
+	    value: function groupData(callback) {
 	      var _this3 = this;
 
 	      var groupByField = this.state.selectedGrouping;
@@ -21989,18 +21989,21 @@
 	        groupByField = this.props.defaults.grouping;
 	      }
 
-	      var groupedByFieldData = data.groupBy(this.state.formattedRawData, groupByField, this.props.keyMapping);
+	      var groupedByFieldData = data.groupBy(this.state.formattedRawData, groupByField);
 	      this.setState({ groupedData: groupedByFieldData }, function () {
 	        // resort after changing the groups
-	        _this3.sortData();
-	        if (_this3.completeFilterExists()) {
-	          _this3.filterData();
+	        if (typeof callback !== 'undefined') {
+	          _this3.sortData(callback);
+	        } else {
+	          _this3.sortData();
 	        }
 	      });
 	    }
 	  }, {
 	    key: 'sortData',
-	    value: function sortData() {
+	    value: function sortData(callback) {
+	      var _this4 = this;
+
 	      var sortedGroupedData = {};
 	      var sortOnField = this.state.selectedSorting;
 
@@ -22015,7 +22018,11 @@
 	        sortedGroupedData[level] = sortedLevelData;
 	      }
 
-	      this.setState({ groupedData: sortedGroupedData });
+	      this.setState({ groupedData: sortedGroupedData }, function () {
+	        if (typeof callback !== 'undefined') {
+	          _this4.filterData(callback);
+	        }
+	      });
 	    }
 	  }, {
 	    key: 'filterData',
@@ -22062,7 +22069,7 @@
 	  }, {
 	    key: 'regroup',
 	    value: function regroup(groupField) {
-	      var _this4 = this;
+	      var _this5 = this;
 
 	      var newGrouping = void 0;
 	      if (groupField === 'None Selected') {
@@ -22071,13 +22078,13 @@
 	        newGrouping = groupField;
 	      }
 	      this.setState({ selectedGrouping: newGrouping }, function () {
-	        _this4.groupData();
+	        _this5.groupData();
 	      });
 	    }
 	  }, {
 	    key: 'resort',
 	    value: function resort(sortField) {
-	      var _this5 = this;
+	      var _this6 = this;
 
 	      var newSort = void 0;
 	      if (sortField === 'None Selected') {
@@ -22086,48 +22093,22 @@
 	        newSort = sortField;
 	      }
 	      this.setState({ selectedSorting: newSort }, function () {
-	        _this5.sortData();
-	      });
-	    }
-	  }, {
-	    key: 'updateFilterField',
-	    value: function updateFilterField(newField) {
-	      var _this6 = this;
-
-	      this.setState({ selectedFilterField: newField }, function () {
-	        if (_this6.completeFilterExists()) {
-	          // the data should be regrouped and resorted before applying filter
-	          // otherwise, the filters will continually stack and
-	          // the dataset will get smaller and smaller
-	          _this6.groupData();
-	        }
+	        _this6.sortData();
 	      });
 	    }
 	  }, {
 	    key: 'updateOperator',
 	    value: function updateOperator(newOperator) {
-	      var _this7 = this;
-
-	      this.setState({ selectedOperator: newOperator }, function () {
-	        if (_this7.completeFilterExists()) {
-	          // the data should be regrouped and resorted before applying filter
-	          // otherwise, the filters will continually stack and
-	          // the dataset will get smaller and smaller
-	          _this7.groupData();
-	        }
-	      });
+	      this.setState({ selectedOperator: newOperator });
 	    }
 	  }, {
 	    key: 'updateThreshold',
 	    value: function updateThreshold(newThreshold) {
-	      var _this8 = this;
+	      var _this7 = this;
 
 	      this.setState({ filterThreshold: newThreshold }, function () {
-	        if (_this8.completeFilterExists()) {
-	          // the data should be regrouped and resorted before applying filter
-	          // otherwise, the filters will continually stack and
-	          // the dataset will get smaller and smaller
-	          _this8.groupData();
+	        if (_this7.completeFilterExists()) {
+	          _this7.groupData(_this7.filterData);
 	        }
 	      });
 	    }
@@ -22594,6 +22575,9 @@
 	        _react2.default.createElement(_FieldNames2.default, { fields: this.props.fields }),
 	        levels.map(function (level) {
 	          var levelCountries = _this2.props.countryData[level];
+	          if (level === 'undefined') {
+	            level = 'None Selected';
+	          }
 	          return _react2.default.createElement(_Grouping2.default, { spanAll: _this2.props.fields.length, key: level,
 	            level: level, countryList: levelCountries, id: _this2.props.id });
 	        })
@@ -22923,7 +22907,7 @@
 	  }
 	};
 
-	var groupBy = function groupBy(dataset, field, levelMapping) {
+	var groupBy = function groupBy(dataset, field) {
 	  // for accessing the data in a field level quickly
 	  var groupedData = {};
 
@@ -22936,7 +22920,7 @@
 	      var row = _step.value;
 
 	      // 'level' is a possible value within a field
-	      var level = determineLevelLabel(row);
+	      var level = row[field];
 
 	      // add it to an existing key groupedData, or make new key
 	      addToGroupedData(row, level);
@@ -22957,20 +22941,6 @@
 	  }
 
 	  return groupedData;
-
-	  // helper functions
-	  function determineLevelLabel(row) {
-	    var level = row[field];
-
-	    // accomodate translations between levels in the field and how user would
-	    // like it to output.  i.e. user may want 'M' in the raw data to be
-	    // translated to "Male" in the grouped data
-	    if (levelMapping && levelMapping.hasOwnProperty(level)) {
-	      level = levelMapping[level];
-	    }
-
-	    return level;
-	  }
 
 	  function addToGroupedData(row, level) {
 	    var newFieldLevel = !groupedData.hasOwnProperty(level);
@@ -23018,7 +22988,6 @@
 	'use strict';
 
 	module.exports = {
-	  levelValueMapping: { '': 'not available' },
 	  relevantFields: { 'name': 'Country Name',
 	    'alpha2Code': 'Code',
 	    'capital': 'Capital',

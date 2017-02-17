@@ -42,33 +42,19 @@ const getRelevantFields = (fullData, fieldMapping) => {
   }
 };
 
-const groupBy = (dataset, field, levelMapping) => {
+const groupBy = (dataset, field) => {
   // for accessing the data in a field level quickly
   const groupedData = {};
 
   for (var row of dataset) {
     // 'level' is a possible value within a field
-    var level = determineLevelLabel(row);
+    var level = row[field];
 
     // add it to an existing key groupedData, or make new key
     addToGroupedData(row, level);
   }
 
   return groupedData;
-
-  // helper functions
-  function determineLevelLabel(row) {
-    var level = row[field];
-
-    // accomodate translations between levels in the field and how user would
-    // like it to output.  i.e. user may want 'M' in the raw data to be
-    // translated to "Male" in the grouped data
-    if (levelMapping && levelMapping.hasOwnProperty(level)) {
-      level = levelMapping[level];
-    }
-
-    return level;
-  }
 
   function addToGroupedData(row, level) {
     var newFieldLevel = !groupedData.hasOwnProperty(level);
