@@ -9,4 +9,4 @@ module.exports = {
     'area': 'Area'},
   europeDataAPI: 'https://restcountries.eu/rest/v1/all',
   defaults: {'grouping': 'Region', 'sorting': 'Population'}
-}
+};

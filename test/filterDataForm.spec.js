@@ -2,9 +2,9 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import FilterDataForm from '../src/components/FilterDataForm/FilterDataForm';
-import FilterByForm from '../src/components/FilterDataForm/FilterBy';
-import ChangeOrderForm from '../src/components/FilterDataForm/changeDataOrdering';
+import FilterDataForm from '../js/lib/components/FilterDataForm/FilterDataForm';
+import FilterByForm from '../js/lib/components/FilterDataForm/FilterBy';
+import ChangeOrderForm from '../js/lib/components/FilterDataForm/changeDataOrdering';
 
 describe('FilterDataForm elements', () => {
   // set up the component

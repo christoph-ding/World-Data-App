@@ -2,8 +2,8 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import Grouping from '../src/components/CountryList/Grouping';
-import Country from '../src/components/CountryList/Country';
+import Grouping from '../js/lib/components/CountryList/Grouping';
+import Country from '../js/lib/components/CountryList/Country';
 
 describe('Grouping elements', () => {
   // set up the component

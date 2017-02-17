@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import Country from '../src/components/CountryList/Country';
+import Country from '../js/lib/components/CountryList/Country';
 
 describe('Country states and clicking to hide/unhide data', () => {
   // set up the component
