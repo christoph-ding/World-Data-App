@@ -2,7 +2,7 @@
   "name": "world-data-app",
   "version": "1.0.0",
   "description": "An app for viewing statistics about the different countries in the world.",
-  "main": "server.js",
+  "main": "js/index.html",
   "scripts": {
     "lint": "node_modules/.bin/eslint src/ | pbcopy; pbpaste > srcLint.txt; node_modules/.bin/eslint test/ | pbcopy; pbpaste > testLint.txt",
     "test": "mocha test/setup.js test/*.spec.js"
